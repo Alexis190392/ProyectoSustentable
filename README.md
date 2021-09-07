@@ -22,7 +22,7 @@ git remote set-url origin https://T@github.com/Alexis190392/ProyectoSustentable.
 
 
 //// Para traer todo lo del repo remoto
--git pull
+-git pull origin main
 
 //// Para eliminar cualquier cosa anterior que afecta
 
