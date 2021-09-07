@@ -46,3 +46,4 @@ Salir de la rama - o moverse
 
 -git merge "Nombre de la rama"
 
+asi esta la cosa!!!!
