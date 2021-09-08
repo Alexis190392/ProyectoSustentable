@@ -1,0 +1,14 @@
+git remote set-url origin 
+https://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@github.com/alexis190392/ProyectoSustentable.git
+
+
+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
+
+aconvertini@AndresC-Work MINGW64 /c/ANDRESC-JAVA/Proyecto Sustentable
+$ git init
+$ git branch -M main
+$ git pull origin main
+$ git remote set-url origin https://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@github.com/alexis190392/ProyectoSustentable.git
+$ git pull origin main
+
+
