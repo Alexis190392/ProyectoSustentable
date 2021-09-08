@@ -73,7 +73,20 @@ input:placeholder-shown {
   
 
 /**/
+.minusBtn,
+.plusBtn{
+    width: auto;
+    background-color: #7BED8D;
+    border: none !important;
+    border-radius: 3rem;
+    color:#4E5D6A
+}
 
+.mainBtn{
+    background-color: #4E5D6A;
+    border: none;
+    color: #A6BCD0 !important;
+}
 
 
  
