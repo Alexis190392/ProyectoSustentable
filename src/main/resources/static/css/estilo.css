@@ -1,0 +1,87 @@
+/*General*/
+*{
+    color: #A6BCD0;
+}
+
+li{
+    list-style: none;
+    margin: 0.5rem;
+}
+
+/*color de fondo general, padding laterales*/
+body{
+    background-color: #404E5A;
+    padding-right: 2rem;
+    padding-left: 2rem;
+}
+
+/*fondo nav-bar*/
+.bg-dark{
+    background-color: #404E5A !important;
+    padding: 1rem;
+    border-radius: 0 0 1rem 1rem ;
+    
+}
+
+/*sombra para aplicar a contenedores*/
+.shadow{
+    box-shadow: 0 0.5rem 2rem 0.5rem #3b4853;
+}
+
+/*color verde para textos*/
+.text-green{
+    color: #7BED8D !important;
+}
+
+/*contenedor de login - */
+.container-form{
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    padding: 3rem;
+    color: #A6BCD0;
+    border-radius: 0.5rem;
+}
+
+/*campos de formulario*/
+.form-control{
+    background-color: #4E5D6A;
+    border: none;
+    color: #A6BCD0 !important;
+    
+}
+/*para evitar se pasen a blanco cuando voy a escribir*/
+input:not(:placeholder-shown) {
+    background-color:  #4E5D6A!important;
+ }
+
+input:placeholder-shown {
+    background-color:  #4E5D6A!important;
+}
+
+/*boton submit*/
+.btn-primary, 
+.btn-primary:hover, 
+.btn-primary:active, 
+.btn-primary:visited{
+    width: 100%;
+    background-color: #7BED8D;
+    border: none !important;
+    border-radius: 3rem;
+}
+
+
+  
+
+/**/
+
+
+
+ 
+
+
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
