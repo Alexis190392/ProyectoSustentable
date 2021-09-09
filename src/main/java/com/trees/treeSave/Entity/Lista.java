@@ -5,10 +5,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -24,18 +21,31 @@ public class Lista implements Serializable {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
     private String nombreList;    
-   // @OneToMany(mappedBy = "producto")
+    @OneToMany
     private List<Producto> productos;
 
     public Lista() {
     }
 
-    public Lista(String id, String nombre) {
-        this.id = id;
-        this.nombreList = nombre;
-
+    public String getNombreList() {
+        return nombreList;
     }
 
+    public void setNombreList(String nombreList) {
+        this.nombreList = nombreList;
+    }
+
+    public List<Producto> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(List<Producto> productos) {
+        this.productos = productos;
+    }
+    
+    
+
+   
     public String getId() {
         return id;
     }
