@@ -17,23 +17,27 @@ import org.hibernate.annotations.GenericGenerator;
 public class Producto implements Serializable {
 
     @Id
-    @GeneratedValue(generator = "uuid")
+    private String codigoBarra; //paso a Sting ya que no se utiliza para calculos, y para la posibilidad de codigos con letras
+   /* @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    private String id;
-    private String nombreP;
-    private String origen;                // nacional o importado o la provincia
-    private Integer codigoBarra;          // definir como foreign key  como ¿?
-    private Boolean precio;     
+    private String id;*/
+    private String nombre;
+    private String origen;                // nacional o importado o la provincia - proximo a cambiar por entidad o enum
+    // private Integer codigoBarra;          // definir como foreign key  como ¿?
+    private Double precio;     
     private Integer stock;    
     @Enumerated(EnumType.STRING)
     private Tipo tipo;                  // enum del tipo de Producto según tipo de huella
-    private String urlImg;  
-    private Integer puntos;
+    private String urlImg;              //proximo a MIME multipartFile
+    private Integer puntos;             // respecto a calculo por huella de carbono
     
     @ManyToOne
     private Categoria categoria;
     
+    /*
     @OneToMany(mappedBy = "lista")
     private List<Lista> listas;
+    */
+    
     
 }

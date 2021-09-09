@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -14,13 +16,14 @@ import org.hibernate.annotations.GenericGenerator;
  * @author aconvertini
  */
 @Entity
+// @Inheritance(strategy = InheritanceType.JOINED)
 public class Lista implements Serializable {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
     private String nombreList;    
-    @OneToMany(mappedBy = "producto")
+   // @OneToMany(mappedBy = "producto")
     private List<Producto> productos;
 
     public Lista() {
