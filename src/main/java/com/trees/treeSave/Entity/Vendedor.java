@@ -3,6 +3,7 @@ package com.trees.treeSave.Entity;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Vendedor {
@@ -11,6 +12,7 @@ public class Vendedor {
     private String cuit;
     private String nombre;
     private String domicilio;
+    @ManyToOne
     private List<Producto> catalogo;
 
     public String getCuit() {
