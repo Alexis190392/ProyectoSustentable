@@ -1,8 +1,12 @@
+com\trees\treeSave\controller\CategoriaController.class
+com\trees\treeSave\repositories\CategoriaRepository.class
 com\trees\treeSave\Entity\Lista.class
 com\trees\treeSave\Entity\Producto.class
+com\trees\treeSave\errores\ErrorService.class
 com\trees\enumeraciones\Tipo.class
 com\trees\treeSave\Entity\Cliente.class
 com\trees\enumeraciones\Nivel.class
 com\trees\enumeraciones\TipoDoc.class
+com\trees\treeSave\services\CategoriaService.class
 com\trees\treeSave\TreeSaveApplication.class
 com\trees\treeSave\Entity\Categoria.class
