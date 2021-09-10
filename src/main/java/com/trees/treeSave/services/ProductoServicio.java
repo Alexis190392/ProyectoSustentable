@@ -4,6 +4,8 @@ import com.trees.treeSave.Entity.Producto;
 import com.trees.treeSave.enumeraciones.Tipo;
 import com.trees.treeSave.excepciones.WebException;
 import com.trees.treeSave.repositories.ProductoRepository;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;
@@ -88,5 +90,13 @@ public class ProductoServicio {
         if(op.isPresent()){
             pr.delete(op.get());
         }
+    }
+
+    
+    //utilidades
+    public List<Tipo> listTipo() {
+        List t = new ArrayList();
+        t.addAll(Arrays.asList(Tipo.values()));
+        return t;
     }
 }
