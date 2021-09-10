@@ -31,13 +31,13 @@ and open the template in the editor.
                 <div class="row m-5">
                     <div class="col d-flex justify-content-center">
                         <div class="card text-center bg-transparent">
-                            <div class="card-body">
+                            <div class="card-body shadow">
                                 <form class="row g-3" th:action="@{/categoria/list}" method="GET">
                                     <div class="col">
-                                        <input type="text" class="mt-3" style="width: 100%;" name="q" id="inputPassword2" placeholder="Buscar...">
+                                        <input type="text" class="form-control" style="width: 100%;" name="q" placeholder="Buscar...">
                                     </div>
                                     <div class="col-2">
-                                        <button type="submit" class="button mb-3">Buscar</button>
+                                        <button type="submit" class="minusBtn mt-1">Buscar</button>
                                     </div>
                                 </form>
                                 <table class="text-center text-light table table-borderless">
@@ -50,11 +50,11 @@ and open the template in the editor.
                                     </thead>
                                     <tbody>
                                         <tr th:each=" a,iterator : ${categorias} ">
-                                            <td th:text="${iterator.index+1}"></td>
-                                            <td th:text="${a.nombreCat}"></td>
-                                            <td <!--sec:authorize="hasRole('ROLE_ADMIN')"--> >
-                                                <button class="button"><a th:href="@{/categoria/deleteTH}+'?id='+${a.id}">Eliminar</a></button>
-                                                <button class="button"><a th:href="@{/categoria/form}+'?id='+${a.id}">Editar</a></button>
+                                            <td class="text-green" th:text="${iterator.index+1}"></td>
+                                            <td class="text-green" th:text="${a.nombreCat}"></td>
+                                            <td class="text-green" <!--sec:authorize="hasRole('ROLE_ADMIN')"--> >
+                                                <button class="minusBtn"><a class="text-a" th:href="@{/categoria/deleteTH}+'?id='+${a.id}">Eliminar</a></button>
+                                                <button class="minusBtn"><a class="text-a" th:href="@{/categoria/form}+'?id='+${a.id}">Editar</a></button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -69,11 +69,11 @@ and open the template in the editor.
             </div>
             <div class="row m-2">
                 <div class="col d-flex justify-content-center">
-                    <button class="button"><a th:href="@{/categoria/form}">Agregar Categoria</a></button>
+                    <button class="mainBtn shadow"><a class="text-green text-a" th:href="@{/categoria/form}">Agregar Categoria</a></button>
                 </div>
 
                 <div class="col d-flex justify-content-center">
-                    <button class="button"><a th:href="@{/}">Pagina Principal</a></button>
+                    <button class="mainBtn shadow"><a class="text-green text-a" th:href="@{/}">Pagina Principal</a></button>
                 </div>
 
             </div>
