@@ -1,8 +1,8 @@
 package com.trees.treeSave.Entity;
 
-import com.trees.enumeraciones.Nivel;
-import com.trees.enumeraciones.Tipo;
-import com.trees.enumeraciones.TipoDoc;
+import com.trees.treeSave.enumeraciones.Nivel;
+import com.trees.treeSave.enumeraciones.Tipo;
+import com.trees.treeSave.enumeraciones.TipoDoc;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
