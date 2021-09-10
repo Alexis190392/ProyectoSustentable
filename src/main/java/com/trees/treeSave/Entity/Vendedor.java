@@ -4,6 +4,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Vendedor {
@@ -12,7 +13,7 @@ public class Vendedor {
     private String cuit;
     private String nombre;
     private String domicilio;
-    @ManyToOne
+    @OneToMany
     private List<Producto> catalogo;
 
     public String getCuit() {
