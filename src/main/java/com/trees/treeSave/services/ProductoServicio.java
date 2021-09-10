@@ -68,6 +68,13 @@ public class ProductoServicio {
         return pr.searchId("%" + query + "%");
     }
     
+    //buscador por codigo de barras como id
+    
+    public Optional<Producto> searchCod(String codigo){
+        return pr.findById(codigo);
+    }
+    
+    
     /*   ELIMINAR     */
     
     @Transactional
@@ -76,7 +83,7 @@ public class ProductoServicio {
     }
     
     @Transactional
-    public void deleteById(String codigoBarra){
+    public void deleteByCod(String codigoBarra){
         Optional<Producto> op = pr.findById(codigoBarra);
         if(op.isPresent()){
             pr.delete(op.get());

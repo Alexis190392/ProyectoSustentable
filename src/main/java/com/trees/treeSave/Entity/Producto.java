@@ -2,7 +2,6 @@
 package com.trees.treeSave.Entity;
 
 import com.trees.treeSave.enumeraciones.Tipo;
-import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
