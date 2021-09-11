@@ -1,10 +1,9 @@
 package com.trees.treeSave.controller;
 
 import com.trees.treeSave.Entity.Producto;
-import com.trees.treeSave.enumeraciones.Tipo;
+import com.trees.treeSave.excepciones.WebException;
 import com.trees.treeSave.services.CategoriaService;
 import com.trees.treeSave.services.ProductoServicio;
-import static java.util.Collections.list;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,8 +32,7 @@ public class ProductoController {
         } else {
             model.addAttribute("productos", ps.listAll());
         }
-        model.addAttribute("tipos",ps.listTipo());
-        model.addAttribute("categorias",cs.listAll());
+        
         return "administrarProductos";
     }
 
@@ -50,7 +48,9 @@ public class ProductoController {
         }else{
             model.addAttribute("producto", new Producto());
         }
-        return "crearProducto";
+        model.addAttribute("tipos",ps.listTipo());
+        model.addAttribute("categorias",cs.listAll());
+        return "producto-form";
     }
 
     @PostMapping("/save")
@@ -58,7 +58,7 @@ public class ProductoController {
         try {
             ps.save(p);
             redat.addFlashAttribute("success", "Producto guardado correctamente");
-        } catch (Exception e) {
+        } catch (WebException e) {
             redat.addFlashAttribute("error", e.getMessage()); //mandando el mensaje de error a donde es redireccionado
         }
         return "redirect:/producto/list";

@@ -43,7 +43,7 @@ body{
 }
 
 /*campos de formulario*/
-.form-control{
+.form-control, .form-select::after{
     background-color: #4E5D6A;
     border: none;
     color: #A6BCD0 !important;

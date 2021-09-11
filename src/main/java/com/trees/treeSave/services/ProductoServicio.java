@@ -6,6 +6,8 @@ import com.trees.treeSave.excepciones.WebException;
 import com.trees.treeSave.repositories.ProductoRepository;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;
@@ -16,6 +18,7 @@ import org.springframework.stereotype.Service;
 public class ProductoServicio {
     @Autowired
     private ProductoRepository pr;
+    private Tipo tipo;
     
     //para comunicarse con la bd
     @Transactional
@@ -95,8 +98,8 @@ public class ProductoServicio {
     
     //utilidades
     public List<Tipo> listTipo() {
-        List t = new ArrayList();
-        t.addAll(Arrays.asList(Tipo.values()));
+        List<Tipo> t = Arrays.asList(Tipo.values());
+        
         return t;
     }
 }

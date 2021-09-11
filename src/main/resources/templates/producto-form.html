@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es-AR" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/fragments/head :: head">
+
+<body>
+    <!--boton volver-->
+    <a type="submit" class="btn btn-outline-dark" th:href="@{/}">Volver</a>
+    <!--form-->
+    <div class="container  container-form shadow">
+        <form th:action="@{/producto/save}" method="POST" th:object="${producto}">
+            <div class="form-label">
+                <label  class="form-label" for="">SKU</label>
+                <input type="text" class="form-control" th:field="*{codigoBarra}">
+            </div>
+            <div class="form-label">
+                <label for="">Nombre</label>
+                <input type="text" class="form-control" th:field="*{nombre}">
+            </div>
+            <div class="form-label">
+                <label for="">Origen</label>
+                <input type="text" class="form-control" th:field="*{origen}">
+            </div>
+            <div class="form-label">
+                <label for="">Precio</label>
+                <input type="text" class="form-control" th:field="*{precio}">
+            </div>
+            <div class="form-label">
+                <label for="">Cantidad</label>
+                <input type="number" class="form-control" th:field="*{stock}">
+            </div>
+            
+            <div class="form-label">
+                <label for="">Tipo</label>
+                <select class="form-select form-control" aria-label=".form-select-sm example" for="tipo"
+                    th:field="*{tipo}">
+                    <option class="form-select form-control" selected th:value="${null}">Elija tipo de producto</option>
+                    <option class="form-select form-control" th:each="t : ${tipos}" th:text="${t}" th:value="${t}"></option>
+                </select>
+            </div>
+            <div class="form-label">
+                <label for="">Puntos</label>
+                <input type="number" class="form-control" th:field="*{puntos}">
+            </div>
+            <div class="form-label">
+                <label for="">Categoria</label>
+                <select class="form-select form-control" aria-label=".form-select-sm example" for="categoria"
+                    th:field="*{categoria.id}">
+                    <option selected th:value="${null}">Elija categoria</option>
+                    <option th:each="c : ${categorias}" th:text="${c.nombreCat}" th:value="${c.id}"></option>
+                </select>
+            </div>
+            <!--falta añadir para subir imagen-->
+            <div class="d-flex justify-content-center ">
+                <button type="submit" class="btn btn-primary btn-block">Añadir Producto</button>
+              </div>
+        </form>
+    </div>
+
+
+
+
+</body>
+
+</html>

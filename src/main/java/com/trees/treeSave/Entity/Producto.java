@@ -35,6 +35,13 @@ public class Producto {
     private List<Lista> listas;
     */
 
+    public Producto() {
+        this.precio = 0.0d;
+        this.stock = 0;
+        this.tipo = Tipo.OTROS;
+        this.puntos = 0;
+    }
+
     public String getCodigoBarra() {
         return codigoBarra;
     }
