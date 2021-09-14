@@ -52,8 +52,8 @@ and open the template in the editor.
                                             <th>Telefono</th>
                                             <th>Alta</th>
                                             <th>Baja</th>
-                                            <th>Foto</th>
-                                            <th <!--sec:authorize="hasRole('ROLE_ADMIN')">-->Acciones</th>
+                                            <!--<th>Foto</th>-->
+                                            <th <!--sec:authorize="hasRole('ROLE_ADMIN')">--> Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -67,10 +67,10 @@ and open the template in the editor.
                                             <td th:text="${l.contactoCel}"></td>
                                             <td th:text="${l.alta}"></td>
                                             <td th:text="${l.baja}"></td>
-                                            <td th:text="${l.foto}"></td>
+                                           <!-- <td th:text="${l.foto}"></td>-->
                                             <td <!--sec:authorize="hasRole('ROLE_ADMIN')"-->>
-                                                <button class="button"><a th:href="@{/cliente/deleteTH}+'?id='+${l.id}">Eliminar</a></button>
-                                                <button class="button"><a th:href="@{/cliente/form}+'?id='+${l.id}+'&action=edit'">Editar</a></button>
+                                                <button class="button"><a th:href="@{/cliente/deleteTH}+'?id='+${l.documento}">Eliminar</a></button>
+                                                <button class="button"><a th:href="@{/cliente/form}+'?id='+${l.documento}+'&action=edit'">Editar</a></button>
                                             </td>
                                         </tr>
                                     </tbody>

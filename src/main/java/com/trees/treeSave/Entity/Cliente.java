@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -21,7 +22,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Cliente implements Serializable {
 
     @Id
-    private Long documento;
+    private String documento;
     @Enumerated(EnumType.STRING)
     private TipoDoc tipoDoc;
     @DateTimeFormat(pattern = "yyyy-MM-dd")      //Agrego una fecha de alta y baja de cliente 
@@ -44,12 +45,15 @@ public class Cliente implements Serializable {
     private String contactoCel;
     @OneToMany()                            // se eimina el mapped by para usar la Herencia de la linea 25 lo hace automatico
     private List<Lista> listas;
+    
+    @OneToOne
+    private Foto foto = null;
 
-    public Long getDocumento() {
+    public String getDocumento() {
         return documento;
     }
 
-    public void setDocumento(Long documento) {
+    public void setDocumento(String documento) {
         this.documento = documento;
     }
 
@@ -155,6 +159,14 @@ public class Cliente implements Serializable {
 
     public void setBaja(Date baja) {
         this.baja = baja;
+    }
+
+    public Foto getFoto() {
+        return foto;
+    }
+
+    public void setFoto(Foto foto) {
+        this.foto = foto;
     }
     
     

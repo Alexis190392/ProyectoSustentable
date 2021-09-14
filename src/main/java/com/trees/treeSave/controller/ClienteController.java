@@ -63,17 +63,7 @@ public class ClienteController {
         return "redirect:/cliente/list";
     }
 
-    /* @PostMapping("/delete")
-    public String eliminarPorDocumento(@RequestParam String documento) {
-        if (documento != null) {
-            try {
-                cs.eliminarPorDocumento(documento);
-            } catch (Exception e) {
-                return "cliente-delete-form";
-            }
-        }
-        return "index.html";
-    }*/
+    
     @PostMapping("/save")
     public String guardarCliente(Model model, RedirectAttributes redirectAttributes,
              @ModelAttribute Cliente cliente, @RequestParam(required = true) String action) throws WebException {
@@ -84,7 +74,7 @@ public class ClienteController {
                 clienteServicio.modificarCliente(null, cliente);
                 redirectAttributes.addFlashAttribute("success", "Cliente modificado con éxito.");
             } else {
-                clienteServicio.save(cliente, null);
+                clienteServicio.validarCliente(cliente);
                 redirectAttributes.addFlashAttribute("success", "Cliente guardado con éxito.");
             }
 

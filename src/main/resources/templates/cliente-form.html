@@ -13,7 +13,7 @@ and open the template in the editor.
     <nav th:replace="/fragments/nav-bar :: nav-bar">
     </nav>
     <main class="container">
-        <div th:replace="/fragments/admin-disclaimer :: admin-disclaimer"></div>
+        <!--<div th:replace="/fragments/admin-disclaimer :: admin-disclaimer"></div>-->
            <div th:if="${error}" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
                 <span th:text="${error}"></span>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -29,8 +29,13 @@ and open the template in the editor.
             <div class="row m-3">
                 <div class="col">
                     <form th:action="@{/cliente/save}" method="POST" th:object="${cliente}">
-                        <input hidden th:field="*{id}">
                         <input hidden th:value="${action}" name="action">
+                         <div class="d-flex justify-content-center m-3">
+                            <div>
+                                <label class="form-label text-white me-2">Documento</label>
+                                <input type="number" th:field="*{documento}" class="form-control bg-dark text-light">
+                            </div>
+                        </div>
                         <div class="d-flex justify-content-center m-3">
                             <div>
                                 <label class="form-label text-white me-2">Nombres</label>
@@ -41,12 +46,6 @@ and open the template in the editor.
                             <div>
                                 <label class="form-label text-white me-2">Apellido</label>
                                 <input type="text" th:field="*{apellido}" class="form-control bg-dark text-light">
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-center m-3">
-                            <div>
-                                <label class="form-label text-white me-2">Documento</label>
-                                <input type="number" th:field="*{documento}" class="form-control bg-dark text-light">
                             </div>
                         </div>
                         <div class="d-flex justify-content-center m-3">
@@ -68,7 +67,7 @@ and open the template in the editor.
                             </div>
                         </div>
                         <div class="col d-flex justify-content-center mt-5">
-                            <button type="submit" class="button text-light">Registrarme</button>
+                            <button type="submit" class="btn-primary">Registrarme</button>
                         </div>
                     </form>
                 </div>
