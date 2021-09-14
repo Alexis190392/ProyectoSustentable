@@ -26,22 +26,22 @@ public class ProductoController {
     
     
     @GetMapping("/list")
-    public String listarProductos(Model model, @RequestParam(required = false) String query) {
-        if (query != null) {
-            model.addAttribute("productos", ps.listByQuery(query));
+    public String listarProductos(Model model, @RequestParam(required = false) String sku) {
+        if (sku != null) {
+            model.addAttribute("productos", ps.listByQuery(sku));
         } else {
             model.addAttribute("productos", ps.listAll());
         }
         
-        return "administrarProductos";
+        return "producto-list";
     }
 
     @GetMapping("/form")
-    public String crearEditorial(Model model,@RequestParam(required=false) String codigoBarra){
+    public String crearProducto(Model model,@RequestParam(required=false) String codigoBarra){
         if(codigoBarra != null){
-            Optional<Producto> op = ps.searchCod(codigoBarra);
-            if(op.isPresent()){
-                model.addAttribute("producto", op.get());
+            Producto p = ps.searchCod(codigoBarra);
+            if(p != null){
+                model.addAttribute("producto",p);
             } else {
                 return "redirect:/producto/list";
             }
@@ -66,8 +66,8 @@ public class ProductoController {
 
     //para eliminar
     @GetMapping("/delete")
-    public String eliminarProducto(@RequestParam(required = true) String codigo) {
-        ps.deleteByCod(codigo); //desde producto servicio permite la eliminacion
+    public String eliminarProducto(@RequestParam(required = true) String sku) {
+        ps.deleteByCod(sku); //desde producto servicio permite la eliminacion
         return "redirect:/producto/list";
     }
 

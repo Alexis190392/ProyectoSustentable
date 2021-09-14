@@ -75,8 +75,14 @@ public class ProductoServicio {
     
     //buscador por codigo de barras como id
     
-    public Optional<Producto> searchCod(String codigo){
-        return pr.findById(codigo);
+    public Producto searchCod(String sku){
+        Producto p = null;
+        Optional<Producto> op = pr.findById(sku);
+        if(op.isPresent()){
+            p= op.get();
+        }
+        
+        return p;
     }
     
     
