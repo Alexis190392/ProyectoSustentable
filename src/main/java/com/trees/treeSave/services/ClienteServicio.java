@@ -1,6 +1,7 @@
 package com.trees.treeSave.services;
 
 import com.trees.treeSave.Entity.Cliente;
+import com.trees.treeSave.Entity.Foto;
 import com.trees.treeSave.enumeraciones.Nivel;
 import com.trees.treeSave.excepciones.WebException;
 import com.trees.treeSave.repositories.ClienteRepository;
@@ -22,19 +23,19 @@ public class ClienteServicio {
     @Autowired
     private ClienteRepository clienteRepository;
 
-    //@Autowired
-    //private FotoServicio fotoServicio;
+    @Autowired
+    private FotoService fotoService;
+
     /*@Autowired
     private NotificacionServicio notificacionServicio;*/
+    
     @Transactional
-    public Cliente save(Cliente cliente/*, MultipartFile archivo*/) throws WebException {
-        //Foto foto = fotoServicio.guardarFoto(archivo);
-        cliente.setFoto(null);
+    public Cliente save(Cliente cliente) throws WebException {
         //notificacionServicio.enviar("Bienvenido/a a TreeSave! ", "TreeSave", cliente.getContactoMail());
         return clienteRepository.save(cliente);
     }
 
-    public void validarCliente(Cliente cliente) throws WebException {
+    public void validarCliente(Cliente cliente, MultipartFile file) throws WebException {
         Cliente clienteAlta = new Cliente();
         if (findByDocumento(cliente.getDocumento()) != null) {
             throw new WebException("El documento que quieres registrar ya existe.");
@@ -45,27 +46,27 @@ public class ClienteServicio {
         }
         if (cliente.getNombres() == null | cliente.getNombres().isEmpty()) {
             throw new WebException("Debes indicar tu/s nombre/s.");
-        }else{
+        } else {
             clienteAlta.setNombres(cliente.getNombres());
         }
         if (cliente.getApellido() == null | cliente.getApellido().isEmpty()) {
             throw new WebException("Debes indicar tu apellido.");
-        }else{
+        } else {
             clienteAlta.setApellido(cliente.getApellido());
         }
         if (cliente.getContactoMail() == null | cliente.getContactoMail().isEmpty()) {
             throw new WebException("Debes indicar tu mail.");
-        }else{
+        } else {
             clienteAlta.setContactoMail(cliente.getContactoMail());
         }
         if (cliente.getContactoCel() == null | cliente.getContactoCel().isEmpty()) {
             throw new WebException("Debes indicar tu telefono.");
-        }else{
+        } else {
             clienteAlta.setContactoCel(cliente.getContactoCel());
         }
         if (cliente.getFechaNacimiento() == null) {
             throw new WebException("Debes indicar tu fecha de nacimiento.");
-        }else{
+        } else {
             clienteAlta.setFechaNacimiento(cliente.getFechaNacimiento());
         }
         //FALTA TIPO DOC
@@ -74,7 +75,11 @@ public class ClienteServicio {
         clienteAlta.setNivel(Nivel.SEMILLA);
         clienteAlta.setPuntajeAcumulado(0);
         clienteAlta.setPuntajeCanjeado(0);
-        save(clienteAlta/*, null*/);
+        
+        Foto foto = fotoService.save(file);
+        clienteAlta.setFoto(foto);
+        
+        save(clienteAlta);
     }
 
     @Transactional
@@ -137,7 +142,7 @@ public class ClienteServicio {
     }
 
     @Transactional
-    public void modificarCliente(MultipartFile archivo, Cliente cliente) throws WebException {
+    public void modificarCliente(MultipartFile file, Cliente cliente) throws WebException {
         if (cliente.getDocumento() == null) {
             throw new WebException("El documento no puede ser nulo.");
         }
@@ -154,14 +159,15 @@ public class ClienteServicio {
         cliente.setApellido(cliente.getApellido());
         cliente.setContactoCel(cliente.getContactoCel());
         cliente.setDocumento(cliente.getDocumento());
-        /* String idFoto = null;
+        
+        String idFoto = null;
+        
         if (cliente.getFoto() != null) {
             idFoto = cliente.getFoto().getId();
         }
-        //Foto foto = fs.actualizar(idFoto, archivo);
-        //cliente.setFoto(foto);*/
+        Foto foto = fotoService.actualizar(idFoto, file);
+        cliente.setFoto(foto);
         clienteRepository.save(cliente);
-        //} else {
-        // throw new ErrorServicio("No se encontro el cliente solicitado.");
+       
     }
 }

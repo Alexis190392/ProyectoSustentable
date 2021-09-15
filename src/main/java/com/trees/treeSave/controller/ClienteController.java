@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
@@ -65,16 +66,14 @@ public class ClienteController {
 
     
     @PostMapping("/save")
-    public String guardarCliente(Model model, RedirectAttributes redirectAttributes,
+    public String guardarCliente(Model model, @RequestParam(required = true) MultipartFile archivo, RedirectAttributes redirectAttributes,
              @ModelAttribute Cliente cliente, @RequestParam(required = true) String action) throws WebException {
         try {
-            //if(action.equals("crear")) {
-            //     cs.save(cliente, null);
             if (action.equals("edit")) {
-                clienteServicio.modificarCliente(null, cliente);
+                clienteServicio.modificarCliente(archivo, cliente);
                 redirectAttributes.addFlashAttribute("success", "Cliente modificado con éxito.");
             } else {
-                clienteServicio.validarCliente(cliente);
+                clienteServicio.validarCliente(cliente, archivo);
                 redirectAttributes.addFlashAttribute("success", "Cliente guardado con éxito.");
             }
 
