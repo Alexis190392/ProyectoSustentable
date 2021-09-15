@@ -1,7 +1,11 @@
+com\trees\treeSave\repositories\ClienteRepository.class
 com\trees\treeSave\repositories\CategoriaRepository.class
+com\trees\treeSave\controller\MainController.class
 com\trees\treeSave\repositories\VendedorRepository.class
+com\trees\treeSave\services\ClienteServicio.class
 com\trees\treeSave\Entity\Cliente.class
 com\trees\treeSave\enumeraciones\Nivel.class
+com\trees\treeSave\controller\ClienteController.class
 com\trees\treeSave\TreeSaveApplication.class
 com\trees\treeSave\enumeraciones\TipoDoc.class
 com\trees\treeSave\Entity\Categoria.class
