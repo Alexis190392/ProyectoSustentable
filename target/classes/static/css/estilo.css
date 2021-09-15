@@ -92,7 +92,69 @@ input:placeholder-shown {
  
 
 
+/*botones wow*/
 /**/
+
+.btn-wow-full{
+    width: 100%;
+    background: none;
+    color: #A6BCD0;
+    border: none;
+    cursor:pointer;
+    font-weight: 700;
+    font-size: 1.05rem;
+    border-radius: 50px;
+    background: #404E5A;
+    box-shadow: 0 0.5rem 2rem 0.5rem #3b4853;
+    position:relative;
+
+}
+
+.btn-wow-full::before{
+    content: "";
+    position: absolute;
+    top: -10%;
+    left: -2.5%;
+    width: 105%;
+    height: 120%;
+    border-radius: 50px;
+    z-index: -1;
+    background: linear-gradient(45deg,#ffd800, #ff5520, #750cf2, #0cbcf2);
+    transform: scale(0.8);
+    transition: transform .4s;
+}
+
+.btn-wow-full::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg,#ffd800, #ff5520, #750cf2, #0cbcf2);
+    z-index: -2;
+    filter: blur(10px);
+    transform: scale(0.5);
+    transition: transform .4s;
+}
+
+.btn-wow-full:hover::before, .btn-wow-full:hover::after{
+    transform: scale(1);
+}
+
+.btn-wow-full:hover{
+    color: #A6BCD0;
+}
+
+
+
+
+
+
+
+
+
+
 /**/
 /**/
 /**/

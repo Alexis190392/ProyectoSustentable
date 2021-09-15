@@ -1,22 +1,7 @@
 <!DOCTYPE html>
 <html lang="es-AR" xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--BOOTSTRAP-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-    <!--css PROPIO-->
-    <link rel="stylesheet" href="/static/css/estilo.css">
-    
-
-
-
-    <script src="js/script.js"></script>
-    <title>Pruebas</title>
-</head>
+<head th:replace="/fragments/head :: head">
 
 <body>
     <nav class="navbar-dark bg-dark shadow">
@@ -34,7 +19,7 @@
                 <p class="display-5"> Andres, Hernan, Fede</p>
             </div>
             <div class="m-1">
-                <a class="btn btn-outline-dark m-2 col-12" th:href="@{/categoria/list}">Categoria</a>
+                <a class="btn btn-wow-full m-2 col-12" th:href="@{/categoria/list}">Categoria</a>
             </div>
         </div>
 
@@ -44,18 +29,30 @@
                 <p class="display-5">Lucas, Ivan, Alexis</p>
             </div>
             <div class="m-1">
-                <a class="btn btn-outline-dark m-2 col-12" th:href="@{/producto/list}">Listar producto</a>
+                <a class="btn btn-wow-full m-2 col-12" th:href="@{/producto/list}">Listar producto</a>
             </div>
             <div class="m-1">
-                <a class="btn btn-outline-dark m-2 col-12" th:href="@{/producto/form}">Crear producto</a>
+                <a class="btn btn-wow-full m-2 col-12" th:href="@{/producto/form}">Crear producto</a>
             </div>
         </div>
     </div>
+<!--buttons grupo: ---------------- -->
 
 
-
-
-
+<!--Pruebas y estilos-->
+<br>
+<p>----------------------------------------------------
+    ---------------------------------------------------
+    ----------------------------------------------------
+    ----------------------------------------------
+</p>
+<div class="container">
+<div class="row d-flex">
+    <div class="col-4">
+<button class="btn-wow-full">Soy un boton</button>
+</div>
+</div>
+</div>
 
     <!--Scripts-->
     <script src="../static/js/script.js"></script>
