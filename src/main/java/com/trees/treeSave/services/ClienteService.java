@@ -18,7 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
  * @author Fede
  */
 @Service
-public class ClienteServicio {
+public class ClienteService {
 
     @Autowired
     private ClienteRepository clienteRepository;
@@ -120,7 +120,7 @@ public class ClienteServicio {
         return clienteRepository.findById(id);
     }
 
-    public Cliente findByDocumento(String documento) {
+    public Cliente findByDocumento(String documento) throws WebException{
         return clienteRepository.buscarPorDocumento(documento);
     }
 

@@ -67,8 +67,11 @@ and open the template in the editor.
                                             <td th:text="${l.contactoCel}"></td>
                                             <td th:text="${l.alta}"></td>
                                             <td th:text="${l.baja}"></td>
-                                            <td th:text="${l.foto}"></td>
-                                            <td <!--sec:authorize="hasRole('ROLE_ADMIN')"-->>
+                                    <td>
+                                        <img th:if="${l.foto != null}" class="img-fluid rounded-circle" th:src="@{/foto/cliente}+'?id='+${l.documento}" > 
+                                    </td>
+                                            
+                                            <td <!--sec:authorize="hasRole('ROLE_ADMIN')"-->
                                                 <button class="button"><a th:href="@{/cliente/deleteTH}+'?id='+${l.documento}">Eliminar</a></button>
                                                 <button class="button"><a th:href="@{/cliente/form}+'?id='+${l.documento}+'&action=edit'">Editar</a></button>
                                             </td>
