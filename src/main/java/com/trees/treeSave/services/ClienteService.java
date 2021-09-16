@@ -19,22 +19,21 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @Service
 public class ClienteService {
-
+    
     @Autowired
     private ClienteRepository clienteRepository;
-
+    
     @Autowired
     private FotoService fotoService;
 
     /*@Autowired
     private NotificacionServicio notificacionServicio;*/
-    
     @Transactional
     public Cliente save(Cliente cliente) throws WebException {
         //notificacionServicio.enviar("Bienvenido/a a TreeSave! ", "TreeSave", cliente.getContactoMail());
         return clienteRepository.save(cliente);
     }
-
+    
     public void validarCliente(Cliente cliente, MultipartFile file) throws WebException {
         Cliente clienteAlta = new Cliente();
         if (findByDocumento(cliente.getDocumento()) != null) {
@@ -81,7 +80,7 @@ public class ClienteService {
         
         save(clienteAlta);
     }
-
+    
     @Transactional
     public void deshabilitarCliente(String id) throws WebException {
         Optional<Cliente> respuesta = clienteRepository.findById(id);
@@ -93,7 +92,7 @@ public class ClienteService {
             throw new WebException("No se encontro el cliente solicitado.");
         }
     }
-
+    
     @Transactional
     public void habilitarCliente(String id) throws WebException {
         Optional<Cliente> respuesta = clienteRepository.findById(id);
@@ -105,7 +104,7 @@ public class ClienteService {
             throw new WebException("No se encontro el cliente solicitado.");
         }
     }
-
+    
     public List<Cliente> listAll() {
         return clienteRepository.findAll();
     }
@@ -119,28 +118,29 @@ public class ClienteService {
     public Optional<Cliente> findById(String id) {
         return clienteRepository.findById(id);
     }
-
-    public Cliente findByDocumento(String documento) throws WebException{
+    
+    public Cliente findByDocumento(String documento) throws WebException {
         return clienteRepository.buscarPorDocumento(documento);
     }
-
+    
     public List<Cliente> listAllByQ(String q) {
         return clienteRepository.findAllByQ("%" + q + "%");
     }
-
+    
     @Transactional
     public void deleteById(String documento) {
         Optional<Cliente> optional = clienteRepository.findById(documento);
         if (optional.isPresent()) {
+            fotoService.delete(optional.get().getFoto());
             clienteRepository.delete(optional.get());
         }
     }
-
+    
     @Transactional
     public void delete(Cliente cliente) {
         clienteRepository.delete(cliente);
     }
-
+    
     @Transactional
     public void modificarCliente(MultipartFile file, Cliente cliente) throws WebException {
         if (cliente.getDocumento() == null) {
@@ -168,6 +168,6 @@ public class ClienteService {
         Foto foto = fotoService.actualizar(idFoto, file);
         cliente.setFoto(foto);
         clienteRepository.save(cliente);
-       
+        
     }
 }

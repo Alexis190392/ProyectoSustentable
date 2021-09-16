@@ -35,15 +35,15 @@ public class FotoService {
         }
         return null;
     }
-    
+
     @Transactional
     public Foto actualizar(String idFoto, MultipartFile file) {
         if (file != null) {
             try {
                 Foto foto = new Foto();
-                if(idFoto != null) {
+                if (idFoto != null) {
                     Optional<Foto> respuesta = fotoRepository.findById(idFoto);
-                    if(respuesta.isPresent()) {
+                    if (respuesta.isPresent()) {
                         foto = respuesta.get();
                     }
                 }
@@ -57,5 +57,10 @@ public class FotoService {
             }
         }
         return null;
+    }
+
+    @Transactional
+    public void delete(Foto foto) {
+        fotoRepository.delete(foto);
     }
 }
