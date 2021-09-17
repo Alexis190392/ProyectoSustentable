@@ -47,7 +47,7 @@ public class Cliente implements Serializable {
     private List<Lista> listas;
     
     @OneToOne
-    private Foto foto = null;
+    private Foto foto;
 
     public String getDocumento() {
         return documento;
@@ -168,7 +168,4 @@ public class Cliente implements Serializable {
     public void setFoto(Foto foto) {
         this.foto = foto;
     }
-    
-    
-
 }

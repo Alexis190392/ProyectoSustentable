@@ -1,6 +1,7 @@
 package com.trees.treeSave.services;
 
 import com.trees.treeSave.Entity.Cliente;
+import com.trees.treeSave.Entity.Foto;
 import com.trees.treeSave.enumeraciones.Nivel;
 import com.trees.treeSave.excepciones.WebException;
 import com.trees.treeSave.repositories.ClienteRepository;
@@ -19,22 +20,22 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class ClienteService {
 
+
     @Autowired
     private ClienteRepository clienteRepository;
+    
+    @Autowired
+    private FotoService fotoService;
 
-    //@Autowired
-    //private FotoServicio fotoServicio;
     /*@Autowired
     private NotificacionServicio notificacionServicio;*/
     @Transactional
-    public Cliente save(Cliente cliente/*, MultipartFile archivo*/) throws WebException {
-        //Foto foto = fotoServicio.guardarFoto(archivo);
-        cliente.setFoto(null);
+    public Cliente save(Cliente cliente) throws WebException {
         //notificacionServicio.enviar("Bienvenido/a a TreeSave! ", "TreeSave", cliente.getContactoMail());
         return clienteRepository.save(cliente);
     }
-
-    public void validarCliente(Cliente cliente) throws WebException {
+    
+    public void validarCliente(Cliente cliente, MultipartFile file) throws WebException {
         Cliente clienteAlta = new Cliente();
         if (findByDocumento(cliente.getDocumento()) != null) {
             throw new WebException("El documento que quieres registrar ya existe.");
@@ -45,27 +46,27 @@ public class ClienteService {
         }
         if (cliente.getNombres() == null | cliente.getNombres().isEmpty()) {
             throw new WebException("Debes indicar tu/s nombre/s.");
-        }else{
+        } else {
             clienteAlta.setNombres(cliente.getNombres());
         }
         if (cliente.getApellido() == null | cliente.getApellido().isEmpty()) {
             throw new WebException("Debes indicar tu apellido.");
-        }else{
+        } else {
             clienteAlta.setApellido(cliente.getApellido());
         }
         if (cliente.getContactoMail() == null | cliente.getContactoMail().isEmpty()) {
             throw new WebException("Debes indicar tu mail.");
-        }else{
+        } else {
             clienteAlta.setContactoMail(cliente.getContactoMail());
         }
         if (cliente.getContactoCel() == null | cliente.getContactoCel().isEmpty()) {
             throw new WebException("Debes indicar tu telefono.");
-        }else{
+        } else {
             clienteAlta.setContactoCel(cliente.getContactoCel());
         }
         if (cliente.getFechaNacimiento() == null) {
             throw new WebException("Debes indicar tu fecha de nacimiento.");
-        }else{
+        } else {
             clienteAlta.setFechaNacimiento(cliente.getFechaNacimiento());
         }
         //FALTA TIPO DOC
@@ -74,9 +75,13 @@ public class ClienteService {
         clienteAlta.setNivel(Nivel.SEMILLA);
         clienteAlta.setPuntajeAcumulado(0);
         clienteAlta.setPuntajeCanjeado(0);
-        save(clienteAlta/*, null*/);
+        
+        Foto foto = fotoService.save(file);
+        clienteAlta.setFoto(foto);
+        
+        save(clienteAlta);
     }
-
+    
     @Transactional
     public void deshabilitarCliente(String id) throws WebException {
         Optional<Cliente> respuesta = clienteRepository.findById(id);
@@ -88,7 +93,7 @@ public class ClienteService {
             throw new WebException("No se encontro el cliente solicitado.");
         }
     }
-
+    
     @Transactional
     public void habilitarCliente(String id) throws WebException {
         Optional<Cliente> respuesta = clienteRepository.findById(id);
@@ -100,7 +105,7 @@ public class ClienteService {
             throw new WebException("No se encontro el cliente solicitado.");
         }
     }
-
+    
     public List<Cliente> listAll() {
         return clienteRepository.findAll();
     }
@@ -114,30 +119,31 @@ public class ClienteService {
     public Optional<Cliente> findById(String id) {
         return clienteRepository.findById(id);
     }
-
-    public Cliente findByDocumento(String documento) {
+    
+    public Cliente findByDocumento(String documento) throws WebException {
         return clienteRepository.buscarPorDocumento(documento);
     }
-
+    
     public List<Cliente> listAllByQ(String q) {
         return clienteRepository.findAllByQ("%" + q + "%");
     }
-
+    
     @Transactional
     public void deleteById(String documento) {
         Optional<Cliente> optional = clienteRepository.findById(documento);
         if (optional.isPresent()) {
+            fotoService.delete(optional.get().getFoto());
             clienteRepository.delete(optional.get());
         }
     }
-
+    
     @Transactional
     public void delete(Cliente cliente) {
         clienteRepository.delete(cliente);
     }
-
+    
     @Transactional
-    public void modificarCliente(MultipartFile archivo, Cliente cliente) throws WebException {
+    public void modificarCliente(MultipartFile file, Cliente cliente) throws WebException {
         if (cliente.getDocumento() == null) {
             throw new WebException("El documento no puede ser nulo.");
         }
@@ -154,14 +160,15 @@ public class ClienteService {
         cliente.setApellido(cliente.getApellido());
         cliente.setContactoCel(cliente.getContactoCel());
         cliente.setDocumento(cliente.getDocumento());
-        /* String idFoto = null;
+        
+        String idFoto = null;
+        
         if (cliente.getFoto() != null) {
             idFoto = cliente.getFoto().getId();
         }
-        //Foto foto = fs.actualizar(idFoto, archivo);
-        //cliente.setFoto(foto);*/
+        Foto foto = fotoService.actualizar(idFoto, file);
+        cliente.setFoto(foto);
         clienteRepository.save(cliente);
-        //} else {
-        // throw new ErrorServicio("No se encontro el cliente solicitado.");
+        
     }
 }

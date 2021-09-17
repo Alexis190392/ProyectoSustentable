@@ -1,12 +1,9 @@
 package com.trees.treeSave.controller;
 
-
 import com.trees.treeSave.Entity.Cliente;
 import com.trees.treeSave.excepciones.WebException;
 import com.trees.treeSave.services.ClienteService;
 import java.util.Optional;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -16,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
@@ -26,16 +24,18 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/cliente")
 public class ClienteController {
 
+    
     @Autowired
-    private ClienteService clienteServicio;
+    private ClienteService clienteService;
+
 
     //@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @GetMapping("/list")
     public String listarClientes(Model model, @RequestParam(required = false) String q) {
         if (q != null) {
-            model.addAttribute("clientes", clienteServicio.listAllByQ(q));
+            model.addAttribute("clientes", clienteService.listAllByQ(q));
         } else {
-            model.addAttribute("clientes", clienteServicio.listAll());
+            model.addAttribute("clientes", clienteService.listAll());
         }
         return "cliente-list";
     }
@@ -43,7 +43,7 @@ public class ClienteController {
     @GetMapping("/form")
     public String crearCliente(Model model, @RequestParam(required = false) String id, @RequestParam(required = false) String action) {
         if (id != null) {
-            Optional<Cliente> optional = clienteServicio.findById(id);
+            Optional<Cliente> optional = clienteService.findById(id);
             if (optional.isPresent()) {
                 model.addAttribute("cliente", optional.get());
                 model.addAttribute("action", action);
@@ -59,22 +59,19 @@ public class ClienteController {
 
     @GetMapping("/deleteTH")
     public String eliminarCliente(@RequestParam(required = true) String id) {
-        clienteServicio.deleteById(id);
+        clienteService.deleteById(id);
         return "redirect:/cliente/list";
     }
 
-    
     @PostMapping("/save")
-    public String guardarCliente(Model model, RedirectAttributes redirectAttributes,
-             @ModelAttribute Cliente cliente, @RequestParam(required = true) String action) throws WebException {
+    public String guardarCliente(Model model, @RequestParam(required = true) MultipartFile archivo, RedirectAttributes redirectAttributes,
+            @ModelAttribute Cliente cliente, @RequestParam(required = true) String action) throws WebException {
         try {
-            //if(action.equals("crear")) {
-            //     cs.save(cliente, null);
             if (action.equals("edit")) {
-                clienteServicio.modificarCliente(null, cliente);
+                clienteService.modificarCliente(archivo, cliente);
                 redirectAttributes.addFlashAttribute("success", "Cliente modificado con éxito.");
             } else {
-                clienteServicio.validarCliente(cliente);
+                clienteService.validarCliente(cliente, archivo);
                 redirectAttributes.addFlashAttribute("success", "Cliente guardado con éxito.");
             }
 
