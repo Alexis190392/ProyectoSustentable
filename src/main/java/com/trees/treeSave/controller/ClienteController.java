@@ -3,7 +3,7 @@ package com.trees.treeSave.controller;
 
 import com.trees.treeSave.Entity.Cliente;
 import com.trees.treeSave.excepciones.WebException;
-import com.trees.treeSave.services.ClienteServicio;
+import com.trees.treeSave.services.ClienteService;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,7 +27,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class ClienteController {
 
     @Autowired
-    private ClienteServicio clienteServicio;
+    private ClienteService clienteServicio;
 
     //@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @GetMapping("/list")

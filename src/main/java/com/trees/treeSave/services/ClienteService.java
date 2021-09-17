@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
  * @author Fede
  */
 @Service
-public class ClienteServicio {
+public class ClienteService {
 
     @Autowired
     private ClienteRepository clienteRepository;

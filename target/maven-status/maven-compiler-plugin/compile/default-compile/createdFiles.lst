@@ -1,5 +1,6 @@
 com\trees\treeSave\repositories\ClienteRepository.class
 com\trees\treeSave\repositories\CategoriaRepository.class
+com\trees\treeSave\controller\ProductoController.class
 com\trees\treeSave\controller\MainController.class
 com\trees\treeSave\repositories\VendedorRepository.class
 com\trees\treeSave\services\ClienteServicio.class
@@ -12,6 +13,7 @@ com\trees\treeSave\Entity\Categoria.class
 com\trees\treeSave\services\VendedorServicio.class
 com\trees\treeSave\repositories\ProductoRepository.class
 com\trees\treeSave\controller\CategoriaController.class
+com\trees\treeSave\Entity\Foto.class
 com\trees\treeSave\Entity\Lista.class
 com\trees\treeSave\Entity\Producto.class
 com\trees\treeSave\services\ProductoServicio.class
