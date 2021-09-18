@@ -1,0 +1,130 @@
+*{
+    font-family: 'Roboto Slab', serif;
+}
+body{
+    --primary-color: #e7e0ee;
+    --sec-color: #f3f1f5;
+    --hover-color: #11052c;
+    --color: #1f1f1f;
+    --text-color: #f3f1f5;
+}
+
+
+/*modo nocturno*/
+body[data-theme=dark]{
+    --primary-color: #404E5A;
+    --hover-color: #ededed;
+    --text-color: #1f1f1f;
+    --sec-color: #1a1a1a;
+    --color: #f0f0f0;
+}
+
+body{
+    background: var(--primary-color);
+    color: var(--color);
+}
+
+.btn-mode{
+    width: 150px;
+    height: 40px;
+    border-radius: 20px;
+    margin-top: 1em;
+    border: none;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1511);
+    cursor: pointer;
+    background: var(--sec-color);
+    color: var(--color);
+    transition: all .4s;
+    
+}
+
+.btn-mode:hover{
+    background: var(--hover-color);
+    color: var(--text-color);
+}
+
+.darkMode{
+    width: 100px;
+    height: 50px;
+    position: absolute;
+    top: 50%;
+    left: -5px;
+    transform: translate(-50%);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.darkMode .box{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: var(--sec-color);
+    transition: all .4s;
+}
+
+.darkMode input{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-appearance: none;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.darkMode input:checked ~ .box{
+    transform: rotate(180deg);
+}
+
+.darkMode input:checked ~ .box i{
+    transform: rotate(180deg);
+}
+
+/*Fin modo nocturno*/
+
+
+
+.cont-ppal{
+    margin-top: 3rem;
+    padding: none;
+}
+
+.global-list{
+    height: 540px;
+}
+
+.global-center{
+    height: 500px;,
+}
+
+/*Scroll vertical*/
+.global {
+    
+     
+	/*width: 200px;*/
+    border-radius: 15px;
+    /*bordes laterales
+	border-left: 1px solid var(--hover-color);
+    border-right: 1px solid  var(--hover-color);*/
+	background: var(--primary-color);
+    justify-content:center;
+    padding:1rem;
+	overflow-y: scroll;
+}
+
+
+.global::-webkit-scrollbar{
+    display: none;
+}
+.mensajes {
+	height: auto;
+}
+.texto {
+	padding:4px;
+	background: var(--primary-color);
+    font-size: 1.02rem;
+    font-weight: bold;
+}
+/* Fin Scroll vertical*/
