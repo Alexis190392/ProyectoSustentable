@@ -10,6 +10,21 @@ public class MainController {
     
     @GetMapping("")
     public String index(){
-        return "momentaneo";
+        return "index";
+    }
+    
+    @GetMapping("/super")
+    public String superSu(){
+        return "panel-SuperSu";
+    }
+    
+    @GetMapping("/usuario")
+    public String usuario(){
+        return "panel-Usuario";
+    }
+    
+    @GetMapping("/vendedor")
+    public String vendedor(){
+        return "panel-Vendedor";
     }
 }
