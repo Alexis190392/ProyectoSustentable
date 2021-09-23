@@ -167,10 +167,14 @@ input:placeholder-shown {
 
 
 /*jesus*/
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 
 /* estilo boton de x de form producto*/
 
+<<<<<<< Updated upstream
 .bn {
     margin-top: 1rem;
     padding-left: 6rem;
@@ -183,6 +187,18 @@ input:placeholder-shown {
 
 .t {
     padding-left: 60rem;
+=======
+/* estilo boton de x de form producto*/
+
+.bn {
+    margin-top: 1rem;
+    padding-left: 6rem;
+    color: aliceblue;
+}
+
+.textito {
+    padding-right: 8rem;
+>>>>>>> Stashed changes
 }
 
 
