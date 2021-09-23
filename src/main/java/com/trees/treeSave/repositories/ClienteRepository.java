@@ -30,4 +30,6 @@ public interface ClienteRepository extends JpaRepository<Cliente, String> {
             + " or c.contactoMail LIKE :q")
     public List<Cliente> findAllByQ(@Param("q") String q);
 
+     @Query("SELECT c FROM Cliente c WHERE c.ciudad.nombre = :q")
+    public List<Cliente> findAllByCiudad(@Param("q") String q);
 }

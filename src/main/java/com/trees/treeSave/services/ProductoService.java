@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ProductoServicio {
+public class ProductoService {
     @Autowired
     private ProductoRepository pr;
     private Tipo tipo;

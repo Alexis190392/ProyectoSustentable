@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 
@@ -28,12 +29,14 @@ public class Producto {
     private Integer puntos;             // respecto a calculo por huella de carbono
     
     @ManyToOne
+    @JoinColumn(name = "prod_cat")
     private Categoria categoria;
     
-    /*
-    @OneToMany(mappedBy = "lista")
-    private List<Lista> listas;
-    */
+  
+    @ManyToOne                         //esta relacion hace referen al onetomany 
+    @JoinColumn(name = "prod_list")    // de Lista
+    private Lista lista;
+ 
 
     public Producto() {
         this.precio = 0.0d;
@@ -112,6 +115,14 @@ public class Producto {
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
+    }
+
+    public Lista getLista() {
+        return lista;
+    }
+
+    public void setLista(Lista lista) {
+        this.lista = lista;
     }
     
     

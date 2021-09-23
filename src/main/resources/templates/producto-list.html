@@ -14,7 +14,7 @@
                 <a class="btn btn-primary mb-2" th:href="@{/producto/form}">CREAR producto</a>
             </div>
         </div>
-        <form class="d-flex" th:action="@{/producto/list}" method="GET">
+        <form class="d-flex" th:action="@{/producto/list}" method="GET" th:object="${cliente}">
             <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" name="query">
             <button class="btn btn-outline-info" type="submit">Buscar</button>
         </form>
@@ -48,6 +48,8 @@
 
                         <a type="button" class="btn btn-outline-success"
                             th:href="@{/producto/form} + '?codigoBarra=' + ${p.codigoBarra}">Editar</a>
+                        <a type="button" class="btn btn-outline-success"
+                            th:href="@{/producto/form} + '?codigoBarra=' + ${p.codigoBarra}">Agregar a Lista</a>
                         <a type="button" class="btn btn-outline-danger"
                             th:href="@{/producto/delete} + '?codigoBarra=' + ${p.codigoBarra}">Eliminar</a>
                     </td>
@@ -80,6 +82,16 @@
                     <a type="button" class="btn btn-outline-success col-12"
                             th:href="@{/producto/form} + '?codigoBarra=' + ${p.codigoBarra}">Editar</a>
                             <br>
+                             <a type="button" class="btn btn-outline-success"
+                            th:href="@{/lista/agregar} + '?codigoBarra=' + ${p.codigoBarra}">Agregar a Lista</a>
+                            <div class=" d-flex justify-content-center m-3">
+                                <div>
+                                    <select class="form-select form-control" aria-label=".form-select-sm example" th:field="*{lista.id}">
+                                         <option selected th:value="${null}">Elija lista</option>
+                                        <option th:each="l : ${listas}" th:text="${l.nombre}" th:value="${l.id}"></option>
+                                    </select>
+                                </div>
+                            </div>
                             <br>
                     <a type="button" class="btn btn-outline-danger col-12"
                             th:href="@{/producto/delete} + '?codigoBarra=' + ${p.codigoBarra}">Eliminar</a>

@@ -8,6 +8,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -43,16 +44,19 @@ public class Cliente implements Serializable {
     private String listaCompra;             // Lista de compra asociada a la persona
     private String contactoMail;
     private String contactoCel;
-    @OneToMany()                            // se eimina el mapped by para usar la Herencia de la linea 25 lo hace automatico
-    private List<Lista> listas;
+    @OneToMany(fetch = FetchType.LAZY)      // se eimina el mapped by para usar la Herencia de la linea 25 lo hace automatico
+    private List<String> listaMadre;
     
     @OneToOne
     private Foto foto;
+    
+    @OneToOne
+    private Ciudad ciudad;
 
     public String getDocumento() {
         return documento;
     }
-
+    
     public void setDocumento(String documento) {
         this.documento = documento;
     }
@@ -145,12 +149,12 @@ public class Cliente implements Serializable {
         this.contactoCel = contactoCel;
     }
 
-    public List<Lista> getListas() {
-        return listas;
+    public List<String> getListaMadre() {
+        return listaMadre;
     }
 
-    public void setListas(List<Lista> listas) {
-        this.listas = listas;
+    public void setListaMadre(List<String> listaMadre) {
+        this.listaMadre = listaMadre;
     }
 
     public Date getBaja() {
@@ -168,4 +172,14 @@ public class Cliente implements Serializable {
     public void setFoto(Foto foto) {
         this.foto = foto;
     }
+
+    public Ciudad getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(Ciudad ciudad) {
+        this.ciudad = ciudad;
+    }
+    
+    
 }

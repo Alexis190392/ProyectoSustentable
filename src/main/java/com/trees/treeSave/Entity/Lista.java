@@ -3,9 +3,14 @@ package com.trees.treeSave.Entity;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -14,18 +19,18 @@ import org.hibernate.annotations.GenericGenerator;
  * @author aconvertini
  */
 @Entity
-// @Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Lista implements Serializable {
+
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
-    private String nombreList;    
-    @OneToMany
-    private List<Producto> productos;
+    private String nombreList;
+    
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<Producto> productos;  //String sku, integer cantidad de prod a pedir
 
-    public Lista() {
-    }
 
     public String getNombreList() {
         return nombreList;
@@ -42,10 +47,7 @@ public class Lista implements Serializable {
     public void setProductos(List<Producto> productos) {
         this.productos = productos;
     }
-    
-    
 
-   
     public String getId() {
         return id;
     }
@@ -62,13 +64,4 @@ public class Lista implements Serializable {
         this.nombreList = nombre;
     }
 
-    @Override
-    public String toString() {
-        return "Autor{" + "id=" + id + ", nombre=" + nombreList + '}';
-    }
-
-
-    }
-
-    
-
+}

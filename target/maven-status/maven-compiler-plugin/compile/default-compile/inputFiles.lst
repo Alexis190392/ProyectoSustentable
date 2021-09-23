@@ -1,55 +1,35 @@
-<<<<<<< HEAD
-C:\Users\danie\Documents\Hernán\Egg\ProyectoSustentable\src\main\java\com\trees\treeSave\repositories\CiudadRepository.java
-C:\Users\danie\Documents\Hernán\Egg\ProyectoSustentable\src\main\java\com\trees\treeSave\repositories\CategoriaRepository.java
-C:\Users\danie\Documents\Hernán\Egg\ProyectoSustentable\src\main\java\com\trees\treeSave\Entity\Foto.java
-C:\Users\danie\Documents\Hernán\Egg\ProyectoSustentable\src\main\java\com\trees\treeSave\services\CiudadService.java
-C:\Users\danie\Documents\Hernán\Egg\ProyectoSustentable\src\main\java\com\trees\treeSave\TreeSaveApplication.java
-C:\Users\danie\Documents\Hernán\Egg\ProyectoSustentable\src\main\java\com\trees\treeSave\controller\CategoriaController.java
-C:\Users\danie\Documents\Hernán\Egg\ProyectoSustentable\src\main\java\com\trees\treeSave\enumeraciones\TipoDoc.java
-C:\Users\danie\Documents\Hernán\Egg\ProyectoSustentable\src\main\java\com\trees\treeSave\services\ClienteServicio.java
-C:\Users\danie\Documents\Hernán\Egg\ProyectoSustentable\src\main\java\com\trees\treeSave\services\CategoriaService.java
-C:\Users\danie\Documents\Hernán\Egg\ProyectoSustentable\src\main\java\com\trees\treeSave\enumeraciones\Tipo.java
-C:\Users\danie\Documents\Hernán\Egg\ProyectoSustentable\src\main\java\com\trees\treeSave\controller\CiudadController.java
-C:\Users\danie\Documents\Hernán\Egg\ProyectoSustentable\src\main\java\com\trees\treeSave\controller\ProductoController.java
-C:\Users\danie\Documents\Hernán\Egg\ProyectoSustentable\src\main\java\com\trees\treeSave\Entity\Lista.java
-C:\Users\danie\Documents\Hernán\Egg\ProyectoSustentable\src\main\java\com\trees\treeSave\Entity\Cliente.java
-C:\Users\danie\Documents\Hernán\Egg\ProyectoSustentable\src\main\java\com\trees\treeSave\Entity\Vendedor.java
-C:\Users\danie\Documents\Hernán\Egg\ProyectoSustentable\src\main\java\com\trees\treeSave\excepciones\WebException.java
-C:\Users\danie\Documents\Hernán\Egg\ProyectoSustentable\src\main\java\com\trees\treeSave\Entity\Producto.java
-C:\Users\danie\Documents\Hernán\Egg\ProyectoSustentable\src\main\java\com\trees\treeSave\repositories\VendedorRepository.java
-C:\Users\danie\Documents\Hernán\Egg\ProyectoSustentable\src\main\java\com\trees\treeSave\repositories\ProductoRepository.java
-C:\Users\danie\Documents\Hernán\Egg\ProyectoSustentable\src\main\java\com\trees\treeSave\services\ProductoServicio.java
-C:\Users\danie\Documents\Hernán\Egg\ProyectoSustentable\src\main\java\com\trees\treeSave\Entity\Categoria.java
-C:\Users\danie\Documents\Hernán\Egg\ProyectoSustentable\src\main\java\com\trees\treeSave\enumeraciones\Nivel.java
-C:\Users\danie\Documents\Hernán\Egg\ProyectoSustentable\src\main\java\com\trees\treeSave\repositories\ClienteRepository.java
-C:\Users\danie\Documents\Hernán\Egg\ProyectoSustentable\src\main\java\com\trees\treeSave\controller\MainController.java
-C:\Users\danie\Documents\Hernán\Egg\ProyectoSustentable\src\main\java\com\trees\treeSave\controller\ClienteController.java
-C:\Users\danie\Documents\Hernán\Egg\ProyectoSustentable\src\main\java\com\trees\treeSave\services\VendedorServicio.java
-C:\Users\danie\Documents\Hernán\Egg\ProyectoSustentable\src\main\java\com\trees\treeSave\Entity\Ciudad.java
-=======
 C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\Entity\Categoria.java
 C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\TreeSaveApplication.java
 C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\Entity\Vendedor.java
 C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\Entity\Lista.java
+C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\services\VendedorService.java
 C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\enumeraciones\TipoDoc.java
+C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\repositories\ListaRepository.java
 C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\Entity\Cliente.java
-C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\services\ClienteServicio.java
 C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\controller\MainController.java
+C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\services\ClienteService.java
 C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\controller\ProductoController.java
-C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\services\VendedorServicio.java
 C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\controller\CategoriaController.java
+C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\controller\ListaController.java
 C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\services\CategoriaService.java
+C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\Entity\Usuario.java
 C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\repositories\CategoriaRepository.java
 C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\controller\ClienteController.java
+C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\services\ProductoService.java
 C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\repositories\ProductoRepository.java
 C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\repositories\VendedorRepository.java
+C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\services\CiudadService.java
+C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\controller\CiudadController.java
 C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\excepciones\WebException.java
+C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\services\ListaService.java
+C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\controller\FotoController.java
+C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\Entity\Ciudad.java
 C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\repositories\FotoRepository.java
 C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\enumeraciones\Nivel.java
+C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\enumeraciones\Role.java
 C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\repositories\ClienteRepository.java
-C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\services\ProductoServicio.java
+C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\repositories\CiudadRepository.java
 C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\Entity\Producto.java
 C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\enumeraciones\Tipo.java
 C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\Entity\Foto.java
 C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\services\FotoService.java
->>>>>>> 47c6daf85589d41dd0bb39aaf432d5b1cb6949ef

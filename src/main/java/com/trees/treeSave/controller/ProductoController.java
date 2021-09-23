@@ -3,7 +3,7 @@ package com.trees.treeSave.controller;
 import com.trees.treeSave.Entity.Producto;
 import com.trees.treeSave.excepciones.WebException;
 import com.trees.treeSave.services.CategoriaService;
-import com.trees.treeSave.services.ProductoServicio;
+import com.trees.treeSave.services.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/producto")
 public class ProductoController {
     @Autowired
-    private ProductoServicio ps;
+    private ProductoService ps;
     @Autowired
     private CategoriaService cs;
     
