@@ -1,8 +1,7 @@
 //
 package com.trees.treeSave.Entity;
 
-import com.trees.enumeraciones.Tipo;
-import java.io.Serializable;
+import com.trees.treeSave.enumeraciones.Tipo;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -35,6 +34,13 @@ public class Producto {
     @OneToMany(mappedBy = "lista")
     private List<Lista> listas;
     */
+
+    public Producto() {
+        this.precio = 0.0d;
+        this.stock = 0;
+        this.tipo = Tipo.OTROS;
+        this.puntos = 0;
+    }
 
     public String getCodigoBarra() {
         return codigoBarra;
