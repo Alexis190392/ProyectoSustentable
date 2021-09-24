@@ -32,48 +32,118 @@ and open the template in the editor.
 </head>
 
 <body>
-    <form>
-        <!-- 2 column grid layout with text inputs for the first and last names -->
+    <!--Barra de navegación-->
+    <!-- Just an image -->
+    <nav class="navbar navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="../" height="20" alt="" loading="lazy" />
+                <h2>PST</h2>
+            </a>
+        </div>
+    </nav>
+    <!--Barra de navegación-->
+    <!--Registre su negocio aquí-->
+    <div class="container">
+        <center>
+            <h1>Registre su negocio</h1>
+        </center>
+    </div>
+    <div class="border">
+
+        <br>
         <div class="row mb-4">
             <div class="col">
                 <div class="form-outline">
+                    <label class="form-label" for="form3Example1">Nombre</label>
                     <input type="text" id="form3Example1" class="form-control" />
-                    <label class="form-label" for="form3Example1">First name</label>
+
                 </div>
             </div>
             <div class="col">
                 <div class="form-outline">
+                    <label class="form-label" for="form3Example2">Cuit</label>
                     <input type="text" id="form3Example2" class="form-control" />
-                    <label class="form-label" for="form3Example2">Last name</label>
+
                 </div>
             </div>
         </div>
 
         <!-- Email input -->
         <div class="form-outline mb-4">
+            <label class="form-label" for="form3Example3">Domicilio</label>
             <input type="email" id="form3Example3" class="form-control" />
-            <label class="form-label" for="form3Example3">Email address</label>
+
         </div>
 
         <!-- Password input -->
         <div class="form-outline mb-4">
+            <label class="form-label" for="form3Example4">Contacto</label>
             <input type="password" id="form3Example4" class="form-control" />
-            <label class="form-label" for="form3Example4">Password</label>
+
+        </div>
+
+        <!--horario-->
+        <div>
+            <h5>¿Cuál es su horario?</h5>
+        </div>
+        <br>
+        <div class="row mb-4">
+            <div class="col">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>00:00</option>
+                    <option value="1">01:00</option>
+                    <option value="2">02:00</option>
+                    <option value="3">03:00</option>
+                    <option value="3">04:00</option>
+                    <option value="3">05:00</option>
+                    <option value="3">06:00</option>
+                    <option value="3">07:00</option>
+                    <option value="3">08:00</option>
+                    <option value="3">09:00</option>
+                    <option value="3">10:00</option>
+                    <option value="3">11:00</option>
+                    
+
+                  </select>
+            </div>
+            <div class="col">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>12:00</option>
+                    <option value="1">13:00</option>
+                    <option value="2">14:00</option>
+                    <option value="3">15:00</option>
+                    <option value="3">16:00</option>
+                    <option value="3">17:00</option>
+                    <option value="3">18:00</option>
+                    <option value="3">19:00</option>
+                    <option value="3">20:00</option>
+                    <option value="3">21:00</option>
+                    <option value="3">22:00</option>
+                    <option value="3">23:00</option>
+                    <option value="3">00:00</option>>
+                  </select>
+            </div>
+        </div>
+        <!--subir imagen-->
+        <div class="mb-3">
+            <label for="formFileSm" class="form-label">Suba el logo de su negocio</label>
+            <input class="form-control form-control-sm" id="formFileSm" type="file">
         </div>
 
         <!-- Checkbox -->
         <div class="form-check d-flex justify-content-center mb-4">
             <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" checked />
             <label class="form-check-label" for="form2Example3">
-            Subscribe to our newsletter
-          </label>
+                Estás de acuerdo diga ahora o calle para siempre
+              </label>
         </div>
 
         <!-- Submit button -->
-        <button type="submit" class="btn btn-primary btn-block mb-4">Sign up</button>
+        <button type="submit" class="btn btn-primary btn-block mb-4">Registrar</button>
 
-        </div>
-    </form>
+    </div>
+    </div>
 
 
 
