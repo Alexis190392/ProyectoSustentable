@@ -18,7 +18,7 @@ import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.JOINED) // con esto le permito herdar a User.java o cualquiera q  lo necesite.
 public class Cliente implements Serializable {
 
     @Id
