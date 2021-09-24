@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 com\trees\treeSave\Entity\Lista.class
 com\trees\treeSave\Entity\Producto.class
 com\trees\enumeraciones\Tipo.class
@@ -6,3 +7,35 @@ com\trees\enumeraciones\Nivel.class
 com\trees\enumeraciones\TipoDoc.class
 com\trees\treeSave\TreeSaveApplication.class
 com\trees\treeSave\Entity\Categoria.class
+=======
+com\trees\treeSave\repositories\CategoriaRepository.class
+com\trees\treeSave\controller\MainController.class
+com\trees\treeSave\services\CiudadService.class
+com\trees\treeSave\Entity\Cliente.class
+com\trees\treeSave\controller\FotoController.class
+com\trees\treeSave\controller\ClienteController.class
+com\trees\treeSave\TreeSaveApplication.class
+com\trees\treeSave\Entity\Categoria.class
+com\trees\treeSave\services\VendedorServicio.class
+com\trees\treeSave\Entity\Lista.class
+com\trees\treeSave\services\ProductoServicio.class
+com\trees\treeSave\repositories\ClienteRepository.class
+com\trees\treeSave\controller\ProductoController.class
+com\trees\treeSave\repositories\VendedorRepository.class
+com\trees\treeSave\Entity\Ciudad.class
+com\trees\treeSave\enumeraciones\Nivel.class
+com\trees\treeSave\repositories\FotoRepository.class
+com\trees\treeSave\controller\CiudadController.class
+com\trees\treeSave\enumeraciones\TipoDoc.class
+com\trees\treeSave\repositories\CiudadRepository.class
+com\trees\treeSave\repositories\ProductoRepository.class
+com\trees\treeSave\controller\CategoriaController.class
+com\trees\treeSave\Entity\Foto.class
+com\trees\treeSave\Entity\Producto.class
+com\trees\treeSave\services\FotoService.class
+com\trees\treeSave\excepciones\WebException.class
+com\trees\treeSave\services\ClienteService.class
+com\trees\treeSave\enumeraciones\Tipo.class
+com\trees\treeSave\services\CategoriaService.class
+com\trees\treeSave\Entity\Vendedor.class
+>>>>>>> Stashed changes

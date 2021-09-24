@@ -12,6 +12,8 @@ public interface VendedorRepository extends JpaRepository<Vendedor,String> {
     @Query("SELECT v FROM Vendedor v where "
             + "v.nombre LIKE :query or "
             + "v.cuit LIKE :query or "
-            + "v.domicilio LIKE :query")
+            + "v.domicilio LIKE :query"
+            + "v.contacto LIKE :query"
+            + "v.horario LIKE :query")
     List<Vendedor> searchId(@Param("query") String query);
 }
