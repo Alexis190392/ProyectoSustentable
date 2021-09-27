@@ -28,7 +28,7 @@ and open the template in the editor.
 
 
     <script src="js/script.js"></script>
-    <title>Document</title>
+    <title>Registro vendedor</title>
 </head>
 
 <body>
@@ -44,42 +44,45 @@ and open the template in the editor.
     </nav>
     <!--Barra de navegación-->
     <!--Registre su negocio aquí-->
+    <br>
     <div class="container">
         <center>
             <h1>Registre su negocio</h1>
         </center>
     </div>
+    <br>
     <div class="border">
-
         <br>
         <div class="row mb-4">
             <div class="col">
+                <!-- nombre input -->
                 <div class="form-outline">
                     <label class="form-label" for="form3Example1">Nombre</label>
-                    <input type="text" id="form3Example1" class="form-control" />
+                    <input type="text" id="form3Example1" th:field="*{nombres}" class="form-control" />
 
                 </div>
             </div>
             <div class="col">
+                <!-- cuit input -->
                 <div class="form-outline">
                     <label class="form-label" for="form3Example2">Cuit</label>
-                    <input type="text" id="form3Example2" class="form-control" />
+                    <input type="text" id="form3Example2" th:field="*{cuit}" class="form-control" />
 
                 </div>
             </div>
         </div>
 
-        <!-- Email input -->
+        <!-- domicilio input -->
         <div class="form-outline mb-4">
             <label class="form-label" for="form3Example3">Domicilio</label>
-            <input type="email" id="form3Example3" class="form-control" />
+            <input type="email" id="form3Example3" th:field="*{domicilio}" class="form-control" />
 
         </div>
 
-        <!-- Password input -->
+        <!-- contacto input -->
         <div class="form-outline mb-4">
             <label class="form-label" for="form3Example4">Contacto</label>
-            <input type="password" id="form3Example4" class="form-control" />
+            <input type="password" id="form3Example4" th:field="*{contacto}" class="form-control" />
 
         </div>
 
@@ -130,19 +133,23 @@ and open the template in the editor.
             <label for="formFileSm" class="form-label">Suba el logo de su negocio</label>
             <input class="form-control form-control-sm" id="formFileSm" type="file">
         </div>
+        <br>
 
         <!-- Checkbox -->
-        <div class="form-check d-flex justify-content-center mb-4">
+        <div class="form-check d-flex mb-4">
             <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" checked />
             <label class="form-check-label" for="form2Example3">
                 Estás de acuerdo diga ahora o calle para siempre
               </label>
         </div>
+        <div>
+            <A HREF="otra_pagina.html"> Leer términos y condiciones </A>
+        </div>
+        <br>
 
         <!-- Submit button -->
-        <button type="submit" class="btn btn-primary btn-block mb-4">Registrar</button>
-
-    </div>
+        <a href="#" class="btn btn-primary btn-lg disabled" tabindex="-1" role="button" aria-disabled="true">Registrar</a>
+        <a href="#" class="btn btn-secondary btn-lg disabled" tabindex="-1" role="button" aria-disabled="true">Volver</a>
 
     </div>
 
