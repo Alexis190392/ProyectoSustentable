@@ -1,6 +1,5 @@
 com\trees\treeSave\repositories\ClienteRepository.class
 com\trees\treeSave\repositories\CategoriaRepository.class
-com\trees\treeSave\controller\ListaService.class
 com\trees\treeSave\controller\ProductoController.class
 com\trees\treeSave\controller\MainController.class
 com\trees\treeSave\repositories\VendedorRepository.class
@@ -18,7 +17,6 @@ com\trees\treeSave\Entity\Categoria.class
 com\trees\treeSave\services\VendedorServicio.class
 com\trees\treeSave\repositories\CiudadRepository.class
 com\trees\treeSave\repositories\ProductoRepository.class
-com\trees\treeSave\controller\CategoriaController.class
 com\trees\treeSave\Entity\Foto.class
 com\trees\treeSave\Entity\Lista.class
 com\trees\treeSave\Entity\Producto.class
@@ -26,6 +24,9 @@ com\trees\treeSave\services\ProductoServicio.class
 com\trees\treeSave\services\FotoService.class
 com\trees\treeSave\excepciones\WebException.class
 com\trees\treeSave\services\ClienteService.class
+com\trees\treeSave\controller\ListaController.class
 com\trees\treeSave\enumeraciones\Tipo.class
+com\trees\treeSave\repositories\ListaRepository.class
 com\trees\treeSave\services\CategoriaService.class
+com\trees\treeSave\services\ListaService.class
 com\trees\treeSave\Entity\Vendedor.class

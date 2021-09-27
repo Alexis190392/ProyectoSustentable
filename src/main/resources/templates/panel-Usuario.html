@@ -11,29 +11,39 @@
             <div class="col col-md-2 ">
                 <div class="card">
                     <div class="card-header">
-                        LISTAS
-                    </div>
-                    <ul data-spy="scroll" data-target="#myScrollspy" data-offset="1" class="scroll"
-                        style="overflow-y: scroll;padding:5px;">
-                        <li class="list-group-item list-group-item-action  py-3 lh-tight">An item</li>
-                        <li class="list-group-item list-group-item-action active py-3 lh-tight">An item</li>
-                        <li class="list-group-item list-group-item-action active py-3 lh-tight">An item</li>
-                        <li class="list-group-item list-group-item-action active py-3 lh-tight">An item</li>
-                        <li class="list-group-item list-group-item-action active py-3 lh-tight">An item</li>
-                        <li class="list-group-item list-group-item-action active py-3 lh-tight">An item</li>
-                        <li class="list-group-item list-group-item-action active py-3 lh-tight">An item</li>
-                        <li class="list-group-item list-group-item-action active py-3 lh-tight">An item</li>
-                        <li class="list-group-item list-group-item-action active py-3 lh-tight">An item</li>
-                        <li class="list-group-item list-group-item-action active py-3 lh-tight">An item</li>
-                        <li class="list-group-item list-group-item-action active py-3 lh-tight">An item</li>
-                        <li class="list-group-item list-group-item-action active py-3 lh-tight">An item</li>
-                        <li class="list-group-item list-group-item-action active py-3 lh-tight">An item</li>
-                        <li class="list-group-item list-group-item-action active py-3 lh-tight">An item</li>
-                        <li class="list-group-item list-group-item-action active py-3 lh-tight">An item</li>
-                        <li class="list-group-item list-group-item-action active py-3 lh-tight">An item</li>
-                        <li class="list-group-item list-group-item-action active py-3 lh-tight">An item</li>
-                    </ul>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary col-12" data-bs-toggle="modal"
+                            data-bs-target="#staticBackdrop">
+                            + Nueva lista
+                        </button>
 
+                        <!-- Modal -->
+                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="staticBackdropLabel">Ingrese nombre:</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                      <!--  <form th:action="@{/lista/save}" method="POST" th:object="${lista}" class="row">
+                                            <input hidden th:field="*{nombreList}">
+                                            <div class="form-label col">
+                                                <input type="text" class="form-control" th:field="*{nombreCat}">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Cancelar</button>
+                                                <button type="button" class="btn btn-primary">Crear</button>
+                                            </div>
+                                        </form>-->
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             </div>
@@ -46,7 +56,7 @@
                     <div data-spy="scroll" data-target="#myScrollspy" data-offset="1" class="scroll"
                         style="overflow-y: scroll;padding:5px;">
                         <div th:each=" l : ${clientes} ">
-                            <div class="card mb-3" >
+                            <div class="card mb-3">
                                 <div class="row ">
                                     <div class="col-md-4">
                                         <img th:if="${l.foto != null}" class="img-fluid rounded-start"
@@ -68,7 +78,7 @@
                             </div>
                         </div>
                         <div th:each=" l : ${clientes} ">
-                            <div class="card mb-3" >
+                            <div class="card mb-3">
                                 <div class="row ">
                                     <div class="col-md-4">
                                         <img th:if="${l.foto != null}" class="img-fluid rounded-start"
@@ -93,7 +103,7 @@
                 </div>
             </div>
 
-            
+
             <div class="col col-md-4">
                 <div class="card">
                     <div class="card-header">
