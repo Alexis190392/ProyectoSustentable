@@ -12,28 +12,10 @@ public class Vendedor {
     private String cuit;
     private String nombre;
     private String domicilio;
-    private String contacto;
-    private String horario;
     @OneToMany
     private List<Producto> catalogo;
 
 
-    public String getContacto() {
-        return contacto;
-    }
-
-    public void setContacto(String contacto) {
-        this.contacto = contacto;
-    }
-
-    public String getHorario() {
-        return horario;
-    }
-
-    public void setHorario(String horario) {
-        this.horario = horario;
-    }
-    
     public String getCuit() {
         return cuit;
     }

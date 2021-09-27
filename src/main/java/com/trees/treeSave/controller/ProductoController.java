@@ -13,18 +13,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import java.util.Optional;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/producto")
 public class ProductoController {
+
     @Autowired
     private ProductoServicio ps;
     @Autowired
     private CategoriaService cs;
-    
-    
-    
+
     @GetMapping("/list")
     public String listarProductos(Model model, @RequestParam(required = false) String sku) {
         if (sku != null) {
@@ -32,34 +32,43 @@ public class ProductoController {
         } else {
             model.addAttribute("productos", ps.listAll());
         }
-        
+
         return "producto-list";
     }
 
     @GetMapping("/form")
-    public String crearProducto(Model model,@RequestParam(required=false) String codigoBarra){
-        if(codigoBarra != null){
+    public String crearProducto(Model model, @RequestParam(required = false) String codigoBarra) {
+        if (codigoBarra != null) {
             Producto p = ps.searchCod(codigoBarra);
-            if(p != null){
-                model.addAttribute("producto",p);
+            if (p != null) {
+                model.addAttribute("producto", p);
             } else {
                 return "redirect:/producto/list";
             }
-        }else{
+        } else {
             model.addAttribute("producto", new Producto());
         }
-        model.addAttribute("tipos",ps.listTipo());
-        model.addAttribute("categorias",cs.listAll());
+        model.addAttribute("tipos", ps.listTipo());
+        model.addAttribute("categorias", cs.listAll());
         return "producto-form";
     }
 
     @PostMapping("/save")
-    public String guardarProducto(RedirectAttributes redat, @ModelAttribute Producto p) {
+    public String guardarProducto(Model model, @RequestParam(required = true) String action
+            , @RequestParam(required = false) MultipartFile archivo, RedirectAttributes redat
+            , @ModelAttribute Producto p) {
         try {
-            ps.save(p);
-            redat.addFlashAttribute("success", "Producto guardado correctamente");
+            if (action.equals("edit")) {
+                ps.modificarProducto(archivo, p);
+                redat.addFlashAttribute("success", "Cliente modificado con éxito.");
+            } else {
+                ps.save(archivo, p);
+                redat.addFlashAttribute("success", "Producto guardado correctamente");
+            }
+
         } catch (WebException e) {
             redat.addFlashAttribute("error", e.getMessage()); //mandando el mensaje de error a donde es redireccionado
+             model.addAttribute("producto", p);
         }
         return "redirect:/producto/list";
     }

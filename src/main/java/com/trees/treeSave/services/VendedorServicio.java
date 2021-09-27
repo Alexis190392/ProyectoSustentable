@@ -17,13 +17,11 @@ public class VendedorServicio {
     
     //para comunicarse con la bd
     @Transactional
-    public Vendedor save(String cuit, String nombre,String domicilio, String contacto, String horario){
+    public Vendedor save(String cuit, String nombre,String domicilio){
         Vendedor v = new Vendedor();
         v.setCuit(cuit);
         v.setNombre(nombre);
         v.setDomicilio(domicilio);
-        v.setContacto(contacto);
-        v.setHorario(horario);
         
         return vr.save(v);
     }
@@ -38,12 +36,6 @@ public class VendedorServicio {
             throw new WebException("El nombre no puede estar vacio");
         }
         if(v.getDomicilio().isEmpty() || v.getDomicilio() == null){
-            throw new WebException("El domicilio no puede estar vacio");
-        }
-        if(v.getContacto().isEmpty() || v.getContacto() == null){
-            throw new WebException("El domicilio no puede estar vacio");
-        }
-        if(v.getHorario().isEmpty() || v.getHorario() == null){
             throw new WebException("El domicilio no puede estar vacio");
         }
         
