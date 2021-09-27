@@ -104,3 +104,9 @@ main {
     padding-left: 1rem;
     padding-right: 1rem;
 }
+
+footer {
+    background-image: url(img/1.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
