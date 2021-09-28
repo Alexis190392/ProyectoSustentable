@@ -105,8 +105,8 @@ public class VendedorServicio {
     }
 
     //buscador general
-    public List<Vendedor> listAllByQ(String query) {
-        return vr.findId("%" + query + "%");
+    public List<Vendedor> listAllByQ(String query) { 
+        return vr.findAllByQ("%" + query + "%");
     }
 
     public List<Vendedor> listAllbyCiudad(String nombre) {

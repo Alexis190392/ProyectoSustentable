@@ -26,7 +26,7 @@ and open the template in the editor.
             </div>
             <div class="row m-1">
                 <div class="col">
-                    <div class="display-1 text-center text-light">Lista de clientes</div>
+                    <div class="display-1 text-center text-light">Lista de vendedores</div>
                 </div>
                 <div class="row m-5">
                     <div class="col d-flex justify-content-center">
@@ -69,12 +69,12 @@ and open the template in the editor.
                                             <td th:text="${v.baja}"></td>
                                            <!-- <td th:text="${l.foto}"></td>-->
                                             <td <!--sec:authorize="hasRole('ROLE_ADMIN')"-->>
-                                                <button class="button"><a th:href="@{/vendedor/delete}+'?id='+${v.cuil}">Eliminar</a></button>
-                                                <button class="button"><a th:href="@{/vendedor/form}+'?id='+${v.cuil}+'&action=edit'">Editar</a></button>
+                                                <button class="button"><a th:href="@{/vendedor/delete}+'?id='+${v.cuit}">Eliminar</a></button>
+                                                <button class="button"><a th:href="@{/vendedor/form}+'?id='+${v.cuit}+'&action=edit'">Editar</a></button>
                                             </td>
                                         </tr>
                                     </tbody>
-                                    <p th:if="${clientes.isEmpty}">No hay vendedores para mostrar</p>
+                                    <p th:if="${vendedores.isEmpty}">No hay vendedores para mostrar</p>
                                 </table>
                             </div>
                         </div>

@@ -3,6 +3,7 @@ package com.trees.treeSave.controller;
 import com.trees.treeSave.Entity.Cliente;
 import com.trees.treeSave.Entity.Vendedor;
 import com.trees.treeSave.excepciones.WebException;
+import com.trees.treeSave.services.CiudadService;
 import com.trees.treeSave.services.ClienteService;
 import com.trees.treeSave.services.VendedorServicio;
 import java.util.Optional;
@@ -25,6 +26,9 @@ public class VendedorController {
 
     @Autowired
     private VendedorServicio vendedorServicio;
+    
+    @Autowired
+    private CiudadService ciudadService;
 
     //@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @GetMapping("/list")
@@ -51,6 +55,8 @@ public class VendedorController {
             model.addAttribute("vendedor", new Vendedor());
             model.addAttribute("action", action);
         }
+        //estamos metiendo el th:each Ciudades como parametro para añadirlo junto con listAll
+        model.addAttribute("ciudades", ciudadService.listAll());
         return "vendedor-form";
     }
 
@@ -77,6 +83,7 @@ public class VendedorController {
         } catch (WebException ex) {
             model.addAttribute("error", ex.getMessage());
             model.addAttribute("vendedor", vendedor);
+            model.addAttribute("ciudades", ciudadService.listAll());
             return "vendedor-form";
         }
         return "redirect:/vendedor/list";
