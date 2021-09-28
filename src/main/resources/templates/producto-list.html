@@ -64,7 +64,7 @@
 
                 <div class="row">
                     <div class="col p-2 ">
-                        <img src="../static/img/banana.png" alt="" title="" th:src="@{/img/banana.png}" />
+                        <img th:if="${p.foto != null}" style="max-height: 60px; border-radius: 100%" class="img-fluid" th:src="@{/foto/producto}+'?id='+${p.codigoBarra}" >
                     </div>
                     <div class="col">
 
