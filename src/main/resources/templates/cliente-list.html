@@ -68,7 +68,7 @@ and open the template in the editor.
                                             <td th:text="${l.alta}"></td>
                                             <td th:text="${l.baja}"></td>
                                     <td>
-                                        <img th:if="${l.foto != null}" class="img-fluid rounded-circle" th:src="@{/foto/cliente}+'?id='+${l.documento}" > 
+                                        <img th:if="${l.foto != null}" style="max-height: 60px; border-radius: 100%" class="img-fluid" th:src="@{/foto/cliente}+'?id='+${l.documento}" > 
                                     </td>
                                             
                                             <td <!--sec:authorize="hasRole('ROLE_ADMIN')"-->

@@ -46,7 +46,7 @@
                         <td th:text="${p.puntos}"></td>
                         <td th:text="${p.categoria.nombreCat}"></td>
                         <td>
-                            <img th:if="${p.foto != null}" class="img-fluid rounded-circle" th:src="@{/foto/producto}+'?id='+${p.codigoBarra}" > 
+                            <img th:if="${p.foto != null}" style="max-height: 60px; border-radius: 100%" class="img-fluid" th:src="@{/foto/producto}+'?id='+${p.codigoBarra}" > 
                         </td>
                         <td>
                             <a type="button" class="btn btn-outline-success"
