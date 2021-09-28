@@ -1,6 +1,5 @@
 package com.trees.treeSave.controller;
 
-
 import com.trees.treeSave.Entity.Cliente;
 import com.trees.treeSave.Entity.Vendedor;
 import com.trees.treeSave.excepciones.WebException;
@@ -20,10 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-/**
- *
- * @author Fede
- */
 @Controller
 @RequestMapping("/vendedor")
 public class VendedorController {
@@ -65,18 +60,17 @@ public class VendedorController {
         return "redirect:/vendedor/list";
     }
 
-    
     @PostMapping("/save")
     public String guardarVendedor(Model model, RedirectAttributes redirectAttributes,
-             @ModelAttribute Cliente vendedor, @RequestParam(required = true) String action) throws WebException {
+            @ModelAttribute Vendedor vendedor, @RequestParam(required = true) String action) throws WebException {
         try {
             //if(action.equals("crear")) {
             //     cs.save(vendedor, null);
             if (action.equals("edit")) {
                 vendedorServicio.modificarVendedor(vendedor);
-                redirectAttributes.addFlashAttribute("success", "Cliente modificado con éxito.");
+                redirectAttributes.addFlashAttribute("success", "Vendedor modificado con éxito.");
             } else {
-                vendedorServicio.validarCliente(vendedor);
+                vendedorServicio.validarVendedor(vendedor);
                 redirectAttributes.addFlashAttribute("success", "Cliente guardado con éxito.");
             }
 

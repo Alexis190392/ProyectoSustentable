@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface VendedorRepository extends JpaRepository<Vendedor, String> {
 
-    @Query("SELECT v FROM Vendedor v where"
+    @Query("select v from Vendedor v where"
             + "v.nombre LIKE :query or"
             + "v.cuit LIKE :query or"
             + "v.domicilio LIKE :query or"
@@ -21,9 +21,9 @@ public interface VendedorRepository extends JpaRepository<Vendedor, String> {
     
     
 
-    @Query("select v from Vendedor p where v.ciudad.nombre = :query")
+    @Query("select v from Vendedor v where v.ciudad.nombre = :query")
     List<Vendedor> findAllByCiudad(@Param("query") String q);
 
-    @Query("SELECT v FROM Vendedor v WHERE v.cuit = :cuit")
+    @Query("select v from Vendedor v where v.cuit = :cuit")
     public Vendedor findByCuit(@Param("cuit") String documento);
 }

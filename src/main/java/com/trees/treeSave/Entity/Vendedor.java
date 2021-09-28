@@ -34,8 +34,8 @@ public class Vendedor {
     @Temporal(TemporalType.DATE)                 
     private Date baja;  
      
-    @OneToMany
-    private List<Producto> catalogo;
+//    @OneToMany
+//    private List<Producto> catalogo;
 
     public String getCuit() {
         return cuit;
@@ -109,13 +109,13 @@ public class Vendedor {
         this.baja = baja;
     }
 
-    public List<Producto> getCatalogo() {
-        return catalogo;
-    }
-
-    public void setCatalogo(List<Producto> catalogo) {
-        this.catalogo = catalogo;
-    }
+//    public List<Producto> getCatalogo() {
+//        return catalogo;
+//    }
+//
+//    public void setCatalogo(List<Producto> catalogo) {
+//        this.catalogo = catalogo;
+//    }
 
 
     

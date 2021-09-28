@@ -54,7 +54,7 @@ public class VendedorServicio {
         if (v.getCiudad() == null) {
             throw new WebException("Ls ciudad no puede ser nula");
         } else {
-            v.setCiudad(ciudadService.findById(v.getCiudad()));
+            vendedorAlta.setCiudad(ciudadService.findById(v.getCiudad()));
         }
         
         if (v.getContactoMail().isEmpty() || v.getContactoMail()== null) {
@@ -89,7 +89,7 @@ public class VendedorServicio {
     }
     
     @Transactional
-    public void habilitarCliente(String id) throws WebException {
+    public void habilitarVendedor(String id) throws WebException {
         Optional<Vendedor> respuesta = vr.findById(id);
         if (respuesta.isPresent()) {
             Vendedor vendedor = respuesta.get();
@@ -156,7 +156,7 @@ public class VendedorServicio {
             throw new WebException("El domicilio no puede ser nulo.");
         }
         if (vendedor.getCiudad() == null) {
-            throw new WebException("El vendedor no puede ser nulo.");
+            throw new WebException("La ciudad no puede ser nula.");
         }
         if (vendedor.getContactoMail().isEmpty() || vendedor.getContactoMail()== null) {
             throw new WebException("El mail no puede estar vacio");
