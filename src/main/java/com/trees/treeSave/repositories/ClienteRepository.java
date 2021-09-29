@@ -29,5 +29,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, String> {
             + " or c.contactoCel LIKE :q or c.apellido LIKE :q or c.nivel LIKE :q"
             + " or c.contactoMail LIKE :q")
     public List<Cliente> findAllByQ(@Param("q") String q);
-
+    
+@Query("SELECT c FROM Cliente c WHERE c.id = :id AND c.baja IS NULL")
+    public List<Cliente> listarTodos(@Param("id") String id);
 }

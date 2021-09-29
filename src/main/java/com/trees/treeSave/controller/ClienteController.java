@@ -2,6 +2,7 @@ package com.trees.treeSave.controller;
 
 import com.trees.treeSave.Entity.Cliente;
 import com.trees.treeSave.excepciones.WebException;
+import com.trees.treeSave.services.CiudadService;
 import com.trees.treeSave.services.ClienteService;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ public class ClienteController {
     
     @Autowired
     private ClienteService clienteService;
+    
+    @Autowired
+    private CiudadService ciudadService;
 
 
     //@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
@@ -35,7 +39,7 @@ public class ClienteController {
         if (q != null) {
             model.addAttribute("clientes", clienteService.listAllByQ(q));
         } else {
-            model.addAttribute("clientes", clienteService.listAll());
+            model.addAttribute("clientes", clienteService.listarTodos());
         }
         return "cliente-list";
     }
@@ -54,6 +58,8 @@ public class ClienteController {
             model.addAttribute("cliente", new Cliente());
             model.addAttribute("action", action);
         }
+        
+         model.addAttribute("ciudades", ciudadService.listAll());
         return "cliente-form";
     }
 

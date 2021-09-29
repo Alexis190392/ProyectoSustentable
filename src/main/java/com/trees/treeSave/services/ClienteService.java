@@ -106,7 +106,7 @@ public class ClienteService {
         }
     }
     
-    public List<Cliente> listAll() {
+    public List<Cliente> listarTodos() {
         return clienteRepository.findAll();
     }
 
@@ -132,6 +132,7 @@ public class ClienteService {
     public void deleteById(String documento) {
         Optional<Cliente> optional = clienteRepository.findById(documento);
         if (optional.isPresent()) {
+            //optional.get().setBaja(new Date());
             fotoService.delete(optional.get().getFoto());
             clienteRepository.delete(optional.get());
         }
