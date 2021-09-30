@@ -47,13 +47,14 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
-                    <form class="p-4 p-md-5 border rounded-3 bg-light">
+                    <form th:action="@{/logincheck}" method="POST" class="p-4 p-md-5 border rounded-3 bg-light">
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                            <label for="floatingInput">Correo</label>
+                            <input type="email" class="form-control" id="floatingInput" name="username">
+                            <label for="floatingInput">Usuario</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
+                                name="password">
                             <label for="floatingPassword">Contraseña</label>
                         </div>
                         <div class="checkbox mb-3">
@@ -83,246 +84,252 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        > Formulario de ingreso de cliente < </div>
-                            <div class="modal-footer">
-                                <button class="btn btn-primary" data-bs-target="#exampleModalToggle2"
-                                    data-bs-toggle="modal" data-bs-dismiss="modal">Continuar</button>
-                            </div>
+
+
+
+
+
+                        falta ingresar el form de registro
+
+
+
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal"
+                            data-bs-dismiss="modal">Continuar</button>
                     </div>
                 </div>
             </div>
-            <div class="modal fade" id="exampleModalToggle2" aria-hidden="true"
-                aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalToggleLabel2">Crear Usuario y contraseña</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            Formulario de user, pass y pass2
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-primary" data-bs-target="#exampleModalToggle"
-                                data-bs-toggle="modal">Registrarse</button>
-                        </div>
+        </div>
+        <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+            tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalToggleLabel2">Crear Usuario y contraseña</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Formulario de user, pass y pass2
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" data-bs-target="#exampleModalToggle"
+                            data-bs-toggle="modal">Registrarse</button>
                     </div>
                 </div>
             </div>
-            <a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle" role="button">kjhsadgf</a>
-            <!-- fin Modal registro -->
+        </div>
+        <a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle" role="button">kjhsadgf</a>
+        <!-- fin Modal registro -->
 
 
 
 
 
-            <!--login-->
-            <div id="login" class="container col-xl-10 col-xxl-8 px-4 py-5">
-                <div class="row align-items-center g-lg-5 py-5">
-                    <div class="col-lg-7 text-center text-lg-start">
-                        <h1 class="display-4 fw-bold lh-1 mb-3">Ingreso a mi cuenta</h1>
-                        <p class="col-lg-10 fs-4">Empeza a ayudar al planeta! Lorem ipsum dolor sit amet consectetur
-                            adipisicing elit. Perferendis sint, blanditiis unde optio laboriosam aspernatur est modi,
-                            dolorum harum impedit neque illum ratione repellendus tempore? Quibusdam necessitatibus at
-                            officiis facilis.</p>
+        <!--login-->
+        <div id="login" class="container col-xl-10 col-xxl-8 px-4 py-5">
+            <div class="row align-items-center g-lg-5 py-5">
+                <div class="col-lg-7 text-center text-lg-start">
+                    <h1 class="display-4 fw-bold lh-1 mb-3">Ingreso a mi cuenta</h1>
+                    <p class="col-lg-10 fs-4">Empeza a ayudar al planeta! Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Perferendis sint, blanditiis unde optio laboriosam aspernatur est modi,
+                        dolorum harum impedit neque illum ratione repellendus tempore? Quibusdam necessitatibus at
+                        officiis facilis.</p>
+                </div>
+                <div class="col-md-10 mx-auto col-lg-5">
+                    <form class="p-4 p-md-5 border rounded-3 bg-light">
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                            <label for="floatingInput">Email address</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                            <label for="floatingPassword">Password</label>
+                        </div>
+                        <div class="checkbox mb-3">
+                            <label>
+                                <input type="checkbox" value="remember-me"> Remember me
+                            </label>
+                        </div>
+                        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
+                        <hr class="my-4">
+                        <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="b-example-divider"></div>
+
+        <div class="container marketing">
+
+            <!-- Three columns of text below the carousel -->
+            <div class="row m-4">
+                <div class="col-lg-4">
+                    <svg class="bd-placeholder-img rounded-circle" width="140" height="140"
+                        xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140"
+                        preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <title>Placeholder</title>
+                        <rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#777"
+                            dy=".3em">140x140</text>
+                    </svg>
+
+                    <h2>Heading</h2>
+                    <p>Some representative placeholder content for the three columns of text below the carousel.
+                        This is
+                        the first column.</p>
+                    <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+                </div><!-- /.col-lg-4 -->
+                <div class="col-lg-4">
+                    <svg class="bd-placeholder-img rounded-circle" width="140" height="140"
+                        xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140"
+                        preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <title>Placeholder</title>
+                        <rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#777"
+                            dy=".3em">140x140</text>
+                    </svg>
+
+                    <h2>Heading</h2>
+                    <p>Another exciting bit of representative placeholder content. This time, we've moved on to the
+                        second column.</p>
+                    <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+                </div><!-- /.col-lg-4 -->
+                <div class="col-lg-4">
+                    <svg class="bd-placeholder-img rounded-circle" width="140" height="140"
+                        xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140"
+                        preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <title>Placeholder</title>
+                        <rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#777"
+                            dy=".3em">140x140</text>
+                    </svg>
+
+                    <h2>Heading</h2>
+                    <p>And lastly this, the third column of representative placeholder content.</p>
+                    <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+                </div><!-- /.col-lg-4 -->
+            </div><!-- /.row -->
+
+
+
+
+        </div><!-- /.container -->
+
+        <div class="b-example-divider"></div>
+
+        <div class="container px-4 py-5" id="icon-grid">
+            <h2 class="pb-2 border-bottom">Icon grid</h2>
+
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
+                <div class="col d-flex align-items-start">
+                    <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em">
+                        <use xlink:href="#bootstrap" />
+                    </svg>
+                    <div>
+                        <h4 class="fw-bold mb-0">Featured title</h4>
+                        <p>Paragraph of text beneath the heading to explain the heading.</p>
                     </div>
-                    <div class="col-md-10 mx-auto col-lg-5">
-                        <form class="p-4 p-md-5 border rounded-3 bg-light">
-                            <div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="floatingInput"
-                                    placeholder="name@example.com">
-                                <label for="floatingInput">Email address</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="floatingPassword"
-                                    placeholder="Password">
-                                <label for="floatingPassword">Password</label>
-                            </div>
-                            <div class="checkbox mb-3">
-                                <label>
-                                    <input type="checkbox" value="remember-me"> Remember me
-                                </label>
-                            </div>
-                            <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
-                            <hr class="my-4">
-                            <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
-                        </form>
+                </div>
+                <div class="col d-flex align-items-start">
+                    <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em">
+                        <use xlink:href="#cpu-fill" />
+                    </svg>
+                    <div>
+                        <h4 class="fw-bold mb-0">Featured title</h4>
+                        <p>Paragraph of text beneath the heading to explain the heading.</p>
+                    </div>
+                </div>
+                <div class="col d-flex align-items-start">
+                    <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em">
+                        <use xlink:href="#calendar3" />
+                    </svg>
+                    <div>
+                        <h4 class="fw-bold mb-0">Featured title</h4>
+                        <p>Paragraph of text beneath the heading to explain the heading.</p>
+                    </div>
+                </div>
+                <div class="col d-flex align-items-start">
+                    <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em">
+                        <use xlink:href="#home" />
+                    </svg>
+                    <div>
+                        <h4 class="fw-bold mb-0">Featured title</h4>
+                        <p>Paragraph of text beneath the heading to explain the heading.</p>
+                    </div>
+                </div>
+                <div class="col d-flex align-items-start">
+                    <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em">
+                        <use xlink:href="#speedometer2" />
+                    </svg>
+                    <div>
+                        <h4 class="fw-bold mb-0">Featured title</h4>
+                        <p>Paragraph of text beneath the heading to explain the heading.</p>
+                    </div>
+                </div>
+                <div class="col d-flex align-items-start">
+                    <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em">
+                        <use xlink:href="#toggles2" />
+                    </svg>
+                    <div>
+                        <h4 class="fw-bold mb-0">Featured title</h4>
+                        <p>Paragraph of text beneath the heading to explain the heading.</p>
+                    </div>
+                </div>
+                <div class="col d-flex align-items-start">
+                    <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em">
+                        <use xlink:href="#geo-fill" />
+                    </svg>
+                    <div>
+                        <h4 class="fw-bold mb-0">Featured title</h4>
+                        <p>Paragraph of text beneath the heading to explain the heading.</p>
+                    </div>
+                </div>
+                <div class="col d-flex align-items-start">
+                    <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em">
+                        <use xlink:href="#tools" />
+                    </svg>
+                    <div>
+                        <h4 class="fw-bold mb-0">Featured title</h4>
+                        <p>Paragraph of text beneath the heading to explain the heading.</p>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="b-example-divider"></div>
+        <div class="b-example-divider"></div>
 
-            <div class="container marketing">
-
-                <!-- Three columns of text below the carousel -->
-                <div class="row m-4">
-                    <div class="col-lg-4">
-                        <svg class="bd-placeholder-img rounded-circle" width="140" height="140"
-                            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140"
-                            preserveAspectRatio="xMidYMid slice" focusable="false">
-                            <title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#777"
-                                dy=".3em">140x140</text>
-                        </svg>
-
-                        <h2>Heading</h2>
-                        <p>Some representative placeholder content for the three columns of text below the carousel.
-                            This is
-                            the first column.</p>
-                        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
-                    </div><!-- /.col-lg-4 -->
-                    <div class="col-lg-4">
-                        <svg class="bd-placeholder-img rounded-circle" width="140" height="140"
-                            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140"
-                            preserveAspectRatio="xMidYMid slice" focusable="false">
-                            <title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#777"
-                                dy=".3em">140x140</text>
-                        </svg>
-
-                        <h2>Heading</h2>
-                        <p>Another exciting bit of representative placeholder content. This time, we've moved on to the
-                            second column.</p>
-                        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
-                    </div><!-- /.col-lg-4 -->
-                    <div class="col-lg-4">
-                        <svg class="bd-placeholder-img rounded-circle" width="140" height="140"
-                            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140"
-                            preserveAspectRatio="xMidYMid slice" focusable="false">
-                            <title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#777"
-                                dy=".3em">140x140</text>
-                        </svg>
-
-                        <h2>Heading</h2>
-                        <p>And lastly this, the third column of representative placeholder content.</p>
-                        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
-                    </div><!-- /.col-lg-4 -->
-                </div><!-- /.row -->
-
-
-
-
-            </div><!-- /.container -->
-
-            <div class="b-example-divider"></div>
-
-            <div class="container px-4 py-5" id="icon-grid">
-                <h2 class="pb-2 border-bottom">Icon grid</h2>
-
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
-                    <div class="col d-flex align-items-start">
-                        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em">
-                            <use xlink:href="#bootstrap" />
-                        </svg>
-                        <div>
-                            <h4 class="fw-bold mb-0">Featured title</h4>
-                            <p>Paragraph of text beneath the heading to explain the heading.</p>
+        <div class="container-fluid  bg-dark  col-xl-10 col-xxl-8 px-4 py-5 m-0 vw-100">
+            <div class="row align-items-center g-lg-5 py-5">
+                <div class="col-lg-7 text-center text-white text-lg-start">
+                    <h1 class="display-4 fw-bold lh-1 mb-3">Formulario de registro</h1>
+                    <p class="col-lg-10 fs-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime, eum
+                        reprehenderit dicta consequatur ipsa eligendi cupiditate. Odit iusto nemo laboriosam cumque
+                        magnam qui eligendi, eveniet cupiditate fugit asperiores. Ipsam, in!</p>
+                </div>
+                <div class="col-md-10 mx-auto col-lg-5">
+                    <form class="p-4 p-md-5 border rounded-3 bg-light">
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                            <label for="floatingInput">Email address</label>
                         </div>
-                    </div>
-                    <div class="col d-flex align-items-start">
-                        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em">
-                            <use xlink:href="#cpu-fill" />
-                        </svg>
-                        <div>
-                            <h4 class="fw-bold mb-0">Featured title</h4>
-                            <p>Paragraph of text beneath the heading to explain the heading.</p>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                            <label for="floatingPassword">Password</label>
                         </div>
-                    </div>
-                    <div class="col d-flex align-items-start">
-                        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em">
-                            <use xlink:href="#calendar3" />
-                        </svg>
-                        <div>
-                            <h4 class="fw-bold mb-0">Featured title</h4>
-                            <p>Paragraph of text beneath the heading to explain the heading.</p>
+                        <div class="checkbox mb-3">
+                            <label>
+                                <input type="checkbox" value="remember-me"> Remember me
+                            </label>
                         </div>
-                    </div>
-                    <div class="col d-flex align-items-start">
-                        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em">
-                            <use xlink:href="#home" />
-                        </svg>
-                        <div>
-                            <h4 class="fw-bold mb-0">Featured title</h4>
-                            <p>Paragraph of text beneath the heading to explain the heading.</p>
-                        </div>
-                    </div>
-                    <div class="col d-flex align-items-start">
-                        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em">
-                            <use xlink:href="#speedometer2" />
-                        </svg>
-                        <div>
-                            <h4 class="fw-bold mb-0">Featured title</h4>
-                            <p>Paragraph of text beneath the heading to explain the heading.</p>
-                        </div>
-                    </div>
-                    <div class="col d-flex align-items-start">
-                        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em">
-                            <use xlink:href="#toggles2" />
-                        </svg>
-                        <div>
-                            <h4 class="fw-bold mb-0">Featured title</h4>
-                            <p>Paragraph of text beneath the heading to explain the heading.</p>
-                        </div>
-                    </div>
-                    <div class="col d-flex align-items-start">
-                        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em">
-                            <use xlink:href="#geo-fill" />
-                        </svg>
-                        <div>
-                            <h4 class="fw-bold mb-0">Featured title</h4>
-                            <p>Paragraph of text beneath the heading to explain the heading.</p>
-                        </div>
-                    </div>
-                    <div class="col d-flex align-items-start">
-                        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em">
-                            <use xlink:href="#tools" />
-                        </svg>
-                        <div>
-                            <h4 class="fw-bold mb-0">Featured title</h4>
-                            <p>Paragraph of text beneath the heading to explain the heading.</p>
-                        </div>
-                    </div>
+                        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
+                        <hr class="my-4">
+                        <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
+                    </form>
                 </div>
             </div>
+        </div>
 
-            <div class="b-example-divider"></div>
-
-            <div class="container-fluid  bg-dark  col-xl-10 col-xxl-8 px-4 py-5 m-0 vw-100">
-                <div class="row align-items-center g-lg-5 py-5">
-                    <div class="col-lg-7 text-center text-white text-lg-start">
-                        <h1 class="display-4 fw-bold lh-1 mb-3">Formulario de registro</h1>
-                        <p class="col-lg-10 fs-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime, eum
-                            reprehenderit dicta consequatur ipsa eligendi cupiditate. Odit iusto nemo laboriosam cumque
-                            magnam qui eligendi, eveniet cupiditate fugit asperiores. Ipsam, in!</p>
-                    </div>
-                    <div class="col-md-10 mx-auto col-lg-5">
-                        <form class="p-4 p-md-5 border rounded-3 bg-light">
-                            <div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="floatingInput"
-                                    placeholder="name@example.com">
-                                <label for="floatingInput">Email address</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="floatingPassword"
-                                    placeholder="Password">
-                                <label for="floatingPassword">Password</label>
-                            </div>
-                            <div class="checkbox mb-3">
-                                <label>
-                                    <input type="checkbox" value="remember-me"> Remember me
-                                </label>
-                            </div>
-                            <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
-                            <hr class="my-4">
-                            <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            <div class="b-example-divider"></div>
+        <div class="b-example-divider"></div>
     </main>
 
 
