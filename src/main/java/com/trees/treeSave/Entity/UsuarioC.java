@@ -13,7 +13,7 @@ import javax.persistence.Entity;
  * @author Ivan Doom Days
  */
 @Entity
-public class User extends Cliente{ //la extiendo de Cliente para  heredar datos con enjoyned
+public class UsuarioC extends Cliente{ //la extiendo de Cliente para  heredar datos con enjoyned
     
 private String username;
 private String password;

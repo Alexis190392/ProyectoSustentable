@@ -5,7 +5,7 @@
  */
 package com.trees.treeSave.services;
 
-import com.trees.treeSave.Entity.User;
+import com.trees.treeSave.Entity.UsuarioC;
 import com.trees.treeSave.excepciones.WebException;
 import com.trees.treeSave.repositories.UserRepository;
 import javax.transaction.Transactional;
@@ -22,8 +22,8 @@ public class UserService {
     @Autowired//para llamar al UserRepository
     private UserRepository userRepository; //creo obj de tipo UserRepo..
 
-    public User save(String username, String password, String password2) throws WebException { //recibimos en save ,paso 2 contraseñas para compararlas
-        User user = new User();
+    public UsuarioC save(String username, String password, String password2) throws WebException { //recibimos en save ,paso 2 contraseñas para compararlas
+        UsuarioC user = new UsuarioC();
         if (username.isEmpty() || username == null) { // usuario ni vacio ni nulo
             throw new WebException("El usuario no puede estar vacio");// aderimos la clausula para usar WebException 
         }
