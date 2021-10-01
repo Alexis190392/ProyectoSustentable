@@ -8,6 +8,7 @@ import com.trees.treeSave.repositories.ClienteRepository;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
  * @author Fede
  */
 @Service
+
 public class ClienteService {
 
 
@@ -35,6 +37,7 @@ public class ClienteService {
         return clienteRepository.save(cliente);
     }
     
+    @Transactional
     public void validarCliente(Cliente cliente, MultipartFile file) throws WebException {
         Cliente clienteAlta = new Cliente();
         if (findByDocumento(cliente.getDocumento()) != null) {

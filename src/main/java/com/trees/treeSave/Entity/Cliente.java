@@ -2,7 +2,6 @@ package com.trees.treeSave.Entity;
 
 import com.trees.treeSave.enumeraciones.Nivel;
 import com.trees.treeSave.enumeraciones.TipoDoc;
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
@@ -19,10 +18,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Cliente implements Serializable {
+public class Cliente {
 
     @Id
     private String documento;
+    
     @Enumerated(EnumType.STRING)
     private TipoDoc tipoDoc;
     @DateTimeFormat(pattern = "yyyy-MM-dd")      //Agrego una fecha de alta y baja de cliente 

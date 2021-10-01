@@ -7,6 +7,7 @@ import javax.persistence.Enumerated;
 
 @Entity
 public class Users extends Cliente{
+    
     private String username;
     private String password;
     

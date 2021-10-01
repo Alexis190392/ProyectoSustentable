@@ -20,12 +20,12 @@
                     </ul>
                     <div class="text-end">
 
-                        <!-- Button trigger modal loggin -->
+                        <!-- Button trigger modal registrarse -->
 
-                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#registro">
+                        <a type="button" th:href="@{/cliente/form}" class="btn btn-warning" >
                             Registrarse
-                        </button>
-
+                        </a>
+                        <!--button login-->
                         <button type="button" class="fas fa-sign-in-alt" data-bs-toggle="modal"
                             style=" width: 1.8em; height: auto; margin-left: 2em" data-bs-target="#exampleModal1">
 
@@ -75,52 +75,7 @@
 
 
         <!-- Modal Registo ---- A modificar para registro -->
-        <div class="modal fade" id="registro" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
-            tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalToggleLabel">¿Eres nuevo?</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-
-
-
-
-
-                        falta ingresar el form de registro
-
-
-
-                        
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal"
-                            data-bs-dismiss="modal">Continuar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
-            tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalToggleLabel2">Crear Usuario y contraseña</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        Formulario de user, pass y pass2
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-primary" data-bs-target="#exampleModalToggle"
-                            data-bs-toggle="modal">Registrarse</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle" role="button">kjhsadgf</a>
+        
         <!-- fin Modal registro -->
 
 

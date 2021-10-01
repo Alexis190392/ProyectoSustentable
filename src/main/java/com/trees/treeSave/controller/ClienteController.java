@@ -23,6 +23,19 @@ public class ClienteController {
     
     @Autowired
     private ClienteService clienteService;
+    
+    @GetMapping("/usuario")
+    public String usuario(Model model){
+//        return "panel-Usuario";
+        return "crear-usuario";
+    }
+    
+    @GetMapping("/panel")
+    public String panelUsuario(){
+        return "panel-Usuario";
+    }
+    
+    
 
 
     //@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
@@ -37,23 +50,23 @@ public class ClienteController {
     }
 
     @GetMapping("/form")
-    public String crearCliente(Model model, @RequestParam(required = false) String id, @RequestParam(required = false) String action) {
+    public String crearCliente(Model model, @RequestParam(required = false) String id, @RequestParam(required = false) String action) throws WebException {
         if (id != null) {
-            Optional<Cliente> optional = clienteService.findById(id);
-            if (optional.isPresent()) {
-                model.addAttribute("cliente", optional.get());
+            Cliente c = clienteService.findByDocumento(id);
+            if (c != null) {
+                model.addAttribute("cliente", c);
                 model.addAttribute("action", action);
             } else {
-                return "cliente-list";
+                return "registro-usuario"; /// a modificar en la parte de perfil
             }
         } else {
             model.addAttribute("cliente", new Cliente());
             model.addAttribute("action", action);
         }
-        return "cliente-form";
+        return "registro-usuario";
     }
 
-    @GetMapping("/deleteTH")
+    @GetMapping("/delete")
     public String eliminarCliente(@RequestParam(required = true) String id) {
         clienteService.deleteById(id);
         return "redirect:/cliente/list";
@@ -61,22 +74,22 @@ public class ClienteController {
 
     @PostMapping("/save")
     public String guardarCliente(Model model, @RequestParam(required = true) MultipartFile archivo, RedirectAttributes redirectAttributes,
-            @ModelAttribute Cliente cliente, @RequestParam(required = true) String action) throws WebException {
+            @ModelAttribute Cliente cliente, @RequestParam(required = false) String action) throws WebException {
         try {
-            if (action.equals("edit")) {
-                clienteService.modificarCliente(archivo, cliente);
-                redirectAttributes.addFlashAttribute("success", "Cliente modificado con éxito.");
-            } else {
+//            if (action.equals("edit")) {
+//                clienteService.modificarCliente(archivo, cliente);
+//                redirectAttributes.addFlashAttribute("success", "Cliente modificado con éxito.");
+//            } else {
                 clienteService.validarCliente(cliente, archivo);
                 redirectAttributes.addFlashAttribute("success", "Cliente guardado con éxito.");
-            }
+//            }
 
         } catch (WebException ex) {
             model.addAttribute("error", ex.getMessage());
             model.addAttribute("cliente", cliente);
-            return "cliente-form";
+            return "usuario-registro";
         }
-        return "redirect:/cliente/list";
+        return "redirect:/cliente/usuario";
     }
 
 }

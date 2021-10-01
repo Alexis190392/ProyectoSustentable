@@ -2,10 +2,12 @@ package com.trees.treeSave.services;
 
 import com.trees.treeSave.Entity.Cliente;
 import com.trees.treeSave.Entity.Users;
+import com.trees.treeSave.enumeraciones.Nivel;
 import com.trees.treeSave.enumeraciones.Role;
 import com.trees.treeSave.excepciones.WebException;
 import com.trees.treeSave.repositories.UserRepository;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
@@ -31,45 +33,54 @@ public class UserService implements UserDetailsService {
     private ClienteService clienteServicio;
 
     @Transactional
-    public Users save(String username, String clave, String clave2, String documento) throws WebException {
-        Users usuario = new Users();
-        if (documento == null | documento.isEmpty()) {
+    public Users save(String username, String password, String password2, String documento) throws WebException {
+
+        Cliente c = clienteServicio.findByDocumento(documento);
+
+        if (documento == null || documento.isEmpty()) {
             throw new WebException("El documento no puede estar vacio");
         }
-        Cliente cliente = clienteServicio.findByDocumento(documento);
-        if (cliente != null) {
-            throw new WebException("El documento ya existe en la base de datos.");
-        }
-        if (username == null | username.isEmpty()) {
+//        if (c != null) {
+//            throw new WebException("El documento ya existe en la base de datos.");
+//        }
+        if (username == null || username.isEmpty()) {
             throw new WebException("El username no puede estar vacio");
         }
-        if (findByUsername(username) != null) {
-            throw new WebException("El username que queres usar ya existe.");
-        }
-        if (clave == null | clave2 == null | clave.isEmpty() | clave2.isEmpty()) {
+//        if (findByUsername(username) != null) {
+//            throw new WebException("El username que queres usar ya existe.");
+//        }
+        if (password == null || password2 == null || password.isEmpty() || password2.isEmpty()) {
             throw new WebException("La contraseña no puede estar vacía");
         }
-        if (!clave.equals(clave2)) {
+        if (!password.equals(password2)) {
             throw new WebException("Las contraseñas deben ser iguales.");
         }
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-//        usuario.setId(cliente.getId());
-//        usuario.setDocumento(cliente.getDocumento());
-//        usuario.setNombre(cliente.getNombre());
-//        usuario.setApellido(cliente.getApellido());
-//        usuario.setDomicilio(cliente.getDomicilio());
-//        usuario.setTelefono(cliente.getTelefono());
-        usuario.setUsername(username);
-        usuario.setPassword(encoder.encode(clave));
-        usuario.setRol(Role.USER);
-        clienteServicio.delete(cliente);
-        return usuarioRepository.save(usuario);
+        Users u = new Users();
+
+        u.setDocumento(documento);
+        u.setNombres(c.getNombres());
+        u.setApellido(c.getApellido());
+        u.setContactoCel(c.getContactoCel());
+        u.setContactoMail(c.getContactoMail());
+        u.setFechaNacimiento(c.getFechaNacimiento());
+        u.setPuntajeAcumulado(0);
+        u.setNivel(Nivel.SEMILLA);
+
+        u.setUsername(username);
+        u.setPassword(encoder.encode(password));
+
+        u.setRol(Role.USER);
+        u.setAlta(new Date());
+
+        return usuarioRepository.save(u);
     }
 
     public Users findByUsername(String username) {
         return usuarioRepository.findByUsername(username);
     }
-/*
+
+    /*
     public List<Users> listAllByQ(String q) {
         return usuarioRepository.findAllByQ("%" + q + "%");
     }*/
@@ -84,14 +95,14 @@ public class UserService implements UserDetailsService {
             Users usuario = usuarioRepository.findByUsername(username);
             Users user;
             List<GrantedAuthority> authorities = new ArrayList<>();
-            authorities.add(new SimpleGrantedAuthority("ROLE_"+usuario.getRol()));
-            
+            authorities.add(new SimpleGrantedAuthority("ROLE_" + usuario.getRol()));
+
             ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder
                     .currentRequestAttributes();
-            
+
             HttpSession session = attr.getRequest().getSession(true);
             session.setAttribute("usuariosession", usuario);
-            
+
             return new User(username, usuario.getPassword(), authorities);
         } catch (Exception e) {
             throw new UnsupportedOperationException("El usuario no existe.");
