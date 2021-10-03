@@ -30,19 +30,21 @@ public class UserService implements UserDetailsService {
     private UserRepository usuarioRepository;
 
     @Autowired
-    private ClienteService clienteServicio;
+    private ClienteService clienteService;
 
     @Transactional
     public Users save(String username, String password, String password2, String documento) throws WebException {
+        Users usuario = new Users();
+        Cliente c = clienteService.findByDocumento(documento);
 
-        Cliente c = clienteServicio.findByDocumento(documento);
+        if (c == null) {
+            throw new WebException("El documento no existe en la base de datos.");
+        }
 
         if (documento == null || documento.isEmpty()) {
             throw new WebException("El documento no puede estar vacio");
         }
-//        if (c != null) {
-//            throw new WebException("El documento ya existe en la base de datos.");
-//        }
+
         if (username == null || username.isEmpty()) {
             throw new WebException("El username no puede estar vacio");
         }
@@ -56,35 +58,30 @@ public class UserService implements UserDetailsService {
             throw new WebException("Las contraseñas deben ser iguales.");
         }
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        Users u = new Users();
 
-        u.setDocumento(documento);
-        u.setNombres(c.getNombres());
-        u.setApellido(c.getApellido());
-        u.setContactoCel(c.getContactoCel());
-        u.setContactoMail(c.getContactoMail());
-        u.setFechaNacimiento(c.getFechaNacimiento());
-        u.setPuntajeAcumulado(0);
-        u.setNivel(Nivel.SEMILLA);
+        usuario.setDocumento(c.getDocumento());
+        usuario.setNombres(c.getNombres());
+        usuario.setApellido(c.getApellido());
+        usuario.setContactoCel(c.getContactoCel());
+        usuario.setContactoMail(c.getContactoMail());
+        usuario.setFechaNacimiento(c.getFechaNacimiento());
+        usuario.setPuntajeAcumulado(0);
+        usuario.setNivel(Nivel.SEMILLA);
+        usuario.setUsername(username);
+        usuario.setPassword(encoder.encode(password));
 
-        u.setUsername(username);
-        u.setPassword(encoder.encode(password));
-
-        u.setRol(Role.USER);
-        u.setAlta(new Date());
-
-        return usuarioRepository.save(u);
+        usuario.setRol(Role.USER);
+        clienteService.delete(c);
+        return usuarioRepository.save(usuario);
     }
 
     public Users findByUsername(String username) {
         return usuarioRepository.findByUsername(username);
     }
 
-    /*
-    public List<Users> listAllByQ(String q) {
-        return usuarioRepository.findAllByQ("%" + q + "%");
-    }*/
-
+//    public List<Users> listAllByQ(String q) {
+//        return usuarioRepository.findAllByQ("%" + q + "%");
+//    }
     public List<Users> listAll() {
         return usuarioRepository.findAll();
     }
@@ -93,7 +90,7 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         try {
             Users usuario = usuarioRepository.findByUsername(username);
-            Users user;
+            User user;
             List<GrantedAuthority> authorities = new ArrayList<>();
             authorities.add(new SimpleGrantedAuthority("ROLE_" + usuario.getRol()));
 

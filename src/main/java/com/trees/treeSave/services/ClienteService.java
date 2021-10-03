@@ -28,6 +28,9 @@ public class ClienteService {
     
     @Autowired
     private FotoService fotoService;
+    
+    @Autowired 
+    private CiudadService ciudadService;
 
     /*@Autowired
     private NotificacionServicio notificacionServicio;*/
@@ -71,6 +74,11 @@ public class ClienteService {
             throw new WebException("Debes indicar tu fecha de nacimiento.");
         } else {
             clienteAlta.setFechaNacimiento(cliente.getFechaNacimiento());
+        }
+        if (cliente.getCiudad()== null) {
+            throw new WebException("Debes indicar tu ciudad.");
+        } else {
+            clienteAlta.setCiudad(ciudadService.findById(cliente.getCiudad()));
         }
         //FALTA TIPO DOC
         clienteAlta.setAlta(new Date());

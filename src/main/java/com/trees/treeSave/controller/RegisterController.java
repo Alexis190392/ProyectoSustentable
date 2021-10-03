@@ -15,33 +15,31 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
-@RequestMapping("/register")
+@RequestMapping("/registro")
 public class RegisterController {
     
     @Autowired
     private UserService us;
-    @Autowired
-    private ClienteService cs;
+//    @Autowired
+//    private ClienteService cs;
     
     @GetMapping("")
-    public String registro(Model model) {
-        
-        return "index";
-        
+    public String registro() {
+        return "registro";
     }
     
     @PostMapping("")
     public String registroSave(Model model, @RequestParam String username, 
-            @RequestParam String password, @RequestParam String password2, @ModelAttribute Cliente cliente, @RequestParam(required = true) MultipartFile file) throws WebException {
+            @RequestParam String password, @RequestParam String password2, @RequestParam String documento) {
         try{
-            cs.validarCliente(cliente, file);
-            cs.save(cliente);
-            us.save(username, password, password2, cliente.getDocumento());
+          
+            us.save(username, password, password2, documento);
+            return "redirect:/";
         } catch (WebException ex) {
             model.addAttribute("error", ex.getMessage());
-            model.addAttribute("cliente", cliente);
+            //model.addAttribute("cliente", cliente);
             model.addAttribute("username", username);
         }
-        return "redirect:/register";
+        return "registro";
     }
 }
