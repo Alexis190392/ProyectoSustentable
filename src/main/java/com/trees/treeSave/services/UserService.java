@@ -63,6 +63,7 @@ public class UserService implements UserDetailsService {
         usuario.setNombres(c.getNombres());
         usuario.setApellido(c.getApellido());
         usuario.setContactoCel(c.getContactoCel());
+        usuario.setCiudad(c.getCiudad());
         usuario.setContactoMail(c.getContactoMail());
         usuario.setFechaNacimiento(c.getFechaNacimiento());
         usuario.setPuntajeAcumulado(0);

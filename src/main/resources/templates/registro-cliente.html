@@ -6,7 +6,14 @@
 
     <body>
         <header th:replace="/fragments/header :: header"></header>
-
+        <div th:if="${error}" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+            <span th:text="${error}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <div th:if="${success}" class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+            <span th:text="${success}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
 
         <form th:action="@{/cliente/save}" method="POST" th:object="${cliente}" enctype="multipart/form-data">
             <input  th:field="*{documento}">
