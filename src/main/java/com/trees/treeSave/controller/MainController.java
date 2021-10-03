@@ -28,7 +28,7 @@ public class MainController {
     @GetMapping("/usuario")
     public String usuario(Model model){
         model.addAttribute("clientes", cs.listAll());
-        return "panel-UsuarioV2";
+        return "panel-Usuario";
     }
     
     @GetMapping("/vendedor")
