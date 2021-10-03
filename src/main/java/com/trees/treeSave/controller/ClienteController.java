@@ -32,7 +32,7 @@ public class ClienteController {
     
     @GetMapping("/panel")
     public String panelUsuario(){
-        return "panel-Usuario";
+        return "panel-UsuarioV2";
     }
     
     
