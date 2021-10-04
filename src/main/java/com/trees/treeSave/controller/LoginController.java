@@ -20,6 +20,6 @@ public class LoginController {
         if (username != null) {
             model.addAttribute("username", username);
         }
-        return "login";
+        return "index.html";
     }
 }

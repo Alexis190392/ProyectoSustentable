@@ -77,7 +77,7 @@ public class UserService implements UserDetailsService {
     }
 
     public Users findByUsername(String username) {
-        return usuarioRepository.findByUsername(username);
+        return usuarioRepository.findByUsernameOrMail(username);
     }
 
 //    public List<Users> listAllByQ(String q) {
@@ -90,7 +90,7 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         try {
-            Users usuario = usuarioRepository.findByUsername(username);
+            Users usuario = usuarioRepository.findByUsernameOrMail(username);
             User user;
             List<GrantedAuthority> authorities = new ArrayList<>();
             authorities.add(new SimpleGrantedAuthority("ROLE_" + usuario.getRol()));

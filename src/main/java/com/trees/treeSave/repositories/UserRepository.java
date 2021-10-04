@@ -10,8 +10,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository  extends JpaRepository<Users, String> {
 
-    @Query("SELECT u FROM Users u WHERE u.username = :username")
-    Users findByUsername(@Param("username") String username);
+    @Query("SELECT u FROM Users u WHERE u.username = :username or u.contactoMail = :username")
+    Users findByUsernameOrMail(@Param("username") String username);
     /*
     @Query("SELECT u FROM Users u WHERE u.documento LIKE :q or u.nombre LIKE :q"
             + " or u.telefono LIKE :q or u.username LIKE :q or u.apellido LIKE :q or u.domicilio LIKE :q")
