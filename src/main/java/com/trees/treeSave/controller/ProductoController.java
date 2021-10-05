@@ -25,10 +25,7 @@ public class ProductoController {
     private ProductoServicio ps;
     @Autowired
     private CategoriaService cs;
-<<<<<<< HEAD
 
-    @GetMapping("/list")
-=======
     @Autowired
     private CategoriaService categoriaService;
     
@@ -42,7 +39,7 @@ public class ProductoController {
     }
 
    @GetMapping("/list")
->>>>>>> dev-Fede3
+
     public String listarProductos(Model model, @RequestParam(required = false) String sku) {
         if (sku != null) {
             model.addAttribute("productos", ps.listByQuery(sku));
@@ -50,11 +47,9 @@ public class ProductoController {
             model.addAttribute("productos", ps.listAll());
         }
 
-<<<<<<< HEAD
+
         return "producto-list";
-=======
-        return "panel-producto";
->>>>>>> dev-Fede3
+
     }
 
     @GetMapping("/form")
@@ -71,12 +66,11 @@ public class ProductoController {
         }
         model.addAttribute("tipos", ps.listTipo());
         model.addAttribute("categorias", cs.listAll());
-<<<<<<< HEAD
+
         return "producto-form";
-=======
-        return "panel-producto";
->>>>>>> dev-Fede3
     }
+
+    
 
     @PostMapping("/save")
     public String guardarProducto(Model model, @RequestParam(required = true) String action
