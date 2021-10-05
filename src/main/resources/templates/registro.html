@@ -28,8 +28,7 @@
                     <form th:action="@{/registro}" method="POST" enctype="multipart/form-data">
                         <div class="d-flex justify-content-center m-3">
                             <div>
-                                <label class="form-label">Reingrese su Documento</label>
-                                <input type="text" name="documento" th:value="${documento}">
+                                <input type="hidden" name="documento" th:value="${documento}">
                             </div>
                         </div>
                         <div class="d-flex justify-content-center m-3">
