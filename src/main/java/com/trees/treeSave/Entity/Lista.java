@@ -25,6 +25,9 @@ public class Lista implements Serializable {
     //KEY: id_producto 
     private HashMap<String,Integer> listado;
 
+    private Boolean estado;
+
+
     public Lista() {
     }
 
@@ -56,7 +59,20 @@ public class Lista implements Serializable {
 
     public void setListado(HashMap<String, Integer> listado) {
         this.listado = listado;
+
     }
+
+    
+
+    public Boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
+    }
+    
+
 }
 
     

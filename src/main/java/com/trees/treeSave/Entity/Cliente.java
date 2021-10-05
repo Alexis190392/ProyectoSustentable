@@ -2,7 +2,6 @@ package com.trees.treeSave.Entity;
 
 import com.trees.treeSave.enumeraciones.Nivel;
 import com.trees.treeSave.enumeraciones.TipoDoc;
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
@@ -11,6 +10,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -18,11 +18,17 @@ import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
+<<<<<<< HEAD
 @Inheritance(strategy = InheritanceType.JOINED) // con esto le permito herdar a User.java o cualquiera q  lo necesite.
 public class Cliente implements Serializable {
+=======
+@Inheritance(strategy = InheritanceType.JOINED)
+public class Cliente {
+>>>>>>> 777bc056c8ce2e372019f2f2510fea93eef74028
 
     @Id
     private String documento;
+    
     @Enumerated(EnumType.STRING)
     private TipoDoc tipoDoc;
     @DateTimeFormat(pattern = "yyyy-MM-dd")      //Agrego una fecha de alta y baja de cliente 
@@ -48,6 +54,9 @@ public class Cliente implements Serializable {
     
     @OneToOne
     private Foto foto;
+    
+    @ManyToOne
+    private Ciudad ciudad;
 
     public String getDocumento() {
         return documento;
@@ -167,5 +176,13 @@ public class Cliente implements Serializable {
 
     public void setFoto(Foto foto) {
         this.foto = foto;
+    }
+
+    public Ciudad getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(Ciudad ciudad) {
+        this.ciudad = ciudad;
     }
 }

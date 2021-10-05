@@ -1,4 +1,12 @@
 -------------------------------------------------------------------------------
 Test set: com.trees.treeSave.TreeSaveApplicationTests
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.599 s - in com.trees.treeSave.TreeSaveApplicationTests
+=======
+<<<<<<< HEAD
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 18.93 s - in com.trees.treeSave.TreeSaveApplicationTests
+=======
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 16.572 s - in com.trees.treeSave.TreeSaveApplicationTests
+>>>>>>> dev-Fede3
+>>>>>>> 777bc056c8ce2e372019f2f2510fea93eef74028
