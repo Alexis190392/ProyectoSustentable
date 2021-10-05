@@ -8,6 +8,7 @@ import com.trees.treeSave.repositories.ClienteRepository;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,9 @@ public class ClienteService {
     
     @Autowired
     private FotoService fotoService;
+    
+    @Autowired 
+    private CiudadService ciudadService;
 
     /*@Autowired
     private NotificacionServicio notificacionServicio;*/
@@ -35,6 +39,7 @@ public class ClienteService {
         return clienteRepository.save(cliente);
     }
     
+    @Transactional
     public void validarCliente(Cliente cliente, MultipartFile file) throws WebException {
         Cliente clienteAlta = new Cliente();
         if (findByDocumento(cliente.getDocumento()) != null) {
@@ -68,6 +73,11 @@ public class ClienteService {
             throw new WebException("Debes indicar tu fecha de nacimiento.");
         } else {
             clienteAlta.setFechaNacimiento(cliente.getFechaNacimiento());
+        }
+        if (cliente.getCiudad()== null) {
+            throw new WebException("Debes indicar tu ciudad.");
+        } else {
+            clienteAlta.setCiudad(ciudadService.findById(cliente.getCiudad()));
         }
         //FALTA TIPO DOC
         clienteAlta.setAlta(new Date());

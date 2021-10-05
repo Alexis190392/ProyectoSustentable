@@ -1,5 +1,6 @@
 package com.trees.treeSave.controller;
 
+import com.trees.treeSave.Entity.Categoria;
 import com.trees.treeSave.Entity.Producto;
 import com.trees.treeSave.excepciones.WebException;
 import com.trees.treeSave.services.CategoriaService;
@@ -24,8 +25,24 @@ public class ProductoController {
     private ProductoServicio ps;
     @Autowired
     private CategoriaService cs;
+<<<<<<< HEAD
 
     @GetMapping("/list")
+=======
+    @Autowired
+    private CategoriaService categoriaService;
+    
+    @GetMapping("")
+    public String PanelProductos(Model model, @RequestParam(required = false) String sku, @RequestParam(required = false) String q) {
+        listarProductos(model, sku);
+        crearProducto(model, sku);
+        listarCategorias(model, q);
+        crearCategoria(model, q);
+        return "panel-producto";
+    }
+
+   @GetMapping("/list")
+>>>>>>> dev-Fede3
     public String listarProductos(Model model, @RequestParam(required = false) String sku) {
         if (sku != null) {
             model.addAttribute("productos", ps.listByQuery(sku));
@@ -33,7 +50,11 @@ public class ProductoController {
             model.addAttribute("productos", ps.listAll());
         }
 
+<<<<<<< HEAD
         return "producto-list";
+=======
+        return "panel-producto";
+>>>>>>> dev-Fede3
     }
 
     @GetMapping("/form")
@@ -43,14 +64,18 @@ public class ProductoController {
             if (p != null) {
                 model.addAttribute("producto", p);
             } else {
-                return "redirect:/producto/list";
+                return "redirect:/producto";
             }
         } else {
             model.addAttribute("producto", new Producto());
         }
         model.addAttribute("tipos", ps.listTipo());
         model.addAttribute("categorias", cs.listAll());
+<<<<<<< HEAD
         return "producto-form";
+=======
+        return "panel-producto";
+>>>>>>> dev-Fede3
     }
 
     @PostMapping("/save")
@@ -70,14 +95,62 @@ public class ProductoController {
             redat.addFlashAttribute("error", e.getMessage()); //mandando el mensaje de error a donde es redireccionado
              model.addAttribute("producto", p);
         }
-        return "redirect:/producto/list";
+        return "redirect:/producto";
     }
 
     //para eliminar
     @GetMapping("/delete")
     public String eliminarProducto(@RequestParam(required = true) String sku) {
         ps.deleteByCod(sku); //desde producto servicio permite la eliminacion
-        return "redirect:/producto/list";
+        return "redirect:/producto";
+    }
+    
+    
+    /*CATEGORIAS*/
+
+
+
+    
+    @GetMapping("/listCat")
+    public String listarCategorias(Model model, @RequestParam(required = false) String q) {
+        if (q != null) {
+            model.addAttribute("categorias", categoriaService.listAllByQ(q));
+        } else {
+            model.addAttribute("categorias", categoriaService.listAll());
+        }
+        return "panel-producto";
+    }
+    
+     @GetMapping("/deleteCat")
+    public String eliminarCategoria(@RequestParam(required = true) String id) {
+        categoriaService.deleteById(id);
+        return "redirect:/producto";
+    }
+    
+    @GetMapping("/formCat")
+    public String crearCategoria(Model model, @RequestParam(required = false) String id) {
+        if (id != null) {
+            Optional<Categoria> optional = categoriaService.findById(id);
+            if (optional.isPresent()) {
+                model.addAttribute("categoria", optional.get());
+            } else {
+                return "redirect:/producto";
+            }
+        } else {
+            model.addAttribute("categoria", new Categoria());
+        }
+        return "panel-producto";
+    }
+    
+    @PostMapping("/saveCat")
+    public String guardarCategoria(Model model, RedirectAttributes redirectAttributes, @ModelAttribute Categoria categoria) {
+        try {
+            categoriaService.save(categoria);
+            redirectAttributes.addFlashAttribute("success", "Categoría guardada exitosamente.");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
+        }
+        return "redirect:/producto";
     }
 
 }
