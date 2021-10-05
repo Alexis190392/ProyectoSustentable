@@ -16,7 +16,7 @@
         </div>
 
         <form th:action="@{/cliente/save}" method="POST" th:object="${cliente}" enctype="multipart/form-data">
-            <input  th:field="*{documento}">
+            <!--<input  th:field="*{documento}">-->
             <input th:value="${action}" name="action">
             <div class="d-flex justify-content-center m-3">
                 <div>
