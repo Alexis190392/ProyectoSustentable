@@ -83,7 +83,7 @@ public class ClienteController {
                 clienteService.validarCliente(cliente, archivo); //valida y guarda cliente en la bd
                 redirectAttributes.addFlashAttribute("success", "Cliente guardado con éxito.");
             }
-
+redirectAttributes.addFlashAttribute("documento",cliente.getDocumento());
         } catch (WebException ex) {
             model.addAttribute("error", ex.getMessage());
             model.addAttribute("cliente", cliente);
