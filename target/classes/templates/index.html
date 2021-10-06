@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html lang="es-AR" xmlns:th="http://www.thymeleaf.org">
 
-    <head th:replace="/fragments/head :: head"></head>
+    <head th:replace="/fragments/head :: head">
+       
+
+
+    </head>
 
     <body>
 
         <header class="">
-            <nav class="p-3 fixed-top bg-dark text-white">
+            <nav class="p-3 fixed-top  text-white" style="background-color: #20c997;" > <!-- aca se puede cambiar el color de la navbar -->
                 <div class="container-fluid">
-                    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                        <a th:href="@{/}"
-                           class="d-flex navbar-brand align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                            Products Saves Trees
-                        </a>
+                    <div  class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                        
+                        <h1 
+                          class="display-3 fw-bold lh-1 mb-1">
+                        SavesTrees </style>
+                            </h1>
                         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                            <a class="nav-link px-2 text-white" th:href="@{/super}">Super Usuario</a>
-                            <a class="nav-link px-2 text-white" th:href="@{/usuario}">Usuario</a>
-                            <a class="nav-link px-2 text-white" th:href="@{/vendedor}">Vendedor</a>
+                            <a class="nav-link px-7 text-white" th:href="@{/super}">Super Usuario</a>
+                            <a class="nav-link px-7 text-white" th:href="@{/usuario}">Usuario</a>
+                            <a class="nav-link px-7 text-white" th:href="@{/vendedor}">Vendedor</a>
                         </ul>
                         <div th:if="${error}" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
                             <span th:text="${error}"></span>
@@ -162,7 +167,7 @@
                         <h2>Desde su hogar.</h2>
                         <p>Tienda segura 100% online .</p>
                         <p><a class="btn btn-secondary" href="#">Ver mas...  &raquo;</a></p>
-                    </div><!-- /.col-lg-4 -->
+                        </div><!-- /.col-lg-4 -->
                      <div class="col-lg-4">
                         <svg class="circulo" width="1" height="1"                         
                              xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 40x40"

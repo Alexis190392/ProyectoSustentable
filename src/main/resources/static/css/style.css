@@ -1,3 +1,16 @@
+
+/*font-family: 'Courgette', cursive;
+font-family: 'Gluten', cursive;
+font-family: 'Pacifico', cursive;
+font-family: 'Sacramento', cursive;
+font-family: 'Satisfy', cursive;
+font-family: 'Secular One', sans-serif;*/
+h1 {
+
+font-family: 'Courgette', cursive;
+font-size: 800px;
+}
+
 body{
     padding: 0 !important;
 }
