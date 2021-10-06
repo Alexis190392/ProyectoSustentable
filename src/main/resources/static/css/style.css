@@ -1,3 +1,17 @@
+ /* estas son las fuentes que provienen de los link y stylesheet que cree en el HEAD*/
+
+/*font-family: 'Courgette', cursive;
+font-family: 'Gluten', cursive;
+font-family: 'Pacifico', cursive;
+font-family: 'Sacramento', cursive;
+font-family: 'Satisfy', cursive;
+font-family: 'Secular One', sans-serif;*/
+h1 { 
+
+font-family: 'Courgette', cursive;
+font-size: 800px;
+}
+
 body{
     padding: 0 !important;
 }
@@ -31,11 +45,11 @@ main{
 }
 
 .b-example-divider {
-    height: 3rem;
+    height: 1.5rem;
     background-color: rgba(0, 0, 0, .1);
     border: solid rgba(0, 0, 0, .15);
     border-width: 1px 0;
-    box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+    box-shadow:  0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
   }
 
   /*button en forma de hoja*/
@@ -93,6 +107,10 @@ main{
       border-radius: 50px 0 50px 0;
       z-index: 1;
   }
-
+  .rounded-3{
+      border-radius: 0.7rem!important;
+      -webkit-box-shadow: 1px 2.5px 20px 0.5px #828282;
+     
+  }
 
 /*fin en forma de hoja*/
