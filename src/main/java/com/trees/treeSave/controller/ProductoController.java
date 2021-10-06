@@ -25,6 +25,7 @@ public class ProductoController {
     private ProductoServicio ps;
     @Autowired
     private CategoriaService cs;
+
     @Autowired
     private CategoriaService categoriaService;
     
@@ -38,6 +39,7 @@ public class ProductoController {
     }
 
    @GetMapping("/list")
+
     public String listarProductos(Model model, @RequestParam(required = false) String sku) {
         if (sku != null) {
             model.addAttribute("productos", ps.listByQuery(sku));
@@ -45,7 +47,9 @@ public class ProductoController {
             model.addAttribute("productos", ps.listAll());
         }
 
-        return "panel-producto";
+
+        return "producto-list";
+
     }
 
     @GetMapping("/form")
@@ -62,8 +66,11 @@ public class ProductoController {
         }
         model.addAttribute("tipos", ps.listTipo());
         model.addAttribute("categorias", cs.listAll());
-        return "panel-producto";
+
+        return "producto-form";
     }
+
+    
 
     @PostMapping("/save")
     public String guardarProducto(Model model, @RequestParam(required = true) String action

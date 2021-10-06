@@ -9,6 +9,7 @@ import com.trees.treeSave.repositories.UserRepository;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,7 +78,7 @@ public class UserService implements UserDetailsService {
     }
 
     public Users findByUsername(String username) {
-        return usuarioRepository.findByUsername(username);
+        return usuarioRepository.findByUsernameOrMail(username);
     }
 
 //    public List<Users> listAllByQ(String q) {
@@ -90,7 +91,7 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         try {
-            Users usuario = usuarioRepository.findByUsername(username);
+            Users usuario = usuarioRepository.findByUsernameOrMail(username);
             User user;
             List<GrantedAuthority> authorities = new ArrayList<>();
             authorities.add(new SimpleGrantedAuthority("ROLE_" + usuario.getRol()));
@@ -105,5 +106,9 @@ public class UserService implements UserDetailsService {
         } catch (Exception e) {
             throw new UnsupportedOperationException("El usuario no existe.");
         }
+    }
+    
+       public Optional<Users> findById(String id) {
+        return usuarioRepository.findById(id);
     }
 }
