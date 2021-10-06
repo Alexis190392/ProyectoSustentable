@@ -9,6 +9,7 @@ import com.trees.treeSave.repositories.UserRepository;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,5 +106,9 @@ public class UserService implements UserDetailsService {
         } catch (Exception e) {
             throw new UnsupportedOperationException("El usuario no existe.");
         }
+    }
+    
+       public Optional<Users> findById(String id) {
+        return usuarioRepository.findById(id);
     }
 }

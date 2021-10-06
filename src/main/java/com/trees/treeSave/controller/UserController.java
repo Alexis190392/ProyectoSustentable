@@ -1,10 +1,16 @@
 package com.trees.treeSave.controller;
 
+import com.trees.treeSave.Entity.Ciudad;
+import com.trees.treeSave.Entity.Users;
+import com.trees.treeSave.services.CiudadService;
 import com.trees.treeSave.services.UserService;
+import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +21,9 @@ public class UserController {
 
     @Autowired
     private UserService usuarioServicio;
+    
+    @Autowired
+    private CiudadService ciudadService;
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @GetMapping("/list")
