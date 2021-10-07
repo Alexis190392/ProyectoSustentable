@@ -26,26 +26,26 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 @Service
 public class UserService implements UserDetailsService {
-
+    
     @Autowired
     private UserRepository usuarioRepository;
-
+    
     @Autowired
     private ClienteService clienteService;
-
+    
     @Transactional
     public Users save(String username, String password, String password2, String documento) throws WebException {
         Users usuario = new Users();
         Cliente c = clienteService.findByDocumento(documento);
-
+        
         if (c == null) {
             throw new WebException("El documento no existe en la base de datos.");
         }
-
+        
         if (documento == null || documento.isEmpty()) {
             throw new WebException("El documento no puede estar vacio");
         }
-
+        
         if (username == null || username.isEmpty()) {
             throw new WebException("El username no puede estar vacio");
         }
@@ -59,7 +59,7 @@ public class UserService implements UserDetailsService {
             throw new WebException("Las contraseñas deben ser iguales.");
         }
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-
+        
         usuario.setDocumento(c.getDocumento());
         usuario.setNombres(c.getNombres());
         usuario.setApellido(c.getApellido());
@@ -71,12 +71,12 @@ public class UserService implements UserDetailsService {
         usuario.setNivel(Nivel.SEMILLA);
         usuario.setUsername(username);
         usuario.setPassword(encoder.encode(password));
-
+        usuario.setFoto(c.getFoto());
         usuario.setRol(Role.USER);
         clienteService.delete(c);
         return usuarioRepository.save(usuario);
     }
-
+    
     public Users findByUsername(String username) {
         return usuarioRepository.findByUsernameOrMail(username);
     }
@@ -87,7 +87,7 @@ public class UserService implements UserDetailsService {
     public List<Users> listAll() {
         return usuarioRepository.findAll();
     }
-
+    
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         try {
@@ -95,20 +95,20 @@ public class UserService implements UserDetailsService {
             User user;
             List<GrantedAuthority> authorities = new ArrayList<>();
             authorities.add(new SimpleGrantedAuthority("ROLE_" + usuario.getRol()));
-
+            
             ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder
                     .currentRequestAttributes();
-
+            
             HttpSession session = attr.getRequest().getSession(true);
             session.setAttribute("usuariosession", usuario);
-
+            
             return new User(username, usuario.getPassword(), authorities);
         } catch (Exception e) {
             throw new UnsupportedOperationException("El usuario no existe.");
         }
     }
     
-       public Optional<Users> findById(String id) {
+    public Optional<Users> findById(String id) {
         return usuarioRepository.findById(id);
     }
 }
