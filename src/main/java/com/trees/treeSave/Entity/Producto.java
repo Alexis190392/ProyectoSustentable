@@ -7,7 +7,6 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 
 @Entity
@@ -30,9 +29,6 @@ public class Producto {
     
     @ManyToOne
     private Categoria categoria;
-    
-    @OneToOne
-    private Foto foto;
     
     /*
     @OneToMany(mappedBy = "lista")
@@ -116,14 +112,6 @@ public class Producto {
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
-    }
-
-    public Foto getFoto() {
-        return foto;
-    }
-
-    public void setFoto(Foto foto) {
-        this.foto = foto;
     }
     
     

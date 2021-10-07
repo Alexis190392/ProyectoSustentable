@@ -2,7 +2,6 @@
 package com.trees.treeSave.Entity;
 
 import java.io.Serializable;
-import java.util.HashMap;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,25 +20,11 @@ public class Lista implements Serializable {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
-    private String nombreList;
-    //KEY: id_producto 
-    private HashMap<String,Integer> listado;
+    private String nombreList;    
+    @OneToMany
+    private List<Producto> productos;
 
     public Lista() {
-    }
-
-    public Lista(String id, String nombreList, HashMap<String, Integer> listado) {
-        this.id = id;
-        this.nombreList = nombreList;
-        this.listado = listado;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getNombreList() {
@@ -50,14 +35,40 @@ public class Lista implements Serializable {
         this.nombreList = nombreList;
     }
 
-    public HashMap<String, Integer> getListado() {
-        return listado;
+    public List<Producto> getProductos() {
+        return productos;
     }
 
-    public void setListado(HashMap<String, Integer> listado) {
-        this.listado = listado;
+    public void setProductos(List<Producto> productos) {
+        this.productos = productos;
     }
-}
+    
+    
+
+   
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombreList;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombreList = nombre;
+    }
+
+    @Override
+    public String toString() {
+        return "Autor{" + "id=" + id + ", nombre=" + nombreList + '}';
+    }
+
+
+    }
 
     
 
