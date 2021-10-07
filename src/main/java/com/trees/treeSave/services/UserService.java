@@ -1,6 +1,7 @@
 package com.trees.treeSave.services;
 
 import com.trees.treeSave.Entity.Cliente;
+import com.trees.treeSave.Entity.Foto;
 import com.trees.treeSave.Entity.Users;
 import com.trees.treeSave.enumeraciones.Nivel;
 import com.trees.treeSave.enumeraciones.Role;
@@ -23,6 +24,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -32,6 +34,9 @@ public class UserService implements UserDetailsService {
     
     @Autowired
     private ClienteService clienteService;
+    
+    @Autowired
+    private FotoService fotoService;
     
     @Transactional
     public Users save(String username, String password, String password2, String documento) throws WebException {
@@ -110,5 +115,35 @@ public class UserService implements UserDetailsService {
     
     public Optional<Users> findById(String id) {
         return usuarioRepository.findById(id);
+    }
+    
+    @Transactional
+    public void modificarUsuario(MultipartFile file, Users usuario) throws WebException {
+        if (usuario.getDocumento() == null) {
+            throw new WebException("El documento no puede ser nulo.");
+        }
+        if (usuario.getNombres() == null | usuario.getNombres().isEmpty()) {
+            throw new WebException("El nombre no puede ser nulo.");
+        }
+        if (usuario.getApellido() == null | usuario.getApellido().isEmpty()) {
+            throw new WebException("El apellido no puede ser nulo.");
+        }
+        if (usuario.getContactoCel() == null | usuario.getContactoCel().isEmpty()) {
+            throw new WebException("El telefono no puede ser nulo.");
+        }
+        usuario.setNombres(usuario.getNombres());
+        usuario.setApellido(usuario.getApellido());
+        usuario.setContactoCel(usuario.getContactoCel());
+        usuario.setDocumento(usuario.getDocumento());
+        
+        String idFoto = null;
+        
+        if (usuario.getFoto() != null) {
+            idFoto = usuario.getFoto().getId();
+        }
+        Foto foto = fotoService.actualizar(idFoto, file);
+        usuario.setFoto(foto);
+        usuarioRepository.save(usuario);
+        
     }
 }
