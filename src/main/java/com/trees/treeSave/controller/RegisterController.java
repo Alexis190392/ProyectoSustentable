@@ -34,16 +34,16 @@ public class RegisterController {
 
     @PostMapping("")
     public String registroSave(Model model, @RequestParam String username,
-            @RequestParam String password, @RequestParam String password2, @RequestParam(required=false) String documento, @RequestParam(required=false) String cuit) {
+            @RequestParam String password, @RequestParam String password2, /*@RequestParam(required=false) String documento,*/ @RequestParam(required=false) String cuit) {
 
         try {
-            if (documento != null) {
-                us.save(username, password, password2, documento);
-                return "redirect:/";
-            } else if (cuit != null) {
+//            if (documento != null) {
+//                us.save(username, password, password2, documento);
+//                return "redirect:/";
+//            } else if (cuit != null) {
                 usV.save(username, password, password2, cuit);
                 return "redirect:/";
-            }
+            //}
         } catch (WebException ex) {
             model.addAttribute("error", ex.getMessage());
             //model.addAttribute("cliente", cliente);
