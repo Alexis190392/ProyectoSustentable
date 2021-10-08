@@ -32,8 +32,10 @@ public class ClienteController {
 //       return "panel-Usuario";
 //        return "crear-usuario";
 //    }
+        
     @GetMapping("/panel")
-    public String panelUsuario() {
+    public String usuario(Model model){
+        model.addAttribute("clientes", clienteService.listAll());
         return "panel-Usuario";
     }
 
