@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es-AR" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/fragments/head :: head">
+</head>
+
+<body>
+    <header th:replace="/fragments/header :: header"></header>
+
+
+    <div class="container">
+        <div class="row">
+            <!--crear producto-->
+            <div class="col-md-7 shadow ">
+                <h3>Crear Producto</h3>
+                <form th:action="@{/producto/save}" method="POST" th:object="${producto}" class="row"
+                    enctype="multipart/form-data">
+                    <input hidden th:value="${action}" name="action">
+                    <div class="form-label md-3">
+                        <input type="text" class="form-control" th:field="*{codigoBarra}" placeholder="SKU">
+                    </div>
+                    <div class="form-label col-6">
+                        <input type="text" class="form-control col-6" th:field="*{nombre}"
+                            placeholder="Nombre del producto">
+                    </div>
+
+                    <div class="form-label col-6">
+                        <select class="form-select form-control" aria-label=".form-select-sm example" for="categoria"
+                            th:field="*{categoria.id}">
+                            <option selected th:value="${null}">Elija categoria</option>
+                            <option th:each="c : ${categorias}" th:text="${c.nombreCat}" th:value="${c.id}"></option>
+                        </select>
+                    </div>
+                    <div class="form-label col-6">
+                        <input type="text" class="form-control" th:field="*{origen}" placeholder="Origen">
+                    </div>
+                    <div class="form-label col-3">
+                        <div class="input-group">
+                            <span class="input-group-text">Cantidad</span>
+                            <input type="number" class="form-control" th:field="*{stock}" placeholder="Cantidad">
+                        </div>
+                    </div>
+
+                    <div class="form-label col-3">
+                        <div class="input-group">
+                            <span class="input-group-text">Precio: $</span>
+                            <input type="text" class="form-control " th:field="*{precio}">
+                        </div>
+                    </div>
+
+
+                    <div class="form-label col-6">
+                        <div class="input-group">
+                            <span class="input-group-text">Tipo</span>
+                            <select class="form-select form-control" aria-label=".form-select-sm example" for="tipo"
+                                th:field="*{tipo}">
+                                <option selected th:value="${null}">Elija tipo de producto</option>
+                                <option th:each="t : ${tipos}" th:text="${t}" th:value="${t}"></option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-label col-6">
+                        <div class="input-group">
+                            <input type="number" class="form-control" th:field="*{puntos}">
+                            <span class="input-group-text">Puntos</span>
+                        </div>
+                    </div>
+
+                    <div class="form-label col-6">
+                        <input type="file" name="archivo" class="form-control bg-dark text-light">
+                    </div>
+                    <!--falta añadir para subir imagen-->
+                    <div class="col text-end">
+                        <button type="submit" class="btn btn-primary btn-block">Añadir Producto</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col"></div>
+            <!--crear categoria-->
+            <div class="col-md-4 shadow">
+                <h3>Agregar Categoria</h3>
+                <form th:action="@{/producto/saveCat}" method="POST" th:object="${categoria}" class="row">
+                    <input hidden th:field="*{id}">
+                    <div class="form-label col">
+                        <input type="text" class="form-control" th:field="*{nombreCat}">
+                    </div>
+                    <div class="col-3 text-end">
+                        <input type="submit" class="btn btn-primary btn-block">
+                    </div>
+                </form>
+                <div data-spy="scroll" data-target="#myScrollspy" data-offset="1" class="scroll"
+                    style="overflow-y: scroll; height: 12rem ; padding: none;">
+                    <table class="text-center  table table-borderless ">
+
+                        <tbody>
+                            <tr th:each=" a : ${categorias} ">
+                                <td class="" th:text="${a.nombreCat}"></td>
+                                <td class="">
+                                    <a type="button" class="btn btn-outline-danger"
+                                        th:href="@{/producto/deleteCat} + '?id=' + ${a.id}">Eliminar</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <br>
+        <!--Listado completo-->
+        <div class="col-12">
+            <div class="container">
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">SKU</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Origen</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Puntos</th>
+                            <th scope="col">Categoria</th>
+                            <th scope="col">Foto</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="p : ${productos}">
+                            <td th:text="${p.codigoBarra}"></td>
+                            <td th:text="${p.nombre}"></td>
+                            <td th:text="${p.origen}"></td>
+                            <td th:text="${p.precio}"></td>
+                            <td th:text="${p.stock}"></td>
+                            <td th:text="${p.tipo}"></td>
+                            <td th:text="${p.puntos}"></td>
+                            <td th:text="${p.categoria.nombreCat}"></td>
+                            <td>
+                                <img th:if="${p.foto != null}" class="img-fluid rounded-circle"
+                                    th:src="@{/foto/producto}+'?id='+${p.codigoBarra}">
+                            </td>
+                            <td>
+                                <a type="button" class="btn btn-outline-success"
+                                    th:href="@{/producto/form} + '?codigoBarra=' + ${p.codigoBarra}">Editar</a>
+                                <a type="button" class="btn btn-outline-danger"
+                                    th:href="@{/producto/delete} + '?sku=' + ${p.codigoBarra}">Eliminar</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <p class="display-6">Falta editar eliminacion de categorias y agregar alerts</p>
+</body>
+
+</html>

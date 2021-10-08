@@ -11,9 +11,7 @@ and open the template in the editor.
     </head>
 
     <body>
-        <nav th:replace="/fragments/nav-bar :: nav-bar">
-        </nav>
-
+       
         <main class="container">
             <!--<div th:replace="/fragments/admin-disclaimer :: admin-disclaimer"></div>-->
             <div th:if="${error}" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
@@ -43,7 +41,7 @@ and open the template in the editor.
                                 <table class="text-center text-light table table-borderless">
                                     <thead>
                                         <tr>
-                                            <th>Cuil</th>
+                                            <th>Cuit</th>
                                             <th>Nombre</th>
                                             <th>Domicilio</th>
                                             <th>Ciudad</th>

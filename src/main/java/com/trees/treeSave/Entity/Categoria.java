@@ -2,26 +2,24 @@
 package com.trees.treeSave.Entity;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-public class Categoria implements Serializable{
+public class Categoria implements Serializable {
+
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
     private String nombreCat;
 
-    public Categoria() {
-    }
-
-    public Categoria(String id, String nombreCat) {
-        this.id = id;
-        this.nombreCat = nombreCat;
-    }
+    @OneToMany
+    private List<Producto> productos;
 
     public String getId() {
         return id;
@@ -38,5 +36,5 @@ public class Categoria implements Serializable{
     public void setNombreCat(String nombreCat) {
         this.nombreCat = nombreCat;
     }
-    
+
 }

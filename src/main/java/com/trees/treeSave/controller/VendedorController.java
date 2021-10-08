@@ -49,7 +49,7 @@ public class VendedorController {
                 model.addAttribute("vendedor", optional.get());
                 model.addAttribute("action", action);
             } else {
-                return "vendedor-list";
+                return "registro";
             }
         } else {
             model.addAttribute("vendedor", new Vendedor());
@@ -57,7 +57,7 @@ public class VendedorController {
         }
         //estamos metiendo el th:each Ciudades como parametro para añadirlo junto con listAll
         model.addAttribute("ciudades", ciudadService.listAll());
-        return "vendedor-form";
+        return "registro-vendedor";
     }
 
     @GetMapping("/delete")
@@ -79,14 +79,14 @@ public class VendedorController {
                 vendedorServicio.validarVendedor(vendedor);
                 redirectAttributes.addFlashAttribute("success", "Cliente guardado con éxito.");
             }
-
+            redirectAttributes.addFlashAttribute("cuit",vendedor.getCuit());
         } catch (WebException ex) {
             model.addAttribute("error", ex.getMessage());
             model.addAttribute("vendedor", vendedor);
             model.addAttribute("ciudades", ciudadService.listAll());
             return "vendedor-form";
         }
-        return "redirect:/vendedor/list";
+        return "redirect:/registro";
     }
 
 }

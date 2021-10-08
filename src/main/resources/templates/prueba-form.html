@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es-AR" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/fragments/head :: head"></head>
+
+<body class="scroll">
+    <header th:replace="/fragments/header :: header"></header>
+
+
+    <main class="container">
+       
+        <div class="row">
+            <div class="col">
+                <div class="display-1 text-center text-dark">Agregar Lista</div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <form th:action="@{/lista/save}" method="POST" th:object="${lista}">
+                    <input hidden th:field="*{id}">
+                    <div class="d-flex justify-content-center m-3">
+                        <label class="form-label text-white me-2">Nombre</label>
+                        <input type="text" th:field="*{nombreList}">
+                    </div>
+                    <div class=" d-flex justify-content-center m-3">
+                        <input type="submit" class="btn-primary">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+
+        <div class="row mb-5 d-flex justify-content-center">
+            <div class="col d-flex justify-content-center">
+                <button class="mainBtn"><a class="text-a" th:href="@{/lista/list}">Ver Listas</a></button>
+            </div>
+            <div class="col d-flex justify-content-center">
+                <button class="mainBtn"><a class="text-a" th:href="@{/}">Pagina Principal</a></button>
+            </div>
+        </div>
+    </div>
+</div>
+</main>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
+    integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp"
+crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"
+    integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/"
+crossorigin="anonymous"></script>
+</body>
+
+</html>
+    
+</body>
+</html>

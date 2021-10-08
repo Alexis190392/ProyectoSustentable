@@ -2,7 +2,6 @@ package com.trees.treeSave.Entity;
 
 import com.trees.treeSave.enumeraciones.Nivel;
 import com.trees.treeSave.enumeraciones.TipoDoc;
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
@@ -11,6 +10,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -19,10 +19,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Cliente implements Serializable {
+public class Cliente {
 
     @Id
     private String documento;
+    
     @Enumerated(EnumType.STRING)
     private TipoDoc tipoDoc;
     @DateTimeFormat(pattern = "yyyy-MM-dd")      //Agrego una fecha de alta y baja de cliente 
@@ -47,7 +48,10 @@ public class Cliente implements Serializable {
     private List<Lista> listas;
     
     @OneToOne
-    private Foto foto = null;
+    private Foto foto;
+    
+    @ManyToOne
+    private Ciudad ciudad;
 
     public String getDocumento() {
         return documento;
@@ -168,7 +172,12 @@ public class Cliente implements Serializable {
     public void setFoto(Foto foto) {
         this.foto = foto;
     }
-    
-    
 
+    public Ciudad getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(Ciudad ciudad) {
+        this.ciudad = ciudad;
+    }
 }
