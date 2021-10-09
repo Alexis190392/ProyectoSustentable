@@ -1,4 +1,5 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 C:\EGG\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\enumeraciones\Tipo.java
 C:\EGG\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\enumeraciones\Nivel.java
 C:\EGG\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\Entity\Categoria.java
@@ -38,4 +39,47 @@ C:\Users\moren\escritorio\ProyectoSustentable\src\main\java\com\trees\treeSave\r
 C:\Users\moren\escritorio\ProyectoSustentable\src\main\java\com\trees\treeSave\Entity\Categoria.java
 C:\Users\moren\escritorio\ProyectoSustentable\src\main\java\com\trees\treeSave\repositories\CategoriaRepository.java
 C:\Users\moren\escritorio\ProyectoSustentable\src\main\java\com\trees\treeSave\repositories\ProductoRepository.java
+>>>>>>> Stashed changes
+=======
+C:\Users\moren\escritorio\ProyectoSustentable\javalibros\src\main\java\com\trees\treeSave\repositories\CiudadRepository.java
+C:\Users\moren\escritorio\ProyectoSustentable\javalibros\src\main\java\com\trees\treeSave\repositories\CategoriaRepository.java
+C:\Users\moren\escritorio\ProyectoSustentable\javalibros\src\main\java\com\trees\treeSave\enumeraciones\Tipo.java
+C:\Users\moren\escritorio\ProyectoSustentable\javalibros\src\main\java\com\trees\treeSave\services\CategoriaService.java
+C:\Users\moren\escritorio\ProyectoSustentable\javalibros\src\main\java\com\trees\treeSave\Entity\Foto.java
+C:\Users\moren\escritorio\ProyectoSustentable\javalibros\src\main\java\com\trees\treeSave\services\ProductoServicio.java
+C:\Users\moren\escritorio\ProyectoSustentable\javalibros\src\main\java\com\trees\treeSave\controller\LoginController.java
+C:\Users\moren\escritorio\ProyectoSustentable\javalibros\src\main\java\com\trees\treeSave\controller\VendedorController.java
+C:\Users\moren\escritorio\ProyectoSustentable\javalibros\src\main\java\com\trees\treeSave\services\CiudadService.java
+C:\Users\moren\escritorio\ProyectoSustentable\javalibros\src\main\java\com\trees\treeSave\services\UserService.java
+C:\Users\moren\escritorio\ProyectoSustentable\javalibros\src\main\java\com\trees\treeSave\controller\ProductoController.java
+C:\Users\moren\escritorio\ProyectoSustentable\javalibros\src\main\java\com\trees\treeSave\Entity\Users.java
+C:\Users\moren\escritorio\ProyectoSustentable\javalibros\src\main\java\com\trees\treeSave\Entity\Vendedor.java
+C:\Users\moren\escritorio\ProyectoSustentable\javalibros\src\main\java\com\trees\treeSave\services\FotoService.java
+C:\Users\moren\escritorio\ProyectoSustentable\javalibros\src\main\java\com\trees\treeSave\repositories\VendedorRepository.java
+C:\Users\moren\escritorio\ProyectoSustentable\javalibros\src\main\java\com\trees\treeSave\excepciones\WebException.java
+C:\Users\moren\escritorio\ProyectoSustentable\javalibros\src\main\java\com\trees\treeSave\controller\RegisterController.java
+C:\Users\moren\escritorio\ProyectoSustentable\javalibros\src\main\java\com\trees\treeSave\Entity\Producto.java
+C:\Users\moren\escritorio\ProyectoSustentable\javalibros\src\main\java\com\trees\treeSave\controller\CiudadController.java
+C:\Users\moren\escritorio\ProyectoSustentable\javalibros\src\main\java\com\trees\treeSave\Security.java
+C:\Users\moren\escritorio\ProyectoSustentable\javalibros\src\main\java\com\trees\treeSave\controller\UserController.java
+C:\Users\moren\escritorio\ProyectoSustentable\javalibros\src\main\java\com\trees\treeSave\enumeraciones\Role.java
+C:\Users\moren\escritorio\ProyectoSustentable\javalibros\src\main\java\com\trees\treeSave\repositories\UserRepository.java
+C:\Users\moren\escritorio\ProyectoSustentable\javalibros\src\main\java\com\trees\treeSave\repositories\ProductoRepository.java
+C:\Users\moren\escritorio\ProyectoSustentable\javalibros\src\main\java\com\trees\treeSave\Entity\Categoria.java
+C:\Users\moren\escritorio\ProyectoSustentable\javalibros\src\main\java\com\trees\treeSave\Entity\Ciudad.java
+C:\Users\moren\escritorio\ProyectoSustentable\javalibros\src\main\java\com\trees\treeSave\TreeSaveApplication.java
+C:\Users\moren\escritorio\ProyectoSustentable\javalibros\src\main\java\com\trees\treeSave\repositories\ListaRepository.java
+C:\Users\moren\escritorio\ProyectoSustentable\javalibros\src\main\java\com\trees\treeSave\services\ListaService.java
+C:\Users\moren\escritorio\ProyectoSustentable\javalibros\src\main\java\com\trees\treeSave\Entity\Lista.java
+C:\Users\moren\escritorio\ProyectoSustentable\javalibros\src\main\java\com\trees\treeSave\services\ClienteService.java
+C:\Users\moren\escritorio\ProyectoSustentable\javalibros\src\main\java\com\trees\treeSave\enumeraciones\Nivel.java
+C:\Users\moren\escritorio\ProyectoSustentable\javalibros\src\main\java\com\trees\treeSave\controller\ClienteController.java
+C:\Users\moren\escritorio\ProyectoSustentable\javalibros\src\main\java\com\trees\treeSave\enumeraciones\TipoDoc.java
+C:\Users\moren\escritorio\ProyectoSustentable\javalibros\src\main\java\com\trees\treeSave\repositories\FotoRepository.java
+C:\Users\moren\escritorio\ProyectoSustentable\javalibros\src\main\java\com\trees\treeSave\controller\MainController.java
+C:\Users\moren\escritorio\ProyectoSustentable\javalibros\src\main\java\com\trees\treeSave\repositories\ClienteRepository.java
+C:\Users\moren\escritorio\ProyectoSustentable\javalibros\src\main\java\com\trees\treeSave\controller\ListaController.java
+C:\Users\moren\escritorio\ProyectoSustentable\javalibros\src\main\java\com\trees\treeSave\controller\FotoController.java
+C:\Users\moren\escritorio\ProyectoSustentable\javalibros\src\main\java\com\trees\treeSave\Entity\Cliente.java
+C:\Users\moren\escritorio\ProyectoSustentable\javalibros\src\main\java\com\trees\treeSave\services\VendedorServicio.java
 >>>>>>> Stashed changes
