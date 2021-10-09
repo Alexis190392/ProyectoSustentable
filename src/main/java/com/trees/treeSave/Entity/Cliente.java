@@ -44,8 +44,8 @@ public class Cliente {
     private String listaCompra;             // Lista de compra asociada a la persona
     private String contactoMail;
     private String contactoCel;
-    @OneToMany()                            // se eimina el mapped by para usar la Herencia de la linea 25 lo hace automatico
-    private List<Lista> listas;
+//    @OneToMany()                            // se eimina el mapped by para usar la Herencia de la linea 25 lo hace automatico
+    private Lista lista;
     
     @OneToOne
     private Foto foto;
@@ -149,13 +149,15 @@ public class Cliente {
         this.contactoCel = contactoCel;
     }
 
-    public List<Lista> getListas() {
-        return listas;
+    public Lista getLista() {
+        return lista;
     }
 
-    public void setListas(List<Lista> listas) {
-        this.listas = listas;
+    public void setLista(Lista lista) {
+        this.lista = lista;
     }
+
+   
 
     public Date getBaja() {
         return baja;

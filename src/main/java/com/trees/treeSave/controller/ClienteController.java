@@ -6,6 +6,7 @@ import com.trees.treeSave.services.CiudadService;
 import com.trees.treeSave.services.ClienteService;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 //import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,9 +34,9 @@ public class ClienteController {
 //        return "crear-usuario";
 //    }
         
+    @PreAuthorize("hasAnyRole('ROLE_USER')")
     @GetMapping("/panel")
     public String usuario(Model model){
-        model.addAttribute("clientes", clienteService.listAll());
         return "panel-Usuario";
     }
 

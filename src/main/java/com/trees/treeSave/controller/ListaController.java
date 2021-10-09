@@ -1,5 +1,6 @@
 package com.trees.treeSave.controller;
 
+import com.trees.treeSave.Entity.Cliente;
 import com.trees.treeSave.Entity.Lista;
 import com.trees.treeSave.excepciones.WebException;
 import com.trees.treeSave.services.ClienteService;
@@ -23,9 +24,11 @@ public class ListaController {
     
     @Autowired
     private ListaService ls;
+    @Autowired
+    private ClienteService cs;
     
     @GetMapping("/list")
-    public String listado(Model model, @RequestParam(required=false) String q){
+    public String listado(Model model, @RequestParam(required=false) String id){
         
         model.addAttribute("listas",ls.listAll());   
         return "pruebas-list";
@@ -33,14 +36,33 @@ public class ListaController {
     
     
    @GetMapping("/form")
-   public String crearLista(Model model, @RequestParam(required = false) String id){
-       model.addAttribute("lista", new Lista());
-       return "prueba-form";
+   public String crearLista(Model model, @RequestParam(required = false) String documento, RedirectAttributes redat){
+       try{
+           //taigo el documento de la session y busco al cliente
+           Cliente c = cs.findByDocumento(documento);
+           //si es distinto de null, que me traiga la lista, si no hay una, que me la cree
+           if(c != null){
+               if(c.getLista() == null){
+                   model.addAttribute("lista", new Lista());
+               } else {
+                   model.addAttribute("lista", c.getLista());
+               }
+               model.addAttribute("cliente", c);
+//               redat.addFlashAttribute("id",c.getLista().getId());
+           } else{
+               return "redirect:/usuario/panel";
+           }
+           
+       } catch(WebException e){
+           model.addAttribute("error", e.getMessage());
+       }
+       
+       return "usuario-lista";
    }
    
    @PostMapping("/save")
    public String nuevaLista(Model model, RedirectAttributes redirectAttributes, @ModelAttribute Lista lista ){
-       
+        model.addAttribute("lista", lista);
         ls.crearLista(lista);
         return "redirect:/lista/list";
    }

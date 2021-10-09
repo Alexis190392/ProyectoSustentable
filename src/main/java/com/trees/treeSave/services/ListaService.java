@@ -49,9 +49,6 @@ public class ListaService {
         return lista;
     }
     
-    public List<Lista> listar(Cliente cliente){
-        return cliente.getListas();
-    }
     
     public List<Lista> listAll(){
         
