@@ -6,7 +6,9 @@
 <body class="scroll">
     <header th:replace="/fragments/header :: header"></header>
 
+    
 
+    <!--
     <form th:if="${session.usuariosession.lista == null}" th:action="@{/lista/save}" method="POST" th:object="${lista}">
         <div class="d-flex justify-content-center m-3">
             <div>
@@ -25,7 +27,24 @@
         <p th:text="*{nombreList}" class="display-3 m-5">Hola</p>
     </div>
 
+-->
+<form th:action="@{/cliente/createList}" method="POST">
+    <input hidden type="text" name="documento" th:value="documento">
+    <div class="label-form">
+        <label for="">Nombre</label>
+        <input type="text" name="nombre">
+    </div>
+    <button type="submit" th:href="@{/cliente/listado(documento=__${session.usuariosession.documento}__)}" class="btn btn-primary">Cambiar nombre</button>
+</form>
 
+<div class="container">
+    <div class="row">
+        <div class="col-6 prueba scroll">
+            <p th:text="${lista.nombreList}"></p>
+        </div>
+        <div class="col-6 prueba scroll"></div>
+    </div>
+</div>
 
 
 

@@ -2,10 +2,12 @@ package com.trees.treeSave.controller;
 
 import com.trees.treeSave.Entity.Cliente;
 import com.trees.treeSave.Entity.Lista;
+import com.trees.treeSave.Entity.Producto;
 import com.trees.treeSave.excepciones.WebException;
 import com.trees.treeSave.services.CiudadService;
 import com.trees.treeSave.services.ClienteService;
 import com.trees.treeSave.services.ListaService;
+import com.trees.treeSave.services.ProductoServicio;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -101,21 +103,78 @@ public class ClienteController {
      /*
     Update 10/10/2021
     */
+    
+    
     @Autowired
     private ListaService ls;
+    @Autowired
+    private ProductoServicio ps;
+    
     
     @PostMapping("/createList")
-    public String crearLista(Model model, @RequestParam String documento, @RequestParam String nombre) throws WebException{
+    public String crearLista(Model model, 
+                            @RequestParam String documento, 
+                            @RequestParam String nombre, 
+                            RedirectAttributes redat) throws WebException{
         try{
+            //busco cliente
             Cliente c = cs.findByDocumento(documento);
+            //creo una lista
             Lista l = new Lista();
+            //le seteo el nombre que se elije
             l.setNombreList(nombre);
-            ls.c
+            //la genero con id en bs
+            ls.create(l);
             
-            
-            
-        } 
-        
-        return "/";
+            ls.cambiarNombre(l, nombre);
+            //seteo en el cliente
+            c.setLista(l);
+            //guardo cliente
+            cs.save(c);
+            redat.addFlashAttribute("sucess", "creado con exito");
+        } catch (WebException ex) {
+            model.addAttribute("error", ex.getMessage());
+            return "redirect:/cliente/panel";
+        }
+        return "redirect:/cliente/listado"; //url de la muestra de lista
     }
+    
+    @GetMapping ("/listado")
+    public String listadoProductos(Model model, 
+                                @RequestParam String documento) throws WebException{
+        try{
+            if(cs.findByDocumento(documento) != null){
+                //modelo lista creada para vista
+                if( cs.findByDocumento(documento).getLista() !=null){
+                    model.addAttribute("lista", ls.conversion(cs.findByDocumento(documento).getLista().getListado()));
+                } else {
+                    model.addAttribute("lista", new Lista());
+                }
+                
+                //modelo listado de productos
+                model.addAttribute("productos", ps.listAll());
+            }
+        } catch (WebException e){
+            model.addAttribute("error", e.getMessage());
+        }
+        return "usuario-lista";//url de la muestra de lista
+    }
+    
+    @PostMapping("/agregarProducto")
+//    @GetMapping("/agregarProducto")
+    public String agregarProducto(Model model,
+                                @RequestParam String documento, 
+                                @ModelAttribute Producto producto, 
+                                @RequestParam Integer cantidad) throws WebException{
+        //busco cliente
+        Cliente c = cs.findByDocumento(documento);
+        //extraigo lista y treemap
+        Lista l = ls.agregarProducto(c.getLista(), producto.getCodigoBarra(), cantidad);
+        //seteo lista modificada en cliente y lo guardo
+        c.setLista(l);
+        cs.save(c);
+ 
+       return "redirect:/cliente/listado";
+    }
+    
 }
