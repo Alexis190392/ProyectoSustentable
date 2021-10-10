@@ -53,7 +53,7 @@ public class Cliente {
     lista: se colocaran los productos o se eliminaran a traves de un treemap
     */
     
-    private String lista;
+    private Lista lista;
     
     
     
@@ -195,11 +195,11 @@ public class Cliente {
         this.ciudad = ciudad;
     }
 
-    public String getLista() {
+    public Lista getLista() {
         return lista;
     }
 
-    public void setLista(String lista) {
+    public void setLista(Lista lista) {
         this.lista = lista;
     }
     

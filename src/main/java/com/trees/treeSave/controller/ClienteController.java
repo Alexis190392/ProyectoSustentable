@@ -1,9 +1,11 @@
 package com.trees.treeSave.controller;
 
 import com.trees.treeSave.Entity.Cliente;
+import com.trees.treeSave.Entity.Lista;
 import com.trees.treeSave.excepciones.WebException;
 import com.trees.treeSave.services.CiudadService;
 import com.trees.treeSave.services.ClienteService;
+import com.trees.treeSave.services.ListaService;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -23,7 +25,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class ClienteController {
 
     @Autowired
-    private ClienteService clienteService;
+    private ClienteService cs;
 
     @Autowired
     private CiudadService ciudadService;
@@ -36,7 +38,7 @@ public class ClienteController {
         
     @PreAuthorize("hasAnyRole('ROLE_USER')")
     @GetMapping("/panel")
-    public String usuario(Model model){
+    public String panelUsuario(){
         return "panel-Usuario";
     }
 
@@ -44,9 +46,9 @@ public class ClienteController {
     @GetMapping("/list")
     public String listarClientes(Model model, @RequestParam(required = false) String q) {
         if (q != null) {
-            model.addAttribute("clientes", clienteService.listAllByQ(q));
+            model.addAttribute("clientes", cs.listAllByQ(q));
         } else {
-            model.addAttribute("clientes", clienteService.listAll());
+            model.addAttribute("clientes", cs.listAll());
         }
         return "cliente-list";
     }
@@ -54,7 +56,7 @@ public class ClienteController {
     @GetMapping("/form")
     public String crearCliente(Model model, @RequestParam(required = false) String documento, @RequestParam(required = false) String action) {
         if (documento != null) {
-            Optional<Cliente> optional = clienteService.findById(documento);
+            Optional<Cliente> optional = cs.findById(documento);
             if (optional.isPresent()) {
                 model.addAttribute("cliente", optional.get());
                 model.addAttribute("action", action);
@@ -71,7 +73,7 @@ public class ClienteController {
 
     @GetMapping("/delete")
     public String eliminarCliente(@RequestParam(required = true) String id) {
-        clienteService.deleteById(id);
+        cs.deleteById(id);
         return "redirect:/cliente/list";
     }
 
@@ -80,10 +82,10 @@ public class ClienteController {
             @ModelAttribute Cliente cliente, @RequestParam(required = false) String action) {
         try {
             if (action.equals("edit")) {
-                clienteService.modificarCliente(archivo, cliente);
+                cs.modificarCliente(archivo, cliente);
                 redirectAttributes.addFlashAttribute("success", "Cliente modificado con éxito.");
             } else {
-                clienteService.validarCliente(cliente, archivo); //valida y guarda cliente en la bd
+                cs.validarCliente(cliente, archivo); //valida y guarda cliente en la bd
                 redirectAttributes.addFlashAttribute("success", "Cliente guardado con éxito.");
             }
             redirectAttributes.addFlashAttribute("documento", cliente.getDocumento());
@@ -95,4 +97,25 @@ public class ClienteController {
         return "redirect:/registro";
     }
 
+    
+     /*
+    Update 10/10/2021
+    */
+    @Autowired
+    private ListaService ls;
+    
+    @PostMapping("/createList")
+    public String crearLista(Model model, @RequestParam String documento, @RequestParam String nombre) throws WebException{
+        try{
+            Cliente c = cs.findByDocumento(documento);
+            Lista l = new Lista();
+            l.setNombreList(nombre);
+            ls.c
+            
+            
+            
+        } 
+        
+        return "/";
+    }
 }

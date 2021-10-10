@@ -28,12 +28,12 @@ public class ListaService {
     }
     
     //crear lista
-    public void create(Lista lista){
+    public Lista create(Lista lista){
         if(lista.getNombreList()== null){
             lista.setNombreList("Lista nueva");
         }
         lista.setEstado(true);
-        save(lista);
+         return save(lista);
     }
     
     public Optional<Lista> findById(String Id){

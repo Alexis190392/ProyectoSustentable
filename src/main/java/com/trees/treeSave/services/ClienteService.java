@@ -193,8 +193,18 @@ public class ClienteService {
     Update 10/10/21
     */
     
+    //obtener lista de cliente
+    public Lista getLista(String documento) throws WebException{
+        return findByDocumento(documento).getLista();
+    }
     
     
+    //agregar lista a Cliente, mnodificada o nueva
     
-    
+    public void setLista(Lista lista, String documento) throws WebException{
+        Cliente c = findByDocumento(documento);
+        c.setLista(lista);
+        save(c);
+    }
+
 }
