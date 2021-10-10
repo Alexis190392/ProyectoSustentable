@@ -8,14 +8,20 @@
 
     <p th:text=" 'Hola ' + ${session.usuariosession.nombres} + ' ' + ${session.usuariosession.apellido}"></p>
 
-    <a class="btn btn-danger" href="/logout">Cerrar sesion - Sign out</a>
     <p class="display-3">Listas</p>
 
     <div class="d-flex justify-content-center m-3">
         <div class="col d-flex justify-content-center mt-5">
             <a th:href="@{/lista/form(documento=__${session.usuariosession.documento}__)}" type="button" class="btn btn-primary">Lista</a>
         </div>
+
     </div>
+
+
+
+    
+
+
 
 
 

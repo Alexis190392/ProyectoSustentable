@@ -7,7 +7,7 @@
     <header th:replace="/fragments/header :: header"></header>
 
 
-    <form th:action="@{/lista/save}" method="POST" th:object="${lista}">
+    <form th:if="${session.usuariosession.lista == null}" th:action="@{/lista/save}" method="POST" th:object="${lista}">
         <div class="d-flex justify-content-center m-3">
             <div>
                 <label class="form-label">Ingrese nombre de la lista</label>
@@ -20,6 +20,33 @@
             </div>
         </div>
     </form>
+
+    <div th:if="${lista != null}" th:object="${lista}">
+        <p th:text="*{nombreList}" class="display-3 m-5">Hola</p>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>

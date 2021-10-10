@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -45,7 +44,20 @@ public class Cliente {
     private String contactoMail;
     private String contactoCel;
 //    @OneToMany()                            // se eimina el mapped by para usar la Herencia de la linea 25 lo hace automatico
-    private Lista lista;
+//    private Lista lista;
+    
+    /*
+       Update 10/10/2021
+    
+    
+    lista: se colocaran los productos o se eliminaran a traves de un treemap
+    */
+    
+    private String lista;
+    
+    
+    
+    
     
     @OneToOne
     private Foto foto;
@@ -148,7 +160,7 @@ public class Cliente {
     public void setContactoCel(String contactoCel) {
         this.contactoCel = contactoCel;
     }
-
+/*
     public Lista getLista() {
         return lista;
     }
@@ -158,7 +170,7 @@ public class Cliente {
     }
 
    
-
+*/
     public Date getBaja() {
         return baja;
     }
@@ -182,4 +194,14 @@ public class Cliente {
     public void setCiudad(Ciudad ciudad) {
         this.ciudad = ciudad;
     }
+
+    public String getLista() {
+        return lista;
+    }
+
+    public void setLista(String lista) {
+        this.lista = lista;
+    }
+    
+    
 }

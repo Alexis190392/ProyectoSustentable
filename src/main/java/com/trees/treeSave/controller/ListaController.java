@@ -27,7 +27,7 @@ public class ListaController {
     @Autowired
     private ClienteService cs;
     
-    @GetMapping("/list")
+   /* @GetMapping("/list")
     public String listado(Model model, @RequestParam(required=false) String id){
         
         model.addAttribute("listas",ls.listAll());   
@@ -61,10 +61,22 @@ public class ListaController {
    }
    
    @PostMapping("/save")
-   public String nuevaLista(Model model, RedirectAttributes redirectAttributes, @ModelAttribute Lista lista ){
+   public String nuevaLista(Model model, RedirectAttributes redirectAttributes, @ModelAttribute Lista lista, @ModelAttribute String documento) throws WebException{
         model.addAttribute("lista", lista);
-        ls.crearLista(lista);
-        return "redirect:/lista/list";
+        Lista l = ls.crearLista(lista);
+        System.out.print(l.getId());
+        System.out.print(l.getNombreList());
+        
+        //crea la lista y la seteo en el cliente
+        Cliente c = cs.findByDocumento(documento);
+        
+        //c.setLista(l);
+        cs.save(c);
+        
+
+        return "redirect:/usuario/panel";
    }
+
+*/
 
 }

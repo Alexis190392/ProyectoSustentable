@@ -1,11 +1,20 @@
+/*
+
+Update 10/10/2021 linea 190
+
+*/
 package com.trees.treeSave.services;
 
 import com.trees.treeSave.Entity.Cliente;
 import com.trees.treeSave.Entity.Foto;
+import com.trees.treeSave.Entity.Lista;
+import com.trees.treeSave.Entity.Producto;
 import com.trees.treeSave.enumeraciones.Nivel;
 import com.trees.treeSave.excepciones.WebException;
 import com.trees.treeSave.repositories.ClienteRepository;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -85,7 +94,6 @@ public class ClienteService {
         clienteAlta.setNivel(Nivel.SEMILLA);
         clienteAlta.setPuntajeAcumulado(0);
         clienteAlta.setPuntajeCanjeado(0);
-        
         Foto foto = fotoService.save(file);
         clienteAlta.setFoto(foto);
         
@@ -181,4 +189,12 @@ public class ClienteService {
         clienteRepository.save(cliente);
         
     }
+    /*
+    Update 10/10/21
+    */
+    
+    
+    
+    
+    
 }
