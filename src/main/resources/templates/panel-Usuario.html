@@ -47,66 +47,36 @@
 
                     </div>
                 </div>
-
-                <div class="col col-md-6">
-                    <div class="card">
-                        <div class="card-header">
-                            PRODUCTOS
-                        </div>
-                        <div data-spy="scroll" data-target="#myScrollspy" data-offset="1" class="scroll"
-                             style="overflow-y: scroll;padding:5px;">
-                            <div th:each=" l : ${clientes} ">
-                                <div class="card mb-3">
-                                    <div class="row ">
-                                        <div class="col-md-4">
-                                            <img th:if="${l.foto != null}" class="img-fluid rounded-start"
-                                                 th:src="@{/foto/cliente}+'?id='+${l.documento}">
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="card-body">
-                                                <h5 class="card-title" th:text="${l.nombres}"></h5>
-                                                <td th:text="${l.apellido}"></td>
-                                                <td th:text="${l.contactoMail}"></td>
-                                                <td th:text="${l.nivel}"></td>
-                                                <td th:text="${l.documento}"></td>
-                                                <td th:text="${l.contactoCel}"></td>
-                                                <td th:text="${l.alta}"></td>
-                                                <td th:text="${l.baja}"></td>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+<!--                th:object="${cliente}"
+                <div class="col col-md-6 d-flex justify-content-center">
+                    <div th:object="${session.usuariosession}" class="card" style="width: 18rem;">
+                        <img th:if="*{foto != null}" class="img-fluid rounded-start"
+                             th:src="@{/foto/cliente}+'?id='+*{documento}">
+                        <div class="card-body">
+                            <h5 th:text="*{nombres}+' '+*{apellido}" class="card-title"></h5>
+                            <p th:text="*{contactoMail}" class="card-text"></p>
+                            <p th:text="*{nivel}" class="card-text"></p>
+                            <div >
+                                <button class="btn btn-primary rounded-pill btn-xl"><a class="text-decoration-none link-light" th:href="@{/cliente/form}+'?documento='+*{documento}+'&action=edit'">Editar</a></button>
                             </div>
-                            <div th:each=" l : ${clientes} ">
-                                <div class="card mb-3">
-                                    <div class="row ">
-                                        <div class="col-md-4">
-                                            <img th:if="${l.foto != null}" class="img-fluid rounded-start"
-                                                 th:src="@{/foto/cliente}+'?id='+${l.documento}">
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="card-body">
-                                                <h5 class="card-title" th:text="${l.nombres}"></h5>
-                                                <p th:text="${l.apellido}"></p>
-                                                <p th:text="${l.contactoMail}"></p>
-                                                <p th:text="${l.nivel}"></p>
-                                                <p th:text="${l.documento}"></p>
-                                                <p th:text="${l.contactoCel}"></p>
-                                                <p th:text="${l.alta}"></p>
-                                                <p th:text="${l.baja}"></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                        </div>
+                    </div>
+                </div>-->
+                <div class="col col-md-6 d-flex justify-content-center">
+                    <div th:object="${session.usuariosession}" class="card" style="width: 18rem;">
+                        <img th:if="*{foto != null}" class="img-fluid rounded-start"
+                             th:src="@{/foto/cliente}+'?id='+*{documento}">
+                        <div class="card-body">
+                            <h5 th:text="*{nombres}+' '+*{apellido}" class="card-title"></h5>
+                            <p th:text="*{contactoMail}" class="card-text"></p>
+                            <p th:text="*{nivel}" class="card-text"></p>
+                            <div >
+                                <button class="btn btn-primary rounded-pill btn-xl"><a class="text-decoration-none link-light" th:href="@{/cliente/form}+'?documento='+*{documento}+'&action=edit'">Editar</a></button>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <div>
-                    <a th:href="@{/usuario/editar-perfil(documento=__${session.usuariosession.documento}__)+'action=edit'}" class="btn btn-primary btn-xl rounded-pill m-5">Editar Perfil</a>
-                </div>
-                
+
                 <div class="col col-md-4">
                     <div class="card">
                         <div class="card-header">

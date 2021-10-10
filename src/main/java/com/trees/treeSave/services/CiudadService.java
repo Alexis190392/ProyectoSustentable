@@ -1,4 +1,3 @@
-
 package com.trees.treeSave.services;
 
 import com.trees.treeSave.Entity.Ciudad;
@@ -12,20 +11,21 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CiudadService {
-    
+
     @Autowired
     private CiudadRepository ciudadRepository;
-    
+
     @Autowired
     private ClienteService clienteServicio;
-    
-    public Ciudad save (String nombre){
-       Ciudad ciudad = new Ciudad ();
-       ciudad.setNombre(nombre);
-       return ciudadRepository.save(ciudad);
+
+    public Ciudad save(String nombre) {
+        Ciudad ciudad = new Ciudad();
+        ciudad.setNombre(nombre);
+        return ciudadRepository.save(ciudad);
     }
-    public Ciudad save (Ciudad ciudad) throws WebException{
-        if (ciudad.getNombre() == null){
+
+    public Ciudad save(Ciudad ciudad) throws WebException {
+        if (ciudad.getNombre() == null) {
             throw new WebException("El nombre de la ciudad no puede ser nulo");
         }
         return ciudadRepository.save(ciudad);
@@ -34,37 +34,57 @@ public class CiudadService {
     public List<Ciudad> listAll() {
         return ciudadRepository.findAll();
     }
+
     public List<Ciudad> listAll(String q) {
-        return ciudadRepository.findAll("%"+q+"%");
+        return ciudadRepository.findAll("%" + q + "%");
     }
-    
+
     //para validar que la ciudad no este repetida
     public Ciudad findById(Ciudad ciudad) {
-        Optional<Ciudad>optional = ciudadRepository.findById(ciudad.getId());
-            if(optional.isPresent()){
-                ciudad=optional.get();
-            }
+        Optional<Ciudad> optional = ciudadRepository.findById(ciudad.getId());
+        if (optional.isPresent()) {
+            ciudad = optional.get();
+        }
         return ciudad;
     }
-    
-    public Optional <Ciudad> findById(String id){
+
+    public Optional<Ciudad> findById(String id) {
         return ciudadRepository.findById(id);
     }
-    
+
     @Transactional
-    public void delete (Ciudad ciudad){
+    public void delete(Ciudad ciudad) {
         ciudadRepository.delete(ciudad);
     }
-    
-    
+
     @Transactional
-    public void deleteById ( String id){
+    public void deleteById(String id) {
         Optional<Ciudad> optional = ciudadRepository.findById(id);
-        if(optional.isPresent()){
+        if (optional.isPresent()) {
             Ciudad ciudad = optional.get();
-           //clienteServicio.deleteFieldCiudad(ciudad);
+            //clienteServicio.deleteFieldCiudad(ciudad);
             ciudadRepository.delete(ciudad);
-            
+
         }
+    }
+
+    @Transactional
+    public Ciudad actualizar(String idCiudad) {
+
+        try {
+            Ciudad ciudad = new Ciudad();
+            if (idCiudad != null) {
+                Optional<Ciudad> respuesta = ciudadRepository.findById(idCiudad);
+                if (respuesta.isPresent()) {
+                    ciudad = respuesta.get();
+                }
+            }
+
+            return ciudadRepository.save(ciudad);
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+
+        return null;
     }
 }

@@ -22,9 +22,9 @@
 
 
                             <a class="nav-link px-7 text-white" th:href="@{/super}">Super Usuario</a>
-                            <a class="nav-link px-7 text-white" th:href="@{/usuario}">Usuario</a>
+                            <a class="nav-link px-7 text-white" sec:authorize="isAuthenticated()" th:href="@{/usuario}">Usuario</a>
                             <a class="nav-link px-7 text-white" th:href="@{/vendedor}">Vendedor</a>
-
+                            <a class="navbar-brand" sec:authorize="isAuthenticated()" th:href="@{/logout}">Log out</a>
                         </ul>
                         <div th:if="${error}" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
                             <span th:text="${error}"></span>
@@ -44,10 +44,10 @@
                             <!--button login-->
 
 
-                            
-                            <button type="button" class="fas fa-sign-in-alt" data-bs-toggle="modal"
+
+                            <button type="button" sec:authorize="!isAuthenticated()" class="fas fa-sign-in-alt" data-bs-toggle="modal"
                                     style=" width: 1.8em; height: auto; margin-left: 4rem" data-bs-target="#exampleModal1">
-                              
+
 
 
                             </button>
@@ -130,9 +130,9 @@
                                 <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
                                 <label for="password">Password</label>
 
-                               
 
-                                
+
+
                             </div>
                             <div class="checkbox mb-3">
                                 <label>
