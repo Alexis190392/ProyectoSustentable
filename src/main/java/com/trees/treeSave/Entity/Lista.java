@@ -2,13 +2,10 @@
 package com.trees.treeSave.Entity;
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.List;
 import java.util.TreeMap;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
@@ -23,6 +20,12 @@ public class Lista implements Serializable {
     private TreeMap<String,Integer> listado;
 
     private Boolean estado;
+
+    public Lista() {
+        this.listado = new TreeMap<String,Integer>();
+    }
+    
+    
 
 
     public String getId() {

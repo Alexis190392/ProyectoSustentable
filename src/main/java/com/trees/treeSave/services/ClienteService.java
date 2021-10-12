@@ -39,6 +39,9 @@ public class ClienteService {
     
     @Autowired 
     private CiudadService ciudadService;
+    
+    @Autowired
+    private ListaService ls;
 
     /*@Autowired
     private NotificacionServicio notificacionServicio;*/
@@ -187,24 +190,15 @@ public class ClienteService {
         Foto foto = fotoService.actualizar(idFoto, file);
         cliente.setFoto(foto);
         clienteRepository.save(cliente);
-        
-    }
-    /*
-    Update 10/10/21
-    */
-    
-    //obtener lista de cliente
-    public Lista getLista(String documento) throws WebException{
-        return findByDocumento(documento).getLista();
     }
     
-    
-    //agregar lista a Cliente, mnodificada o nueva
-    
-    public void setLista(Lista lista, String documento) throws WebException{
-        Cliente c = findByDocumento(documento);
-        c.setLista(lista);
-        save(c);
+    //agregar/eliminar(0) producto a lista de cliente y setealo en el mismo
+    @Transactional
+    public void agregarProducto(String documento, String sku, Integer cantidad) throws WebException{
+        //taigo la lista asociada a ese documento
+        Lista l = ls.obtenerLista(documento);
+        //agrego el producto enviando la lista
+        ls.agregarProducto(l, sku, cantidad);
     }
-
+    
 }

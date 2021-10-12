@@ -2,6 +2,7 @@ package com.trees.treeSave.services;
 
 import com.trees.treeSave.Entity.Cliente;
 import com.trees.treeSave.Entity.Foto;
+import com.trees.treeSave.Entity.Lista;
 import com.trees.treeSave.Entity.Users;
 import com.trees.treeSave.enumeraciones.Nivel;
 import com.trees.treeSave.enumeraciones.Role;
@@ -37,6 +38,9 @@ public class UserService implements UserDetailsService {
     
     @Autowired
     private FotoService fotoService;
+    
+    @Autowired
+    private ListaService ls;
     
     @Transactional
     public Users save(String username, String password, String password2, String documento) throws WebException {
@@ -77,6 +81,9 @@ public class UserService implements UserDetailsService {
         usuario.setUsername(username);
         usuario.setPassword(encoder.encode(password));
         usuario.setFoto(c.getFoto());
+        Lista l = new Lista();
+        l = ls.create(l);
+        usuario.setLista(l.getId());
         usuario.setRol(Role.USER);
         clienteService.delete(c);
         return usuarioRepository.save(usuario);

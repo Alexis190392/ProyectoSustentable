@@ -40,7 +40,10 @@
 <div class="container">
     <div class="row">
         <div class="col-6 prueba scroll">
-            <p th:text="${lista.nombreList}"></p>
+            <div th:each=" p : ${productos}">
+                <p th:text="${p.nombre}"></p>
+            </div>
+            <p th:if="${p.isEmpty" th:text="No hay productos para mostrar"></p>
         </div>
         <div class="col-6 prueba scroll"></div>
     </div>

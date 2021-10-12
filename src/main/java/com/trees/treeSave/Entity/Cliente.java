@@ -40,20 +40,20 @@ public class Cliente {
     private Integer puntajeCanjeado;        // Histórico de Puntos
     @Enumerated(EnumType.STRING)
     private Nivel nivel;                    // enum del tipo de cliente, de acuerdo a su historial de compras
-    private String listaCompra;             // Lista de compra asociada a la persona
     private String contactoMail;
     private String contactoCel;
 //    @OneToMany()                            // se eimina el mapped by para usar la Herencia de la linea 25 lo hace automatico
 //    private Lista lista;
     
     /*
-       Update 10/10/2021
+       Update 11/10/2021
     
     
     lista: se colocaran los productos o se eliminaran a traves de un treemap
+    String solo hace referencia al id de lista en la bd
     */
     
-    private Lista lista;
+    private String lista;
     
     
     
@@ -137,14 +137,6 @@ public class Cliente {
         this.nivel = nivel;
     }
 
-    public String getListaCompra() {
-        return listaCompra;
-    }
-
-    public void setListaCompra(String listaCompra) {
-        this.listaCompra = listaCompra;
-    }
-
     public String getContactoMail() {
         return contactoMail;
     }
@@ -160,17 +152,7 @@ public class Cliente {
     public void setContactoCel(String contactoCel) {
         this.contactoCel = contactoCel;
     }
-/*
-    public Lista getLista() {
-        return lista;
-    }
 
-    public void setLista(Lista lista) {
-        this.lista = lista;
-    }
-
-   
-*/
     public Date getBaja() {
         return baja;
     }
@@ -195,13 +177,12 @@ public class Cliente {
         this.ciudad = ciudad;
     }
 
-    public Lista getLista() {
+    public String getLista() {
         return lista;
     }
 
-    public void setLista(Lista lista) {
+    public void setLista(String lista) {
         this.lista = lista;
     }
-    
-    
+   
 }
