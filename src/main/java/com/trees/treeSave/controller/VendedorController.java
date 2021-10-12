@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -75,7 +76,7 @@ public class VendedorController {
     }
 
     @PostMapping("/save")
-    public String guardarVendedor(Model model, RedirectAttributes redirectAttributes,
+    public String guardarVendedor(Model model, @RequestParam(required = false) MultipartFile archivo, RedirectAttributes redirectAttributes,
             @ModelAttribute Vendedor vendedor, @RequestParam(required = false) String action,
             @RequestParam(required = true) String cuit, @RequestParam String nombre, @RequestParam String domicilio,
             /*@ModelAttribute Ciudad ciudad,*/ @RequestParam(required = false) String idCiudad,
@@ -87,7 +88,7 @@ public class VendedorController {
                 vendedorServicio.modificarVendedor(cuit, nombre, domicilio, idCiudad, contactoMail, contactoCel);
                 redirectAttributes.addFlashAttribute("success", "Vendedor modificado con éxito.");
             } else {
-                vendedorServicio.validarVendedor(vendedor);
+                vendedorServicio.validarVendedor(vendedor, archivo);
                 redirectAttributes.addFlashAttribute("success", "Comercio guardado con éxito.");
             }
             redirectAttributes.addFlashAttribute("cuit", vendedor.getCuit());

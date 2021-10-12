@@ -47,25 +47,25 @@
 
                     </div>
                 </div>
-<!--                th:object="${cliente}"
+                <!--                th:object="${cliente}"
+                                <div class="col col-md-6 d-flex justify-content-center">
+                                    <div th:object="${session.usuariosession}" class="card" style="width: 18rem;">
+                                        <img th:if="*{foto != null}" class="img-fluid rounded-start"
+                                             th:src="@{/foto/cliente}+'?id='+*{documento}">
+                                        <div class="card-body">
+                                            <h5 th:text="*{nombres}+' '+*{apellido}" class="card-title"></h5>
+                                            <p th:text="*{contactoMail}" class="card-text"></p>
+                                            <p th:text="*{nivel}" class="card-text"></p>
+                                            <div >
+                                                <button class="btn btn-primary rounded-pill btn-xl"><a class="text-decoration-none link-light" th:href="@{/cliente/form}+'?documento='+*{documento}+'&action=edit'">Editar</a></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>-->
                 <div class="col col-md-6 d-flex justify-content-center">
                     <div th:object="${session.usuariosession}" class="card" style="width: 18rem;">
                         <img th:if="*{foto != null}" class="img-fluid rounded-start"
-                             th:src="@{/foto/cliente}+'?id='+*{documento}">
-                        <div class="card-body">
-                            <h5 th:text="*{nombres}+' '+*{apellido}" class="card-title"></h5>
-                            <p th:text="*{contactoMail}" class="card-text"></p>
-                            <p th:text="*{nivel}" class="card-text"></p>
-                            <div >
-                                <button class="btn btn-primary rounded-pill btn-xl"><a class="text-decoration-none link-light" th:href="@{/cliente/form}+'?documento='+*{documento}+'&action=edit'">Editar</a></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>-->
-                <div class="col col-md-6 d-flex justify-content-center">
-                    <div th:object="${session.usuariosession}" class="card" style="width: 18rem;">
-<!--                        <img th:if="*{foto != null}" class="img-fluid rounded-start"
-                             th:src="@{/foto/vendedor}+'?id='+*{cuit}">-->
+                             th:src="@{/foto/vendedor}+'?id='+*{cuit}">
                         <div class="card-body">
                             <h5 th:text="*{nombre}" class="card-title"></h5>
                             <p th:text="*{contactoMail}" class="card-text"></p>

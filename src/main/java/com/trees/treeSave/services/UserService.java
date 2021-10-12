@@ -128,6 +128,7 @@ public class UserService implements UserDetailsService {
         usuario.setUsername(username);
         usuario.setPassword(encoder.encode(password));
 
+        usuario.setFoto(v.getFoto());
         usuario.setRol(Role.VENDEDOR);
         vendedorServicio.delete(v);
         return usuarioVRepository.save(usuario);

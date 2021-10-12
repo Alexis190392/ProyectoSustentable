@@ -36,7 +36,10 @@ public class Vendedor {
     @DateTimeFormat(pattern = "yyyy-MM-dd")      
     @Temporal(TemporalType.DATE)                 
     private Date baja;  
-     
+    
+    @OneToOne
+    private Foto foto;
+    
 //    @OneToMany
 //    private List<Producto> catalogo;
 
@@ -119,6 +122,14 @@ public class Vendedor {
 //    public void setCatalogo(List<Producto> catalogo) {
 //        this.catalogo = catalogo;
 //    }
+
+    public Foto getFoto() {
+        return foto;
+    }
+
+    public void setFoto(Foto foto) {
+        this.foto = foto;
+    }
 
 
     

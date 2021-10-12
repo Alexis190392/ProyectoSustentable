@@ -1,6 +1,7 @@
 package com.trees.treeSave.services;
 
 import com.trees.treeSave.Entity.Ciudad;
+import com.trees.treeSave.Entity.Foto;
 import com.trees.treeSave.Entity.Vendedor;
 import com.trees.treeSave.enumeraciones.Nivel;
 import com.trees.treeSave.excepciones.WebException;
@@ -11,12 +12,17 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class VendedorServicio {
 
     @Autowired
     private VendedorRepository vendedorRepository;
+    
+    @Autowired
+    private FotoService fotoService;
+    
     @Autowired
     private CiudadService ciudadService;
 
@@ -26,7 +32,7 @@ public class VendedorServicio {
     }
 
     @Transactional
-    public void validarVendedor(Vendedor v) throws WebException {
+    public void validarVendedor(Vendedor v, MultipartFile file) throws WebException {
         //validaciones
         Vendedor vendedorAlta = new Vendedor();
 
@@ -61,12 +67,15 @@ public class VendedorServicio {
         } else {
             vendedorAlta.setContactoMail(v.getContactoMail());
         }
-
         if (v.getContactoCel().isEmpty() || v.getContactoCel() == null) {
             throw new WebException("El numero de celular no puede estar vacio");
         } else {
             vendedorAlta.setContactoCel(v.getContactoCel());
         }
+    
+        
+        Foto foto = fotoService.save(file);
+        vendedorAlta.setFoto(foto);
 
         vendedorAlta.setAlta(new Date());
         vendedorAlta.setBaja(null);
