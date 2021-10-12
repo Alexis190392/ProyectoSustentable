@@ -16,21 +16,20 @@ import org.springframework.stereotype.Service;
 public class VendedorServicio {
 
     @Autowired
-    private VendedorRepository vr;
+    private VendedorRepository vendedorRepository;
     @Autowired
     private CiudadService ciudadService;
 
-     @Transactional
+    @Transactional
     public Vendedor save(Vendedor vendedor) throws WebException {
-        
-        return vr.save(vendedor);
+        return vendedorRepository.save(vendedor);
     }
-    
+
     @Transactional
     public void validarVendedor(Vendedor v) throws WebException {
         //validaciones
         Vendedor vendedorAlta = new Vendedor();
-        
+
         if (findByCuit(v.getCuit()) != null) {
             throw new WebException("El cuit que quieres registrar ya existe.");
         } else if (v.getCuit() == null) {
@@ -38,93 +37,93 @@ public class VendedorServicio {
         } else {
             vendedorAlta.setCuit(v.getCuit());
         }
-        
+
         if (v.getNombre().isEmpty() || v.getNombre() == null) {
             throw new WebException("El nombre no puede estar vacio");
-        }else{
+        } else {
             vendedorAlta.setNombre(v.getNombre());
         }
-        
+
         if (v.getDomicilio().isEmpty() || v.getDomicilio() == null) {
             throw new WebException("El domicilio no puede estar vacio");
-        }else{
+        } else {
             vendedorAlta.setDomicilio(v.getDomicilio());
         }
-        
+
         if (v.getCiudad() == null) {
             throw new WebException("Ls ciudad no puede ser nula");
         } else {
             vendedorAlta.setCiudad(ciudadService.findById(v.getCiudad()));
         }
-        
-        if (v.getContactoMail().isEmpty() || v.getContactoMail()== null) {
+
+        if (v.getContactoMail().isEmpty() || v.getContactoMail() == null) {
             throw new WebException("El mail no puede estar vacio");
-        }else{
+        } else {
             vendedorAlta.setContactoMail(v.getContactoMail());
         }
-        
-        if (v.getContactoCel().isEmpty() || v.getContactoCel()== null) {
+
+        if (v.getContactoCel().isEmpty() || v.getContactoCel() == null) {
             throw new WebException("El numero de celular no puede estar vacio");
-        }else{
+        } else {
             vendedorAlta.setContactoCel(v.getContactoCel());
         }
-        
+
         vendedorAlta.setAlta(new Date());
         vendedorAlta.setBaja(null);
         vendedorAlta.setNivel(Nivel.SEMILLA);
-        save(vendedorAlta); 
-       
+        save(vendedorAlta);
+
     }
-    
+
     @Transactional
     public void deshabilitarVendedor(String id) throws WebException {
-        Optional<Vendedor> respuesta = vr.findById(id);
+        Optional<Vendedor> respuesta = vendedorRepository.findById(id);
         if (respuesta.isPresent()) {
             Vendedor vendedor = respuesta.get();
             vendedor.setBaja(new Date());
-            vr.save(vendedor);
+            vendedorRepository.save(vendedor);
         } else {
             throw new WebException("No se encontró el vendedor solicitado");
         }
     }
-    
+
     @Transactional
     public void habilitarVendedor(String id) throws WebException {
-        Optional<Vendedor> respuesta = vr.findById(id);
+        Optional<Vendedor> respuesta = vendedorRepository.findById(id);
         if (respuesta.isPresent()) {
             Vendedor vendedor = respuesta.get();
             vendedor.setBaja(null);
-            vr.save(vendedor);
+            vendedorRepository.save(vendedor);
         } else {
             throw new WebException("No se encontró el cliente solicitado.");
         }
     }
 
-    public List<Vendedor> listAll() {
-        return vr.findAll();
+    public List<Vendedor> listAll() throws WebException {
+        return vendedorRepository.findAll();
     }
 
     //buscador general
-    public List<Vendedor> listAllByQ(String query) { 
-        return vr.findAllByQ("%" + query + "%");
+    public List<Vendedor> listAllByQ(String query) throws WebException {
+        return vendedorRepository.findAllByQ("%" + query + "%");
     }
 
-    public List<Vendedor> listAllbyCiudad(String nombre) {
-        return vr.findAllByCiudad(nombre);
+    public List<Vendedor> listAllbyCiudad(String nombre) throws WebException {
+        return vendedorRepository.findAllByCiudad(nombre);
     }
 
-    public Optional<Vendedor> findById(String id) {
-        return vr.findById(id);
+    public Optional<Vendedor> findById(String id) throws WebException {
+        return vendedorRepository.findById(id);
     }
 
-   public Vendedor findByCuit (String cuit){
-       return vr.findByCuit(cuit);
- }
+    public Vendedor findByCuit(String cuit) throws WebException {
+        return vendedorRepository.findByCuit(cuit);
+    }
 
     /*   ELIMINAR     */
     @Transactional
-    public void delete(Vendedor v) {
-        vr.delete(v);
+    public void delete(Vendedor v) throws WebException {
+        vendedorRepository.delete(v);
     }
 
 //    @Transactional
@@ -135,43 +134,62 @@ public class VendedorServicio {
 //        }
 //        vr.saveAll(vendedores);
 //    }
-
     @Transactional
-    public void deleteById(String cuit) {
-        Optional<Vendedor> op = vr.findById(cuit);
+    public void deleteById(String cuit) throws WebException {
+        Optional<Vendedor> op = vendedorRepository.findById(cuit);
         if (op.isPresent()) {
-            vr.delete(op.get());
+            vendedorRepository.delete(op.get());
         }
     }
 
     @Transactional
-    public void modificarVendedor(Vendedor vendedor) throws WebException {
-        if (vendedor.getCuit() == null) {
-            throw new WebException("El cuit no puede ser nulo.");
-        }
-        if (vendedor.getNombre() == null) {
-            throw new WebException("El nombre no puede ser nulo.");
-        }
-        if (vendedor.getDomicilio() == null | vendedor.getDomicilio().isEmpty()) {
-            throw new WebException("El domicilio no puede ser nulo.");
-        }
-        if (vendedor.getCiudad() == null) {
-            throw new WebException("La ciudad no puede ser nula.");
-        }
-        if (vendedor.getContactoMail().isEmpty() || vendedor.getContactoMail()== null) {
-            throw new WebException("El mail no puede estar vacio");
-        }
-        if (vendedor.getContactoCel().isEmpty() || vendedor.getContactoCel()== null) {
-            throw new WebException("El numero de celular no puede estar vacio");
-        }
-        
-        vendedor.setCuit(vendedor.getCuit());
-        vendedor.setNombre(vendedor.getNombre());
-        vendedor.setDomicilio(vendedor.getDomicilio());
-        vendedor.setCiudad(vendedor.getCiudad());
-        vendedor.setContactoMail(vendedor.getContactoMail());
-        vendedor.setContactoCel(vendedor.getContactoCel());
-        vr.save(vendedor);
+    public void modificarVendedor(String cuit, String nombre, String domicilio, String idCiudad, String contactoMail, String contactoCel) throws WebException {
 
+        Optional<Vendedor> optional = vendedorRepository.findById(cuit);
+        
+        Ciudad ciudad = ciudadService.buscarPorId(idCiudad);
+
+        if (optional.isPresent()) {
+            Vendedor vendedor = optional.get();
+
+            if (cuit.isEmpty()) {
+                throw new WebException("Debes indicar tu cuit.");
+            } else {
+                vendedor.setCuit(cuit);
+            }
+            if (nombre.isEmpty()) {
+                throw new WebException("Debes indicar tu/s nombre/s.");
+            } else {
+                vendedor.setNombre(nombre);
+            }
+            if (domicilio.isEmpty()) {
+                throw new WebException("Debes indicar tu domicilio.");
+            } else {
+                vendedor.setDomicilio(domicilio);
+            }
+            if (ciudad == null) {
+                throw new WebException("Debes indicar tu ciudad.");
+            } else {
+                vendedor.setCiudad(ciudad);
+            }
+            if (contactoMail.isEmpty()) {
+                throw new WebException("Debes indicar tu E-mail.");
+            } else {
+                vendedor.setContactoMail(contactoMail);
+            }
+            if (contactoMail.isEmpty()) {
+                throw new WebException("Debes indicar tu E-mail.");
+            } else {
+                vendedor.setContactoMail(contactoMail);
+            }
+            if (contactoCel.isEmpty()) {
+                throw new WebException("Debes indicar tu numero de celular.");
+            } else {
+                vendedor.setContactoMail(contactoMail);
+            }
+            vendedorRepository.save(vendedor);
+        }else{
+         throw new WebException("No se encontro el vendedor.");   
+        }
     }
 }

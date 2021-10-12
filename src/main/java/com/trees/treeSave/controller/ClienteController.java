@@ -1,6 +1,8 @@
 package com.trees.treeSave.controller;
 
+import com.trees.treeSave.Entity.Ciudad;
 import com.trees.treeSave.Entity.Cliente;
+import com.trees.treeSave.Entity.Foto;
 import com.trees.treeSave.excepciones.WebException;
 import com.trees.treeSave.services.CiudadService;
 import com.trees.treeSave.services.ClienteService;
@@ -77,14 +79,16 @@ public class ClienteController {
     }
 
     @PostMapping("/save")
-    public String guardarCliente(Model model, @RequestParam MultipartFile archivo, RedirectAttributes redirectAttributes,
-            @ModelAttribute Cliente cliente, @RequestParam String action, @RequestParam String nombres, @RequestParam String apellido,
-            @RequestParam String contactoCel, @RequestParam String contactoMail, @RequestParam Date fechaNacimiento,
-            @RequestParam String documento) {
+    public String guardarCliente(Model model, @RequestParam(required = false) MultipartFile archivo, RedirectAttributes redirectAttributes,
+            @ModelAttribute Cliente cliente, /*@ModelAttribute Ciudad ciudad,*/ @ModelAttribute Foto foto, @RequestParam String action, @RequestParam String nombres, @RequestParam String apellido,
+            @RequestParam String contactoCel, @RequestParam String contactoMail, @RequestParam(required = false) Date fechaNacimiento,
+            @RequestParam(required = true) String documento, @RequestParam(required = false) String idCiudad) {
         try {
             if (action.equals("edit")) {
-                clienteService.modificarCliente(archivo, nombres, apellido, contactoCel, contactoMail, fechaNacimiento, documento);
+                
                 redirectAttributes.addFlashAttribute("success", "Cliente modificado con éxito.");
+                clienteService.modificarCliente(archivo, nombres, apellido, contactoCel, contactoMail, fechaNacimiento, documento, idCiudad);
+                 
                 return "redirect:/";
             } else {
                 clienteService.validarCliente(cliente, archivo); //valida y guarda cliente en la bd
@@ -94,12 +98,14 @@ public class ClienteController {
         } catch (WebException ex) {
             model.addAttribute("error", ex.getMessage());
             model.addAttribute("cliente", cliente);
+            model.addAttribute("ciudades", ciudadService.listAll());
+            model.addAttribute("foto", archivo);
             return "registro-cliente";
         }
         return "redirect:/registro";
     }
 
-    //ESTE METODO TRANSFORMA HACE LEGIBLE EL DATE RECIBIDO EN LA VISTA CLIENTEFORM
+    //ESTE METODO HACE LEGIBLE EL DATE RECIBIDO EN LA VISTA CLIENTEFORM
     @InitBinder
     private void dateBinder(WebDataBinder binder) {
         //The date format to parse or output your dates

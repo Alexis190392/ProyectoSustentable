@@ -1,14 +1,15 @@
 C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\Entity\Categoria.java
+C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\Entity\UserVendedor.java
 C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\TreeSaveApplication.java
 C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\Entity\Vendedor.java
 C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\Entity\Lista.java
 C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\enumeraciones\TipoDoc.java
 C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\repositories\ListaRepository.java
 C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\controller\LoginController.java
-C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\Entity\Users.java
+C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\Entity\UserCliente.java
 C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\Entity\Cliente.java
-C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\repositories\UserRepository.java
-C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\controller\UserController.java
+C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\repositories\UserCRepository.java
+C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\repositories\UserVRepository.java
 C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\controller\MainController.java
 C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\services\ClienteService.java
 C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\controller\ProductoController.java
@@ -31,6 +32,7 @@ C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com
 C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\enumeraciones\Nivel.java
 C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\enumeraciones\Role.java
 C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\repositories\ClienteRepository.java
+C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\controller\UserCController.java
 C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\services\ProductoServicio.java
 C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\repositories\CiudadRepository.java
 C:\Users\Fede\Documents\Egg\PROYECTO FINAL\ProyectoSustentable\src\main\java\com\trees\treeSave\controller\RegisterController.java

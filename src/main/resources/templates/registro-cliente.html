@@ -51,7 +51,7 @@
             <div class=" d-flex justify-content-center m-3">
                 <label for="ciudad" class="form-label">Ciudad</label>
                 <div>
-                    <select class="form-select ms-2" th:field="${cliente.ciudad.id}">
+                    <select class="form-select ms-2" th:field="${cliente.ciudad.id}" name="idCiudad">
                         <option th:each="c : ${ciudades}" th:text="${c.nombre}" th:value="${c.id}" th:selected="${cliente.ciudad != null && c.id == cliente.ciudad.id}"></option>
                     </select>
                 </div>

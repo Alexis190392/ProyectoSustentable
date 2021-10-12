@@ -39,7 +39,10 @@
                             <!-- Button trigger modal registrarse -->
 
                             <a type="button" sec:authorize="!isAuthenticated()" th:href="@{/cliente/form}" class="btn btn-warning" >
-                                Registrarse
+                                Registrarse como cliente
+                            </a>
+                              <a type="button" sec:authorize="!isAuthenticated()" th:href="@{/vendedor/form}" class="btn btn-warning" >
+                                Registrarse como vendedor
                             </a>
                             <!--button login-->
 

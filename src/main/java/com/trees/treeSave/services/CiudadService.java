@@ -52,6 +52,10 @@ public class CiudadService {
         return ciudadRepository.findById(id);
     }
 
+    public Ciudad buscarPorId(String id) {
+        return ciudadRepository.buscarPorId(id);
+    }
+    
     @Transactional
     public void delete(Ciudad ciudad) {
         ciudadRepository.delete(ciudad);
@@ -66,25 +70,5 @@ public class CiudadService {
             ciudadRepository.delete(ciudad);
 
         }
-    }
-
-    @Transactional
-    public Ciudad actualizar(String idCiudad) {
-
-        try {
-            Ciudad ciudad = new Ciudad();
-            if (idCiudad != null) {
-                Optional<Ciudad> respuesta = ciudadRepository.findById(idCiudad);
-                if (respuesta.isPresent()) {
-                    ciudad = respuesta.get();
-                }
-            }
-
-            return ciudadRepository.save(ciudad);
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
-
-        return null;
     }
 }

@@ -214,16 +214,43 @@ public class ClienteService {
 //    }
     @Transactional
     public void modificarCliente(MultipartFile archivo, String nombres, String apellido,
-            String contactoCel, String contactoMail, Date fechaNacimiento, String documento) throws WebException {
+            String contactoCel, String contactoMail, Date fechaNacimiento, String documento, String idCiudad) throws WebException {
 
+       Ciudad ciudad = ciudadService.buscarPorId(idCiudad);
+        
         Optional<Cliente> optional = clienteRepository.findById(documento);
         if (optional.isPresent()) {
             Cliente cliente = optional.get();
-            cliente.setNombres(nombres);
-            cliente.setApellido(apellido);
-            cliente.setContactoCel(contactoCel);
-            cliente.setContactoMail(contactoMail);
-            cliente.setFechaNacimiento(fechaNacimiento);
+            if (nombres.isEmpty()) {
+                throw new WebException("Debes indicar tu/s nombre/s.");
+            } else {
+                cliente.setNombres(nombres);
+            }
+            if (apellido.isEmpty()) {
+                throw new WebException("Debes indicar tu apellido.");
+            } else {
+                cliente.setApellido(apellido);
+            }
+            if (nombres.isEmpty()) {
+                throw new WebException("Debes indicar tu celular.");
+            } else {
+                cliente.setContactoCel(contactoCel);
+            }
+            if (nombres.isEmpty()) {
+                throw new WebException("Debes indicar tu E-mail.");
+            } else {
+                cliente.setContactoMail(contactoMail);
+            }
+            if (nombres.isEmpty()) {
+                throw new WebException("Debes indicar tu/s nombre/s.");
+            } else {
+                cliente.setFechaNacimiento(fechaNacimiento);
+            }
+            if (ciudad == null) {
+                throw new WebException("Debes indicar tu ciudad.");
+            } else {
+                cliente.setCiudad(ciudad);
+            }
 
             String idFoto = null;
             if (cliente.getFoto() != null) {
@@ -233,18 +260,10 @@ public class ClienteService {
 
             cliente.setFoto(foto);
 
-            String idCiudad = null;
-            if (cliente.getCiudad() != null) {
-                idCiudad = cliente.getCiudad().getId();
-            }
-            Ciudad ciudad = ciudadService.actualizar(idCiudad);
 
-            cliente.setCiudad(ciudad);
-
-//            validarCliente(cliente, archivo);
             clienteRepository.save(cliente);
         } else {
-            throw new WebException("No se encontro el cliente");
+            throw new WebException("No se encontro el cliente.");
         }
 
     }

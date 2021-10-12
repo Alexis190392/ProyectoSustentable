@@ -2,7 +2,7 @@ package com.trees.treeSave.controller;
 
 import com.trees.treeSave.Entity.Ciudad;
 import com.trees.treeSave.Entity.Cliente;
-import com.trees.treeSave.Entity.Users;
+import com.trees.treeSave.Entity.UserCliente;
 import com.trees.treeSave.services.CiudadService;
 import com.trees.treeSave.services.ClienteService;
 import com.trees.treeSave.services.UserService;
@@ -23,10 +23,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/usuario")
-public class UserController {
+public class UserCController {
 
     @Autowired
-    private UserService usuarioServicio;
+    private UserService userService;
 
     @Autowired
     private CiudadService ciudadService;
@@ -34,16 +34,30 @@ public class UserController {
     @Autowired
     private ClienteService clienteService;
 
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
-    @GetMapping("/list")
-    public String listarUsuarios(Model model, @RequestParam(required = false) String q) {
+//    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    @GetMapping("/listC")
+    public String listarClientes(Model model, @RequestParam(required = false) String q) {
         if (q != null) {
 //            model.addAttribute("usuarios", usuarioServicio.listAllByQ(q));
-            model.addAttribute("usuarios", usuarioServicio.listAll());
+            model.addAttribute("usuarios",userService.listAllCliente());
         } else {
-            model.addAttribute("usuarios", usuarioServicio.listAll());
+            model.addAttribute("usuarios", userService.listAllCliente());
         }
 
         return "usuario-list";
     }
+
+//    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    @GetMapping("/listV")
+    public String listarVendedores(Model model, @RequestParam(required = false) String q) {
+        if (q != null) {
+//            model.addAttribute("usuarios", usuarioServicio.listAllByQ(q));
+            model.addAttribute("usuarios", userService.listAllVendedor());
+        } else {
+            model.addAttribute("usuarios", userService.listAllVendedor());
+        }
+
+        return "vendedor-list"; //return "vendedor-list.html";
+    }
+
 }
