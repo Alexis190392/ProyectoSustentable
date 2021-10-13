@@ -2,6 +2,8 @@
 <html lang="es-AR" xmlns:th="http://www.thymeleaf.org">
     <head th:replace="/fragments/head :: head">
 
+
+
     </head>
 
     <body>
@@ -15,14 +17,11 @@
                             class="display-3 fw-bold lh-1 mb-1">
                             SavesTrees 
                         </h1>
-                        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-
-                            <a class="nav-link px-2 text-white" th:href="@{/super}">Super Usuario</a>
-                            <a class="nav-link px-2 text-white" th:href="@{/usuario}">Usuario</a>
-                            <a class="nav-link px-2 text-white" th:href="@{/vendedor}">Vendedor</a>
-
-
-
+                        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">                          
+                            <a class="nav-link px-7 text-white" th:href="@{/super}">Super Usuario</a>
+                            <a class="nav-link px-7 text-white" sec:authorize="isAuthenticated()" th:href="@{/usuario}">Usuario</a>
+                            <a class="nav-link px-7 text-white" th:href="@{/vendedor}">Vendedor</a>
+                            <a class="navbar-brand" sec:authorize="isAuthenticated()" th:href="@{/logout}">Log out</a>
                         </ul>
 
                         <div th:if="${error}" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
@@ -39,9 +38,17 @@
                             <!-- Button trigger modal registrarse -->
 
                             <a type="button" sec:authorize="!isAuthenticated()" th:href="@{/cliente/form}" class="btn btn-warning" >
-                                Registrarse
+                                Registrarse como cliente
+                            </a>
+                              <a type="button" sec:authorize="!isAuthenticated()" th:href="@{/vendedor/form}" class="btn btn-warning" >
+                                Registrarse como vendedor
                             </a>
                             <!--button login-->
+
+
+
+                            <button type="button" sec:authorize="!isAuthenticated()" class="fas fa-sign-in-alt" data-bs-toggle="modal"
+                                    style=" width: 1.8em; height: auto; margin-left: 4rem" data-bs-target="#exampleModal1">
 
 
 
@@ -63,11 +70,10 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
 
-                        <form th:action="@{form/logincheck}" method="POST" class="p-4 p-md-5 border rounded-3 bg-light">
-
+                        <form th:action="@{/logincheck}" method="POST" class="p-4 p-md-5 border rounded-3 bg-light">
                             <div class="form-floating mb-3">
                                 <label for="username">Username</label>
-                                <input type="text" class="form-control" id="floatingInput" placeholder="username">
+                                <input type="text" class="form-control" id="floatingInput" name="username">
                             </div>
                             <div class="form-floating mb-3">
                                 <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
@@ -116,6 +122,8 @@
                     <div class="col-md-10 mx-auto col-lg-5">
                         <form th:action="@{/logincheck}" method="POST" class="p-4 p-md-5 border rounded-3 bg-light">
                             <div class="form-floating mb-2">
+
+
 
 
 
@@ -223,7 +231,7 @@
             <div class="b-example-divider"></div>
 
             <div class="container-fluid  bg-dark  col-xl-10 col-xxl-8 px-10 py-10 m-0 vw-100">
-          s      <div class="row align-items-center g-lg-5 py-5">
+               <div class="row align-items-center g-lg-5 py-5">
                     <div class="col-lg-10 text-center text-white text-lg-start">
                         <h1 class="display-4 fw-bold lh-1 mb-3">Develop Team</h1>
                         <p>lexis</p>

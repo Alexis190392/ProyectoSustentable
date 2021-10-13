@@ -1,6 +1,5 @@
 package com.trees.treeSave;
 
-
 import com.trees.treeSave.services.UserService;
 import static javafx.scene.input.KeyCode.T;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,33 +11,29 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-
-
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class Security extends WebSecurityConfigurerAdapter{
-    
+public class Security extends WebSecurityConfigurerAdapter {
+
     //Autenticacion y las autorizaciones
-    
-    
     //UsersDetailsService -> loadByUserName -> UsuarioServicio
-    @Autowired 
-    private UserService us;
-    
-    
+    @Autowired
+    private UserService userService;
+
+
+
     //Un metodo que va a configurar la autenticacion
-    
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(us).passwordEncoder(new BCryptPasswordEncoder());
+        auth.userDetailsService(userService).passwordEncoder(new BCryptPasswordEncoder());
+        //auth.userDetailsService(userVService).passwordEncoder(new BCryptPasswordEncoder());
     }
-    
+
     //la configuracion las peticiones http
-    
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/css/*","/img/*","/js/*").permitAll()
+        http.authorizeRequests().antMatchers("/css/*", "/img/*", "/js/*").permitAll()
                 .and().formLogin()
                 .loginPage("/login")
                 .usernameParameter("username")
@@ -51,6 +46,6 @@ public class Security extends WebSecurityConfigurerAdapter{
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/login?logout")
                 .and().csrf().disable();
-        
+
     }
 }

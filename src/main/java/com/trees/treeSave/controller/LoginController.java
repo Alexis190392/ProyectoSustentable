@@ -1,8 +1,10 @@
 package com.trees.treeSave.controller;
 
+import com.trees.treeSave.Entity.Vendedor;
 import com.trees.treeSave.excepciones.WebException;
 import com.trees.treeSave.services.ClienteService;
 import com.trees.treeSave.services.UserService;
+import com.trees.treeSave.services.VendedorServicio;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,22 +24,27 @@ public class LoginController {
     @Autowired
     private ClienteService cs;
 
+    @Autowired
+    private VendedorServicio vendedorServicio;
+
     @GetMapping("")
     public String login(Model model, @RequestParam(required = false) String error,
-             @RequestParam(required = false) String username,
-             @RequestParam(required = false) String logout,
-             RedirectAttributes redat) {
+            @RequestParam(required = false) String username,
+            @RequestParam(required = false) String logout,
+            RedirectAttributes redat) {
         if (error != null) {
             model.addAttribute("error", "El usuario o la contraseña son incorrectos");
         }
         if (username != null) {
             model.addAttribute("username", username);
             try {
-                redat.addFlashAttribute("cliente", cs.findByDocumento(us.findByUsername(username).getDocumento()));
+                redat.addFlashAttribute("vendedor", vendedorServicio.findByCuit(us.findVendedorByUsername(username).getCuit()));
+                redat.addFlashAttribute("cliente", cs.findByDocumento(us.findClienteByUsername(username).getDocumento()));
             } catch (WebException ex) {
                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+
         return "index.html";
     }
 

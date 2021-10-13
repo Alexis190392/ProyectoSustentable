@@ -2,9 +2,11 @@ package com.trees.treeSave.controller;
 
 import com.trees.treeSave.Entity.Cliente;
 import com.trees.treeSave.Entity.Producto;
+import com.trees.treeSave.Entity.Vendedor;
 import com.trees.treeSave.excepciones.WebException;
 import com.trees.treeSave.services.ClienteService;
 import com.trees.treeSave.services.ProductoServicio;
+import com.trees.treeSave.services.VendedorServicio;
 import java.util.logging.Level;
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,9 @@ public class FotoController {
 
     @Autowired
     private ProductoServicio productoService;
+    
+    @Autowired
+    private VendedorServicio vendedorService;
 
     @GetMapping("/cliente")
     public ResponseEntity<byte[]> fotoCliente(@RequestParam(required = true) String id) {
@@ -65,6 +70,28 @@ public class FotoController {
             }
 
             byte[] foto = p.getFoto().getContenido();
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.IMAGE_JPEG);
+
+            return new ResponseEntity<>(foto, headers, HttpStatus.OK);
+        } catch (WebException ex) {
+            java.util.logging.Logger.getLogger(FotoController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    
+    @GetMapping("/vendedor")
+    public ResponseEntity<byte[]> fotoVendedor(@RequestParam(required = true) String id) {
+
+        try {
+            Vendedor vendedor = vendedorService.findByCuit(id);
+
+            if (vendedor.getFoto() == null) {
+                throw new WebException("El usuario no tiene una foto asignada.");
+            }
+
+            byte[] foto = vendedor.getFoto().getContenido();
 
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.IMAGE_JPEG);

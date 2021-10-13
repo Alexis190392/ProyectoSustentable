@@ -1,15 +1,21 @@
 package com.trees.treeSave.controller;
 
+import com.trees.treeSave.Entity.Ciudad;
 import com.trees.treeSave.Entity.Cliente;
+import com.trees.treeSave.Entity.Foto;
 import com.trees.treeSave.excepciones.WebException;
 import com.trees.treeSave.services.CiudadService;
 import com.trees.treeSave.services.ClienteService;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,8 +29,8 @@ public class ClienteController {
 
     @Autowired
     private ClienteService clienteService;
-    
-    @Autowired 
+
+    @Autowired
     private CiudadService ciudadService;
 
 //    @GetMapping("/usuario")
@@ -56,14 +62,14 @@ public class ClienteController {
                 model.addAttribute("cliente", optional.get());
                 model.addAttribute("action", action);
             } else {
-                return "registro-usuario"; /// a modificar en la parte de perfil
+                return "registro-cliente.html"; /// a modificar en la parte de perfil
             }
         } else {
             model.addAttribute("cliente", new Cliente());
             model.addAttribute("action", action);
         }
         model.addAttribute("ciudades", ciudadService.listAll());
-        return "registro-cliente";
+        return "registro-cliente.html";
     }
 
     @GetMapping("/delete")
@@ -73,23 +79,40 @@ public class ClienteController {
     }
 
     @PostMapping("/save")
-    public String guardarCliente(Model model, @RequestParam(required = true) MultipartFile archivo, RedirectAttributes redirectAttributes,
-            @ModelAttribute Cliente cliente, @RequestParam(required = false) String action) {
+    public String guardarCliente(Model model, @RequestParam(required = false) MultipartFile archivo, RedirectAttributes redirectAttributes,
+            @ModelAttribute Cliente cliente, /*@ModelAttribute Ciudad ciudad,*/ @ModelAttribute Foto foto, @RequestParam String action, @RequestParam String nombres, @RequestParam String apellido,
+            @RequestParam String contactoCel, @RequestParam String contactoMail, @RequestParam(required = false) Date fechaNacimiento,
+            @RequestParam(required = true) String documento, @RequestParam(required = false) String idCiudad) {
         try {
             if (action.equals("edit")) {
-                clienteService.modificarCliente(archivo, cliente);
+                
                 redirectAttributes.addFlashAttribute("success", "Cliente modificado con éxito.");
+                clienteService.modificarCliente(archivo, nombres, apellido, contactoCel, contactoMail, fechaNacimiento, documento, idCiudad);
+                 
+                return "redirect:/";
             } else {
                 clienteService.validarCliente(cliente, archivo); //valida y guarda cliente en la bd
                 redirectAttributes.addFlashAttribute("success", "Cliente guardado con éxito.");
             }
-redirectAttributes.addFlashAttribute("documento",cliente.getDocumento());
+            redirectAttributes.addFlashAttribute("documento", cliente.getDocumento());
         } catch (WebException ex) {
             model.addAttribute("error", ex.getMessage());
             model.addAttribute("cliente", cliente);
+            model.addAttribute("ciudades", ciudadService.listAll());
+            model.addAttribute("foto", archivo);
             return "registro-cliente";
         }
         return "redirect:/registro";
     }
 
+    //ESTE METODO HACE LEGIBLE EL DATE RECIBIDO EN LA VISTA CLIENTEFORM
+    @InitBinder
+    private void dateBinder(WebDataBinder binder) {
+        //The date format to parse or output your dates
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        //Create a new CustomDateEditor
+        CustomDateEditor editor = new CustomDateEditor(dateFormat, true);
+        //Register it as custom editor for the Date type
+        binder.registerCustomEditor(Date.class, editor);
+    }
 }

@@ -3,7 +3,7 @@
 
     <head th:replace="/fragments/head :: head">
     </head>
-
+<!--ESTE HTML SOLO SE USA PARA EDITAR EL PERFIL DE UN USUARIO/CLIENTE OK????????????????????????????-->
     <body>
         <header th:replace="/fragments/header :: header"></header>
         <div th:if="${error}" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
@@ -15,57 +15,52 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
 
-        <form th:action="@{/cliente/save}" method="POST" th:object="${cliente}" enctype="multipart/form-data">
-            <div th:object="${cliente}">
-                <input type="hidden" th:value="*{documento}">    
+        <form action="/usuario/actualizar-perfil" method="POST" enctype="multipart/form-data">
+
+            <input  th:value="${action}" name="action">
+            <div class="d-flex justify-content-center m-3">
+                <div>
+                    <label class="form-label">Documento</label>
+                    <input type="number" name="documento" th:value="${perfil.documento}" class="form-control"/>
+                </div>
             </div>
-            <br>
-            <div>
-                <input type="hidden" th:value="${action}" name="action">
-            </div>
-            <br>
             <div class="d-flex justify-content-center m-3">
                 <div>
                     <label class="form-label ">Nombres</label>
-                    <input type="text" th:field="*{nombres}" class="form-control ">
+                    <input type="text" name="nombres" th:value="${perfil.nombres}" class="form-control"/>
                 </div>
             </div>
             <div class="d-flex justify-content-center m-3">
                 <div>
                     <label class="form-label ">Apellido</label>
-                    <input type="text" th:field="*{apellido}" class="form-control ">
-                </div>
-            </div>
-            <div class="d-flex justify-content-center m-3">
-                <div>
-                    <label class="form-label">Documento</label>
-                    <input type="number" th:field="*{documento}" class="form-control">
+                    <input type="text" name="apellido" th:value="${perfil.apellido}" class="form-control"/>
                 </div>
             </div>
             <div class="d-flex justify-content-center m-3">
                 <div>
                     <label class="form-label ">Telefono</label>
-                    <input type="number" th:field="*{contactoCel}" class="form-control ">
+                    <input type="number" name="contactoCel" th:value="${perfil.contactoCel}" class="form-control"/>
                 </div>
             </div>
             <div class=" d-flex justify-content-center m-3">
                 <label for="ciudad" class="form-label">Ciudad</label>
                 <div>
-                    <select class="form-select ms-2" th:field="${cliente.ciudad.id}" name="idCiudad">
-                        <option th:each="c : ${ciudades}" th:text="${c.nombre}" th:value="${c.id}" th:selected="${cliente.ciudad != null && c.id == cliente.ciudad.id}"></option>
+                    <input type="hidden" th:value="${perfil.ciudad.id}" name="idCiudad">
+                    <select class="form-select ms-2" th:field="${perfil.ciudad.id}">
+                        <option th:each="c : ${ciudades}" th:text="${c.nombre}" th:value="${c.id}" th:selected="${perfil.ciudad != null && c.id == perfil.ciudad.id}"></option>
                     </select>
                 </div>
             </div>
             <div class="d-flex justify-content-center m-3">
                 <div>
                     <label class="form-label ">Fecha de nacimiento</label>
-                    <input type="date" th:field="*{fechaNacimiento}" class="form-control" th:selected="${cliente.fechaNacimiento != null}">
+                    <input type="date" name="fechaNacimiento" th:value="${perfil.fechaNacimiento}" class="form-control"/>
                 </div>
             </div>
             <div class="d-flex justify-content-center m-3">
                 <div>
                     <label class="form-label ">E-mail</label>
-                    <input type="email" th:field="*{contactoMail}" class="form-control" >
+                    <input type="email" name="contactoMail" th:value="${perfil.contactoMail}" class="form-control"/>
                 </div>
             </div>
             <div class="d-flex justify-content-center m-3">
@@ -76,7 +71,7 @@
             </div>
             <div class="d-flex justify-content-center m-3">
                 <div class="col d-flex justify-content-center mt-5">
-                    <button type="submit" class="btn-primary">Siguiente</button>
+                    <button type="submit" class="btn-primary">Actualizar</button>
                 </div>
             </div>
         </form>
