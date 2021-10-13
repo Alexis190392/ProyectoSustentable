@@ -2,6 +2,7 @@
 package com.trees.treeSave.controller;
 
 import com.trees.treeSave.Entity.Ciudad;
+import com.trees.treeSave.excepciones.WebException;
 import com.trees.treeSave.services.CiudadService;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,7 +61,7 @@ public class CiudadController {
     }
 
     @GetMapping("/delete")
-    public String eliminarCiudad(@RequestParam(required = true) String id) {
+    public String eliminarCiudad(@RequestParam(required = true) String id) throws WebException {
         ciudadService.deleteById(id);
         return "redirect:/ciudad/list";
     }
