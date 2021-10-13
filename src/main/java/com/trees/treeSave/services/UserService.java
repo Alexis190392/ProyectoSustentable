@@ -85,6 +85,7 @@ public class UserService implements UserDetailsService {
         usuario.setNivel(Nivel.SEMILLA);
         usuario.setUsername(username);
         usuario.setPassword(encoder.encode(password));
+        usuario.setAlta(c.getAlta());
         usuario.setFoto(c.getFoto());
         usuario.setRol(Role.CLIENTE);
         clienteService.delete(c);
