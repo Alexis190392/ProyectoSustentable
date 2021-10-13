@@ -19,10 +19,10 @@ public class VendedorServicio {
 
     @Autowired
     private VendedorRepository vendedorRepository;
-    
+
     @Autowired
     private FotoService fotoService;
-    
+
     @Autowired
     private CiudadService ciudadService;
 
@@ -72,8 +72,7 @@ public class VendedorServicio {
         } else {
             vendedorAlta.setContactoCel(v.getContactoCel());
         }
-    
-        
+
         Foto foto = fotoService.save(file);
         vendedorAlta.setFoto(foto);
 
@@ -135,14 +134,15 @@ public class VendedorServicio {
         vendedorRepository.delete(v);
     }
 
-//    @Transactional
-//    public void deleteFieldCiudad(Ciudad ciudad) {
-//        List<Vendedor> vendedores = listAllbyCiudad(ciudad.getNombre());
-//        for (Vendedor vendedor : vendedores) {
-//            vendedor.setCiudad(null);
-//        }
-//        vr.saveAll(vendedores);
-//    }
+    @Transactional
+    public void deleteFieldCiudad(Ciudad ciudad) throws WebException {
+        List<Vendedor> vendedores = listAllbyCiudad(ciudad.getNombre());
+        for (Vendedor vendedor : vendedores) {
+            vendedor.setCiudad(null);
+        }
+        vendedorRepository.saveAll(vendedores);
+    }
+
     @Transactional
     public void deleteById(String cuit) throws WebException {
         Optional<Vendedor> op = vendedorRepository.findById(cuit);
@@ -152,53 +152,49 @@ public class VendedorServicio {
     }
 
     @Transactional
-    public void modificarVendedor(String cuit, String nombre, String domicilio, String idCiudad, String contactoMail, String contactoCel) throws WebException {
+    public void modificarVendedor(MultipartFile archivo, Vendedor vendedor) throws WebException {
+        Vendedor vendedorBuscado = findById(vendedor.getCuit()).get();
 
-        Optional<Vendedor> optional = vendedorRepository.findById(cuit);
-        
-        Ciudad ciudad = ciudadService.buscarPorId(idCiudad);
-
-        if (optional.isPresent()) {
-            Vendedor vendedor = optional.get();
-
-            if (cuit.isEmpty()) {
-                throw new WebException("Debes indicar tu cuit.");
-            } else {
-                vendedor.setCuit(cuit);
-            }
-            if (nombre.isEmpty()) {
-                throw new WebException("Debes indicar tu/s nombre/s.");
-            } else {
-                vendedor.setNombre(nombre);
-            }
-            if (domicilio.isEmpty()) {
-                throw new WebException("Debes indicar tu domicilio.");
-            } else {
-                vendedor.setDomicilio(domicilio);
-            }
-            if (ciudad == null) {
-                throw new WebException("Debes indicar tu ciudad.");
-            } else {
-                vendedor.setCiudad(ciudad);
-            }
-            if (contactoMail.isEmpty()) {
-                throw new WebException("Debes indicar tu E-mail.");
-            } else {
-                vendedor.setContactoMail(contactoMail);
-            }
-            if (contactoMail.isEmpty()) {
-                throw new WebException("Debes indicar tu E-mail.");
-            } else {
-                vendedor.setContactoMail(contactoMail);
-            }
-            if (contactoCel.isEmpty()) {
-                throw new WebException("Debes indicar tu numero de celular.");
-            } else {
-                vendedor.setContactoMail(contactoMail);
-            }
-            vendedorRepository.save(vendedor);
-        }else{
-         throw new WebException("No se encontro el vendedor.");   
+        if (vendedor.getCuit().isEmpty()) {
+            throw new WebException("Debes indicar tu cuit.");
+        } else {
+            vendedorBuscado.setCuit(vendedor.getCuit());
         }
+        if (vendedor.getNombre().isEmpty()) {
+            throw new WebException("Debes indicar tu/s nombre/s.");
+        } else {
+            vendedorBuscado.setNombre(vendedor.getNombre());
+        }
+        if (vendedor.getDomicilio().isEmpty()) {
+            throw new WebException("Debes indicar tu domicilio.");
+        } else {
+            vendedorBuscado.setDomicilio(vendedor.getDomicilio());
+        }
+        if (vendedor.getCiudad() == null) {
+            throw new WebException("Debes indicar tu ciudad.");
+        } else {
+            vendedorBuscado.setCiudad(vendedor.getCiudad());
+        }
+        if (vendedor.getContactoMail().isEmpty()) {
+            throw new WebException("Debes indicar tu E-mail.");
+        } else {
+            vendedorBuscado.setContactoMail(vendedor.getContactoMail());
+        }
+        if (vendedor.getContactoCel().isEmpty()) {
+            throw new WebException("Debes indicar tu numero de celular.");
+        } else {
+            vendedorBuscado.setContactoCel(vendedor.getContactoCel());
+        }
+        
+        String idFoto = null;
+        if (vendedor.getFoto() != null) {
+            idFoto = vendedor.getFoto().getId();
+        }
+        Foto foto = fotoService.actualizar(idFoto, archivo);
+        vendedorBuscado.setFoto(foto);
+        
+        vendedorRepository.save(vendedorBuscado);
+        
     }
 }
+

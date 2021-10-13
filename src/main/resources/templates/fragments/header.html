@@ -9,6 +9,14 @@
 </header> -->
 
 <header th:fragment="header" class="p-3 mb-3 border-bottom bg-dark text-white">
+    <div th:if="${error}" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+            <span th:text="${error}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <div th:if="${success}" class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+            <span th:text="${success}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
   <div class="container">
     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
       <a th:href="@{/}" class="d-flex navbar-brand  align-items-center mb-2 mb-lg-0 text-white text-decoration-none">

@@ -84,10 +84,10 @@ public class ClienteController {
         try {
             if (action.equals("edit")) {
                 
-                redirectAttributes.addFlashAttribute("success", "Cliente modificado con éxito.");
+                redirectAttributes.addFlashAttribute("success", "Cliente modificado con éxito. Algunos cambios se verán cuando te loguees nuevamente.");
                 clienteService.modificarCliente(archivo, cliente);
                  
-                return "redirect:/";
+                return "redirect:/usuario";
             } else {
                 clienteService.validarCliente(cliente, archivo); //valida y guarda cliente en la bd
                 redirectAttributes.addFlashAttribute("success", "Cliente guardado con éxito.");

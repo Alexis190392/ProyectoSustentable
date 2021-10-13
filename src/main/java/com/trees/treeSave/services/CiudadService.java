@@ -17,6 +17,9 @@ public class CiudadService {
 
     @Autowired
     private ClienteService clienteServicio;
+    
+    @Autowired
+    private VendedorServicio vendedorServicio;
 
     public Ciudad save(String nombre) {
         Ciudad ciudad = new Ciudad();
@@ -62,11 +65,12 @@ public class CiudadService {
     }
 
     @Transactional
-    public void deleteById(String id) {
+    public void deleteById(String id) throws WebException {
         Optional<Ciudad> optional = ciudadRepository.findById(id);
         if (optional.isPresent()) {
             Ciudad ciudad = optional.get();
             clienteServicio.deleteFieldCiudad(ciudad);
+            vendedorServicio.deleteFieldCiudad(ciudad);
             ciudadRepository.delete(ciudad);
 
         }

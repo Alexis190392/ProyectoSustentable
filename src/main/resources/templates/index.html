@@ -22,8 +22,14 @@
 
 
                             <a class="nav-link px-7 text-white" th:href="@{/super}">Super Usuario</a>
-                            <a class="nav-link px-7 text-white" sec:authorize="isAuthenticated()" th:href="@{/usuario}">Usuario</a>
-                            <a class="nav-link px-7 text-white" th:href="@{/vendedor}">Vendedor</a>
+                            <div th:object="${session.usuariosession}">
+                                <!--th:if="*{documento != null}"-->
+                                <a class="nav-link px-7 text-white" sec:authorize="isAuthenticated()" th:href="@{/usuario}">Usuario</a>
+                            </div>
+                            <div th:object="${session.usuariosession}">
+                                <a class="nav-link px-7 text-white" sec:authorize="isAuthenticated()" th:href="@{/vendedor}">Vendedor</a>
+                            </div>
+                            
                             <a class="navbar-brand" sec:authorize="isAuthenticated()" th:href="@{/logout}">Log out</a>
                         </ul>
                         <div th:if="${error}" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">

@@ -24,7 +24,7 @@ public class Vendedor {
     private String cuit;
     private String nombre;
     private String domicilio;
-    @OneToOne
+    @ManyToOne
     private Ciudad ciudad;
     private String contactoMail;
     private String contactoCel;
