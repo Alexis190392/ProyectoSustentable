@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es-AR" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/fragments/head :: head"></head>
+
+<body>
+    <header th:replace="/fragments/header :: header"></header>
+
+    <!-- Form -->
+    <div class="card container">
+        <form class="cart">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="text" class="formi form-control" placeholder="Cuit" aria-label="Cuit">
+                </div>
+
+                <div class="col-md-6">
+                    <input type="text" class="formi form-control" placeholder="Nombre" aria-label="Nombre">
+                </div>
+            </div>
+
+            <!-- Email input -->
+            <div class="col-md-12">
+                <input type="email" class="formi form-control" placeholder="Email" aria-label="Email">
+            </div>
+            <!-- domicilio -->
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="text" class="formi form-control" placeholder="Domicilio" aria-label="Domicilio">
+                </div>
+                <!-- Ciudad -->
+                <div class="col-md-4">
+
+                    <select id="inputState" class="form-select">
+                  <option selected>Ciudad</option>
+                  <option>San Rafael</option>
+                  <option>Mendoza</option>
+                </select>
+                </div>
+                <!-- telefono -->
+                <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder="Telefono" aria-label="Teléfono">
+                </div>
+            </div>
+
+            <!--Acepto terminos-->
+            <a href="">Leer términos y condiciones</a>
+            <br>
+            <br>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                <label class="form-check-label" for="invalidCheck">
+                  Acepto los terminos y condiciones
+                </label>
+                <div class="invalid-feedback">
+                    You must agree before submitting.
+                </div>
+            </div>
+            <br>
+            <button type="button" class="btn btn-secondary">Registrarse</button></form>
+    </div>
+
+    <!-- Form -->
+
+
+
+
+
+
+
+</body>
+
+
+
+</html>

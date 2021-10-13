@@ -6,11 +6,14 @@ font-family: 'Sacramento', cursive;
 font-family: 'Satisfy', cursive;
 font-family: 'Secular One', sans-serif;*/
  
+<<<<<<< Updated upstream
  h1 {
      font-family: 'Courgette', cursive;
      font-size: 800px;
  }
  
+=======
+>>>>>>> Stashed changes
  body {
      padding: 0 !important;
  }
@@ -150,6 +153,18 @@ font-family: 'Secular One', sans-serif;*/
      animation-delay: .2s;
  }
  
+<<<<<<< Updated upstream
  .loader-page>div:nth-child(3) {
      animation-delay: .2s;
  }
+=======
+ .formi {
+     margin-bottom: 1rem;
+ }
+ /*header index*/
+ 
+ .testo {
+     padding: 50rem;
+ }
+ /*header index*/
+>>>>>>> Stashed changes

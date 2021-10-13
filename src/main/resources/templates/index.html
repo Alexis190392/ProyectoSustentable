@@ -64,6 +64,7 @@
 </head>
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
 <body>
     <!--Preloader-->
@@ -81,10 +82,40 @@
 
     <header class="">
         <nav class="p-3   text-white" style="background-color: #20c997;">
+=======
+</head>
+
+<body>
+
+
+    <!--header2-->
+
+    <header>
+        <!-- Intro settings -->
+        <style>
+            /* Default height for small devices */
+            
+            #intro-example {
+                height: 1200px;
+            }
+            /* Height for devices larger than 992px */
+            
+            @media (max-width: px) {
+                #intro-example {
+                    height: 800px;
+                    width: 800px;
+                }
+            }
+        </style>
+
+        <!-- Navbar -->
+        <nav class="p-3   text-white" style="background-color: #50929b;">
+>>>>>>> Stashed changes
             <!-- aca se puede cambiar el color de la navbar -->
             <div class="container-fluid">
                 <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 
+<<<<<<< Updated upstream
                     <h1 class="display-3 fw-bold lh-1 mb-1">
                         SavesTrees </style>
                     </h1>
@@ -310,8 +341,19 @@
                     <img src="https://us.123rf.com/450wm/lumut/lumut1804/lumut180400338/99333989-dise%C3%B1o-de-ilustraci%C3%B3n-de-vector-de-plantilla-de-icono-de-%C3%A1rbol.jpg?ver=6">
 
                     </p>
+=======
+                    <p class="display-3  lh-1 mb-1">
+                        SavesTrees </style>
+                    </p>
+                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
 
+>>>>>>> Stashed changes
 
+                        <a class="nav-link px-7 text-white" th:href="@{/super}">Super Usuario</a>
+                        <a class="nav-link px-7 text-white" th:href="@{/usuario}">Usuario</a>
+                        <a class="nav-link px-7 text-white" th:href="@{/vendedor}">Vendedor</a>
+
+<<<<<<< Updated upstream
                 </div>
                 <div class="col-md-10 mx-auto col-lg-5">
                     <form th:action="@{/logincheck}" method="POST" class="p-4 p-md-5 border rounded-3 bg-light">
@@ -431,13 +473,32 @@
                 <div class="col-lg-4">
 >>>>>>> Stashed changes
                     <svg class="circulo" width="1" height="1" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><img src="https://i.pinimg.com/564x/05/3e/08/053e08a3a2013438c7eaded43766a02a.jpg">
+=======
+                    </ul>
+                    <div th:if="${error}" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                        <span th:text="${error}"></span>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    <div th:if="${param.logout}" class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+                        <span>Has finalizado la sesión con éxito.</span>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    <div class="text-end">
+
+                        <!-- Button trigger modal registrarse -->
+>>>>>>> Stashed changes
+
+                        <a type="button" sec:authorize="!isAuthenticated()" th:href="@{/cliente/form}" class="btn btn-warning">
+                    Registrarse
+                </a>
+                        <!--button login-->
 
 
 
-                        <rect width="100%" height="100%" fill="#777" />
+                        <button type="button" class="fas fa-sign-in-alt" data-bs-toggle="modal" style=" width: 1.8em; height: auto; margin-left: 4rem" data-bs-target="#exampleModal1">
+                  
 
-                        </svg>
-
+<<<<<<< Updated upstream
                     <h2>Ivy coins</h2>
                     <p>Comprar con conciencia tiene sus premios.</p>
                     <p><a class="btn btn-secondary" href="#">Ver mas... &raquo;</a></p>
@@ -445,8 +506,12 @@
                 <!-- /.col-lg-4 -->
                 <div class="col-lg-4">
                     <svg class="circulo" width="1" height="1" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 40x40" preserveAspectRatio="xMidYMid slice" focusable="false"><img src="https://i.pinimg.com/564x/07/00/29/070029a8745cf0f889fdd580f521d0c4.jpg">
+=======
+>>>>>>> Stashed changes
 
+                </button>
 
+<<<<<<< Updated upstream
 
                         <rect width="100%" height="100%" fill="#777" />
 
@@ -715,10 +780,47 @@
 
 
 
+=======
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- Navbar -->
+
+        <!-- Background image -->
+        <div id="intro-example" class="testo p-5 text-center bg-image" style="background-image: url('https://www.publicdomainpictures.net/pictures/390000/velka/save-planet.jpg'); background-repeat: no-repeat; background-position: center center">
+            <img src="" alt="">
+            <div class="mask" style="background-color: rgba(0, 0, 0, 0);">
+                <div class="d-flex justify-content-center align-items-center h-100">
+                    <div class="text-white">
+                        <h2 class="mb-3">¿Querés ser parte del cambio?</h2>
+                        <h5 class="mb-4">Salva el planeta sin salir de casa</h5>
+                        <a class="btn btn-outline-light btn-lg m-2" href="https://www.youtube.com/watch?v=c9B4TPnak1A" role="button" rel="nofollow" target="_blank">Inicia sesión</a
+            >
+            <a
+                    class="btn btn-outline-light btn-lg m-2"
+                    href="https://mdbootstrap.com/docs/standard/"
+                    target="_blank"
+                    role="button"
+            >Conocenos</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Background image -->
+  </header>
+    <!--header2-->
+
+
+
+           
+>>>>>>> Stashed changes
 
 
 
 
+<<<<<<< Updated upstream
 =======
 
                 </div>
@@ -770,6 +872,17 @@
 <<<<<<< Updated upstream
 >>>>>>> Stashed changes
 =======
+>>>>>>> Stashed changes
+=======
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+            <!-- scripts -->
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+            <script src="/js/scripts.js"></script>
+            <!-- font-awesome para iconos en botones y otras cosas (y emn svg) -->
+            <script defer src="/js/all.js"></script>
 >>>>>>> Stashed changes
 </body>
 
