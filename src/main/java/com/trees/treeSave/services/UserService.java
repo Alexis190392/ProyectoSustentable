@@ -86,6 +86,7 @@ public class UserService implements UserDetailsService {
         usuario.setUsername(username);
         usuario.setPassword(encoder.encode(password));
         usuario.setAlta(c.getAlta());
+        usuario.setBaja(c.getBaja());
         usuario.setFoto(c.getFoto());
         usuario.setRol(Role.CLIENTE);
         clienteService.delete(c);
@@ -108,9 +109,9 @@ public class UserService implements UserDetailsService {
         if (username == null || username.isEmpty()) {
             throw new WebException("El username no puede estar vacio");
         }
-//        if (findByUsername(username) != null) {
-//            throw new WebException("El username que queres usar ya existe.");
-//        }
+        if (findVendedorByUsername(username) != null) {
+            throw new WebException("El username que queres usar ya existe.");
+        }
         if (password == null || password2 == null || password.isEmpty() || password2.isEmpty()) {
             throw new WebException("La contraseña no puede estar vacía");
         }
@@ -119,12 +120,15 @@ public class UserService implements UserDetailsService {
         }
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
+      
         usuario.setCuit(v.getCuit());
         usuario.setNombre(v.getNombre());
         usuario.setDomicilio(v.getDomicilio());
         usuario.setCiudad(v.getCiudad());
         usuario.setContactoMail(v.getContactoMail());
         usuario.setContactoCel(v.getContactoCel());
+        usuario.setBaja(v.getBaja());
+        usuario.setBaja(v.getBaja());
         usuario.setNivel(Nivel.SEMILLA);
         usuario.setUsername(username);
         usuario.setPassword(encoder.encode(password));

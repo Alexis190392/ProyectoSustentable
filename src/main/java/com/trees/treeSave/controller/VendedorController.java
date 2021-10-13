@@ -77,16 +77,13 @@ public class VendedorController {
 
     @PostMapping("/save")
     public String guardarVendedor(Model model, @RequestParam(required = false) MultipartFile archivo, RedirectAttributes redirectAttributes,
-            @ModelAttribute Vendedor vendedor, @RequestParam(required = false) String action,
-            @RequestParam(required = true) String cuit, @RequestParam String nombre, @RequestParam String domicilio,
-            /*@ModelAttribute Ciudad ciudad,*/ @RequestParam(required = false) String idCiudad,
-            @RequestParam String contactoMail, @RequestParam String contactoCel) throws WebException {
-        
+            @ModelAttribute Vendedor vendedor, @RequestParam String action) throws WebException {
         try {
 
             if (action.equals("edit")) {
-                vendedorServicio.modificarVendedor(cuit, nombre, domicilio, idCiudad, contactoMail, contactoCel);
-                redirectAttributes.addFlashAttribute("success", "Vendedor modificado con éxito.");
+                vendedorServicio.modificarVendedor(archivo, vendedor);
+                redirectAttributes.addFlashAttribute("success", "Vendedor modificado con éxito. Algunos cambios se verán cuando te loguees nuevamente.");
+                return "redirect:/vendedor";
             } else {
                 vendedorServicio.validarVendedor(vendedor, archivo);
                 redirectAttributes.addFlashAttribute("success", "Comercio guardado con éxito.");
@@ -96,7 +93,7 @@ public class VendedorController {
             model.addAttribute("error", ex.getMessage());
             model.addAttribute("vendedor", vendedor);
             model.addAttribute("ciudades", ciudadService.listAll());
-            //model.addAttribute("foto", archivo);
+           
             return "registro-vendedor";
         }
         return "redirect:/registro";
