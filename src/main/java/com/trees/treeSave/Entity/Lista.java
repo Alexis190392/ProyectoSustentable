@@ -2,6 +2,8 @@
 package com.trees.treeSave.Entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.TreeMap;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,6 +20,8 @@ public class Lista implements Serializable {
     private String nombreList;
     //KEY: id_producto 
     private TreeMap<String,Integer> listado;
+    
+    private ArrayList<Producto> lista;
 
     private Boolean estado;
 
@@ -58,6 +62,14 @@ public class Lista implements Serializable {
 
     public void setListado(TreeMap<String, Integer> listado) {
         this.listado = listado;
+    }
+
+    public ArrayList<Producto> getLista() {
+        return lista;
+    }
+
+    public void setLista(ArrayList<Producto> lista) {
+        this.lista = lista;
     }
     
 

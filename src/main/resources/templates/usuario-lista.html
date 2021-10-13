@@ -39,13 +39,23 @@
 
 <div class="container">
     <div class="row">
+        <div class="col-5 prueba scroll">
+            <div th:each=" p : ${miLista}">
+                <p th:text="${p.nombre}"></p>
+            </div>
+            <p th:if="${miListaisEmpty}" class="display-3">No se encontraron resultados coincidentes</p>
+
+        </div>
+
+
         <div class="col-6 prueba scroll">
             <div th:each=" p : ${productos}">
                 <p th:text="${p.nombre}"></p>
+                <a type="button" class="btn btn-outline-success" th:href="@{/cliente/agregarProducto(documento=__${session.usuariosession.documento}__ , sku=${p.codigoBarra})}">Editar</a>
             </div>
-            <p th:if="${p.isEmpty" th:text="No hay productos para mostrar"></p>
+            
         </div>
-        <div class="col-6 prueba scroll"></div>
+        
     </div>
 </div>
 

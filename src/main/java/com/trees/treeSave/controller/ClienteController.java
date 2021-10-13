@@ -175,37 +175,65 @@ public class ClienteController {
     /* update 11/10/2021 */
     @GetMapping("/listado")
     public String listadoYproductos(Model model, @RequestParam String documento) throws WebException{
-        //llevo la lista en forma de list al front
-        try{
-            if(ls.conversion(ls.findById(cs.findByDocumento(documento).getLista()).get().getListado()) == null || 
-                    ls.conversion(ls.findById(cs.findByDocumento(documento).getLista()).get().getListado()).isEmpty()){
-                model.addAttribute("error", "No hay productos para mostrar");
-            } else{
-                try{
-                    model.addAttribute("lista", ls.conversion(ls.findById(cs.findByDocumento(documento).getLista()).get().getListado()));
-                } catch (WebException ex) {
-                     model.addAttribute("lista", new ArrayList());
-        }
-                 
-            }
-           
-        } catch(WebException e){
-            model.addAttribute("error", e.getMessage());
-        }
+//        //llevo la lista en forma de list al front
+//        try{
+//            if(ls.conversion(ls.findById(cs.findByDocumento(documento).getLista()).get().getListado()) == null || 
+//                    ls.conversion(ls.findById(cs.findByDocumento(documento).getLista()).get().getListado()).isEmpty()){
+//                model.addAttribute("error", "No hay productos para mostrar");
+//            } else{
+//                try{
+//                    model.addAttribute("lista", ls.conversion(ls.findById(cs.findByDocumento(documento).getLista()).get().getListado()));
+//                } catch (WebException ex) {
+//                     model.addAttribute("lista", new ArrayList());
+//        }
+//                 
+//            }
+//           
+//        } catch(WebException e){
+//            model.addAttribute("error", e.getMessage());
+//        }
+
+
+            
+        // listo mi lista
+        model.addAttribute("miLista", ls.obtenerLista(documento));
         //listo productos
         model.addAttribute("productos",ps.listAll());
         
         return "usuario-lista";
     }
     
-    @PostMapping("/agregarProducto")
-    public String agregarProductos(Model model,
-                                @RequestParam String documento, 
-                                @ModelAttribute Producto producto, 
-                                @RequestParam Integer cantidad) throws WebException{
+//    @PostMapping("/agregarProducto")
+//    public String agregarProductos(Model model,
+//                                @RequestParam String documento, 
+//                                @ModelAttribute Producto producto, 
+//                                @RequestParam Integer cantidad) throws WebException{
+//        
+//       ls.agregarProductos(ls.findById(cs.findByDocumento(documento).getLista()).get(), producto.getCodigoBarra());
+//        
+//        
+//        
+//        return "redirect:/cliente/listado";
+//    }
+    
+    @GetMapping("/agregarProducto")
+    public String agregarProductos(@RequestParam String documento, @RequestParam String sku )  throws WebException{
+        Producto producto = ps.searchCod(sku);
         
-        cs.agregarProducto(documento, producto.getCodigoBarra(), cantidad);
-        
+        if(ls.findById(cs.findByDocumento(documento).getLista()).isPresent() || ls.findById(cs.findByDocumento(documento).getLista()) != null){
+             Lista l = ls.findById(cs.findByDocumento(documento).getLista()).get();
+             if(l == null){
+                 l = ls.save(new Lista());
+             }
+         
+            ls.agregarProductos(l, producto.getCodigoBarra());
+        } else{
+            Lista l = ls.save(new Lista());
+            Cliente c = cs.findByDocumento(documento);
+            c.setLista(l.getId());
+            cs.save(c);
+            ls.agregarProductos(ls.findById(cs.findByDocumento(documento).getLista()).get(), producto.getCodigoBarra());
+        }
         
         
         return "redirect:/cliente/listado";

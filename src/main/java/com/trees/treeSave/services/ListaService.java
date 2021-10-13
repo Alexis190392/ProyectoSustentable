@@ -1,5 +1,6 @@
 package com.trees.treeSave.services;
 
+import com.trees.treeSave.Entity.Cliente;
 import com.trees.treeSave.Entity.Lista;
 import com.trees.treeSave.Entity.Producto;
 import com.trees.treeSave.excepciones.WebException;
@@ -64,21 +65,44 @@ public class ListaService {
         }
     }
 
-    public Lista agregarProducto(Lista lista, String sku, Integer cantidad) {
-        //para evitar inconvenientes de listas, lo manejo aparte
-        Lista actual = findById(lista.getId()).get();
-        TreeMap l = actual.getListado();
-        //añado el sku del producto y la cantidad, caso de ser cero, se elimina
-        if (cantidad > 0) {
-            l.put(sku, cantidad);
-        } else {
-            l.remove(cantidad);
-        }
-        //seteo en la lista actual
-        actual.setListado(l);
-
-        return save(actual);
+//    public Lista agregarProducto(Lista lista, String sku, Integer cantidad) {
+//        //para evitar inconvenientes de listas, lo manejo aparte
+//        Lista actual = findById(lista.getId()).get();
+//        TreeMap l = actual.getListado();
+//        //añado el sku del producto y la cantidad, caso de ser cero, se elimina
+//        if (cantidad > 0) {
+//            l.put(sku, cantidad);
+//        } else {
+//            l.remove(cantidad);
+//        }
+//        //seteo en la lista actual
+//        actual.setListado(l);
+//
+//        return save(actual);
+//    }
+    
+    //añadir productos a la lista
+    public Lista agregarProductos(Lista lista, String sku){
+        System.out.println("\n \n SKU: " + sku );
+        
+        ArrayList<Producto> l = lista.getLista();
+        
+        System.out.println("\n \n Lista " + l);
+        
+        Producto p = ps.searchCod(sku);
+        
+        System.out.println("\n \n Producto nombre " + p.getNombre() + "\n \n");
+        
+        l.add(p);
+        
+        lista.setLista(l);
+        
+        
+        
+        //Guardo la lista y la retorno
+        return save(lista); 
     }
+    
 
     //utilidad
     //pasar a TreeMap a List ----- utilizo stock como cantidad para mostrar listado
@@ -102,8 +126,15 @@ public class ListaService {
     }
 
     //obtener lista como objeto
-    public Lista obtenerLista(String documento) throws WebException {
-        return findById(cs.findByDocumento(documento).getLista()).get();
+    public /*Lista*/List<Producto> obtenerLista(String documento) throws WebException {
+        //return findById(cs.findByDocumento(documento).getLista()).get();
+       
+        // Traigo al cliente
+        Cliente c = cs.findByDocumento(documento);
+        //traigo la lista segun el id guardado
+        Lista l = findById(c.getLista()).get();
+        return l.getLista();
+        
     }
 
 }

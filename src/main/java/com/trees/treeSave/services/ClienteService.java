@@ -1,8 +1,3 @@
-/*
-
-Update 10/10/2021 linea 190
-
-*/
 package com.trees.treeSave.services;
 
 import com.trees.treeSave.Entity.Cliente;
@@ -192,13 +187,13 @@ public class ClienteService {
         clienteRepository.save(cliente);
     }
     
-    //agregar/eliminar(0) producto a lista de cliente y setealo en el mismo
-    @Transactional
-    public void agregarProducto(String documento, String sku, Integer cantidad) throws WebException{
-        //taigo la lista asociada a ese documento
-        Lista l = ls.obtenerLista(documento);
-        //agrego el producto enviando la lista
-        ls.agregarProducto(l, sku, cantidad);
-    }
-    
+//    //agregar/eliminar(0) producto a lista de cliente y setealo en el mismo
+//    @Transactional
+//    public void agregarProducto(String documento, String sku, Integer cantidad) throws WebException{
+//        //taigo la lista asociada a ese documento
+//        Lista l = ls.obtenerLista(documento);
+//        //agrego el producto enviando la lista
+//        ls.agregarProducto(l, sku, cantidad);
+//    }
+//    
 }
