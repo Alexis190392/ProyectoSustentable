@@ -16,14 +16,14 @@
         </div>
 
         <form th:action="@{/cliente/save}" method="POST" th:object="${cliente}" enctype="multipart/form-data">
-            <!--<input  th:field="*{documento}">-->
-            <input th:value="${action}" name="action">
-            <div class="d-flex justify-content-center m-3">
-                <div>
-                    <label class="form-label">Documento</label>
-                    <input type="number" th:field="*{documento}" class="form-control">
-                </div>
+            <div th:object="${cliente}">
+                <input type="hidden" th:value="*{documento}">    
             </div>
+            <br>
+            <div>
+                <input type="hidden" th:value="${action}" name="action">
+            </div>
+            <br>
             <div class="d-flex justify-content-center m-3">
                 <div>
                     <label class="form-label ">Nombres</label>
@@ -38,6 +38,12 @@
             </div>
             <div class="d-flex justify-content-center m-3">
                 <div>
+                    <label class="form-label">Documento</label>
+                    <input type="number" th:field="*{documento}" class="form-control">
+                </div>
+            </div>
+            <div class="d-flex justify-content-center m-3">
+                <div>
                     <label class="form-label ">Telefono</label>
                     <input type="number" th:field="*{contactoCel}" class="form-control ">
                 </div>
@@ -45,21 +51,21 @@
             <div class=" d-flex justify-content-center m-3">
                 <label for="ciudad" class="form-label">Ciudad</label>
                 <div>
-                    <select class="form-select ms-2" th:field="*{ciudad.id}">
-                        <option th:each="c : ${ciudades}" th:text="${c.nombre}" th:value="${c.id}"></option>
+                    <select class="form-select ms-2" th:field="${cliente.ciudad.id}" name="idCiudad">
+                        <option th:each="c : ${ciudades}" th:text="${c.nombre}" th:value="${c.id}" th:selected="${cliente.ciudad != null && c.id == cliente.ciudad.id}"></option>
                     </select>
                 </div>
             </div>
             <div class="d-flex justify-content-center m-3">
                 <div>
                     <label class="form-label ">Fecha de nacimiento</label>
-                    <input type="date" th:field="*{fechaNacimiento}" class="form-control ">
+                    <input type="date" th:field="*{fechaNacimiento}" class="form-control" th:selected="${cliente.fechaNacimiento != null}">
                 </div>
             </div>
             <div class="d-flex justify-content-center m-3">
                 <div>
                     <label class="form-label ">E-mail</label>
-                    <input type="email" th:field="*{contactoMail}" class="form-control ">
+                    <input type="email" th:field="*{contactoMail}" class="form-control" >
                 </div>
             </div>
             <div class="d-flex justify-content-center m-3">
