@@ -2,6 +2,7 @@ package com.trees.treeSave.Entity;
 
 import com.trees.treeSave.enumeraciones.Nivel;
 import com.trees.treeSave.enumeraciones.TipoDoc;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
@@ -53,7 +54,10 @@ public class Cliente {
     String solo hace referencia al id de lista en la bd
     */
     
-    private String lista;
+//    private String lista;
+    
+    
+    private ArrayList<String> lista;
     
     
     
@@ -177,12 +181,23 @@ public class Cliente {
         this.ciudad = ciudad;
     }
 
-    public String getLista() {
+//    public String getLista() {
+//        return lista;
+//    }
+//
+//    public void setLista(String lista) {
+//        this.lista = lista;
+//    }
+//   
+
+    public ArrayList<String> getLista() {
         return lista;
     }
 
-    public void setLista(String lista) {
+    public void setLista(ArrayList<String> lista) {
         this.lista = lista;
     }
-   
+    
+    
+    
 }

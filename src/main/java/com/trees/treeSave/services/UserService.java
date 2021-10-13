@@ -81,9 +81,7 @@ public class UserService implements UserDetailsService {
         usuario.setUsername(username);
         usuario.setPassword(encoder.encode(password));
         usuario.setFoto(c.getFoto());
-        Lista l = new Lista();
-        l = ls.create(l);
-        usuario.setLista(l.getId());
+        usuario.setLista(c.getLista());
         usuario.setRol(Role.USER);
         clienteService.delete(c);
         return usuarioRepository.save(usuario);

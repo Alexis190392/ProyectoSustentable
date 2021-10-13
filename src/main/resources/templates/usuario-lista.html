@@ -29,7 +29,7 @@
 
 -->
 <form th:action="@{/cliente/createList}" method="POST">
-    <input hidden type="text" name="documento" th:value="documento">
+    <input type="hidden" name="documento" th:value="${documento}">
     <div class="label-form">
         <label for="">Nombre</label>
         <input type="text" name="nombre">
@@ -51,7 +51,7 @@
         <div class="col-6 prueba scroll">
             <div th:each=" p : ${productos}">
                 <p th:text="${p.nombre}"></p>
-                <a type="button" class="btn btn-outline-success" th:href="@{/cliente/agregarProducto(documento=__${session.usuariosession.documento}__ , sku=${p.codigoBarra})}">Editar</a>
+                <a type="button" class="btn btn-outline-success" th:href="@{/cliente/agregarProducto(documento=__${session.usuariosession.documento}__ , sku=${p.codigoBarra})}">Agregar a lista</a>
             </div>
             
         </div>

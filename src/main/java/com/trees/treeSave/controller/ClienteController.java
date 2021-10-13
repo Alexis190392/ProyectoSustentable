@@ -7,6 +7,7 @@ import com.trees.treeSave.excepciones.WebException;
 import com.trees.treeSave.services.CiudadService;
 import com.trees.treeSave.services.ClienteService;
 import com.trees.treeSave.services.ListaService;
+import com.trees.treeSave.services.PLService;
 import com.trees.treeSave.services.ProductoServicio;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -172,6 +173,9 @@ public class ClienteController {
 //       return "redirect:/cliente/listado";
 //    }
     
+    @Autowired
+    private PLService pls;
+    
     /* update 11/10/2021 */
     @GetMapping("/listado")
     public String listadoYproductos(Model model, @RequestParam String documento) throws WebException{
@@ -196,7 +200,7 @@ public class ClienteController {
 
             
         // listo mi lista
-        model.addAttribute("miLista", ls.obtenerLista(documento));
+        model.addAttribute("miLista", pls.listAll(documento));
         //listo productos
         model.addAttribute("productos",ps.listAll());
         
@@ -217,25 +221,10 @@ public class ClienteController {
 //    }
     
     @GetMapping("/agregarProducto")
-    public String agregarProductos(@RequestParam String documento, @RequestParam String sku )  throws WebException{
-        Producto producto = ps.searchCod(sku);
+    public String agregarProductos(@RequestParam String documento, @RequestParam String sku, RedirectAttributes redat)  throws WebException{
+        pls.agregar(documento, sku);
+        redat.addFlashAttribute("documento", documento);
         
-        if(ls.findById(cs.findByDocumento(documento).getLista()).isPresent() || ls.findById(cs.findByDocumento(documento).getLista()) != null){
-             Lista l = ls.findById(cs.findByDocumento(documento).getLista()).get();
-             if(l == null){
-                 l = ls.save(new Lista());
-             }
-         
-            ls.agregarProductos(l, producto.getCodigoBarra());
-        } else{
-            Lista l = ls.save(new Lista());
-            Cliente c = cs.findByDocumento(documento);
-            c.setLista(l.getId());
-            cs.save(c);
-            ls.agregarProductos(ls.findById(cs.findByDocumento(documento).getLista()).get(), producto.getCodigoBarra());
-        }
-        
-        
-        return "redirect:/cliente/listado";
+        return "redirect:/cliente/listado?documento="+documento;
     }
 }

@@ -3,6 +3,7 @@ package com.trees.treeSave.services;
 import com.trees.treeSave.Entity.Cliente;
 import com.trees.treeSave.Entity.Lista;
 import com.trees.treeSave.Entity.Producto;
+import com.trees.treeSave.Entity.ProductoLista;
 import com.trees.treeSave.excepciones.WebException;
 import com.trees.treeSave.repositories.ListaRepository;
 import java.util.ArrayList;
@@ -82,26 +83,33 @@ public class ListaService {
 //    }
     
     //añadir productos a la lista
-    public Lista agregarProductos(Lista lista, String sku){
-        System.out.println("\n \n SKU: " + sku );
-        
-        ArrayList<Producto> l = lista.getLista();
-        
-        System.out.println("\n \n Lista " + l);
-        
-        Producto p = ps.searchCod(sku);
-        
-        System.out.println("\n \n Producto nombre " + p.getNombre() + "\n \n");
-        
-        l.add(p);
-        
-        lista.setLista(l);
-        
-        
-        
+    public void agregarProductos(/*Lista lista*/String documento, String sku) throws WebException{
+//        System.out.println("\n \n SKU: " + sku );
+//        
+//        ArrayList<Producto> l = lista.getLista();
+//        
+//        System.out.println("\n \n Lista " + l);
+//        
+//        Producto p = ps.searchCod(sku);
+//        
+//        System.out.println("\n \n Producto nombre " + p.getNombre() + "\n \n");
+//        
+//        l.add(p);
+//        
+//        lista.setLista(l);
+//        
+       
         //Guardo la lista y la retorno
-        return save(lista); 
+       // return save(lista); 
+       
+       ProductoLista pl = (ProductoLista) ps.searchCod(sku);
+       pl.setDocumento(documento);
+       
+       
+       
     }
+    
+    
     
 
     //utilidad
@@ -125,16 +133,16 @@ public class ListaService {
         return conv;
     }
 
-    //obtener lista como objeto
-    public /*Lista*/List<Producto> obtenerLista(String documento) throws WebException {
-        //return findById(cs.findByDocumento(documento).getLista()).get();
-       
-        // Traigo al cliente
-        Cliente c = cs.findByDocumento(documento);
-        //traigo la lista segun el id guardado
-        Lista l = findById(c.getLista()).get();
-        return l.getLista();
-        
-    }
+//    //obtener lista como objeto
+//    public /*Lista*/List<Producto> obtenerLista(String documento) throws WebException {
+//        //return findById(cs.findByDocumento(documento).getLista()).get();
+//       
+//        // Traigo al cliente
+//        Cliente c = cs.findByDocumento(documento);
+//        //traigo la lista segun el id guardado
+//        Lista l = findById(c.getLista()).get();
+//        return l.getLista();
+//        
+//    }
 
 }
