@@ -3,10 +3,14 @@ package com.trees.treeSave.services;
 import com.trees.treeSave.Entity.Ciudad;
 import com.trees.treeSave.Entity.Cliente;
 import com.trees.treeSave.Entity.Foto;
+import com.trees.treeSave.Entity.Lista;
+import com.trees.treeSave.Entity.Producto;
 import com.trees.treeSave.enumeraciones.Nivel;
 import com.trees.treeSave.excepciones.WebException;
 import com.trees.treeSave.repositories.ClienteRepository;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,6 +34,9 @@ public class ClienteService {
 
     @Autowired
     private CiudadService ciudadService;
+    
+    @Autowired
+    private ListaService ls;
 
     /*@Autowired
     private NotificacionServicio notificacionServicio;*/
@@ -85,7 +92,6 @@ public class ClienteService {
         clienteAlta.setNivel(Nivel.SEMILLA);
         clienteAlta.setPuntajeAcumulado(0);
         clienteAlta.setPuntajeCanjeado(0);
-
         Foto foto = fotoService.save(file);
         clienteAlta.setFoto(foto);
 
@@ -265,6 +271,18 @@ public class ClienteService {
         } else {
             throw new WebException("No se encontro el cliente.");
         }
-
+        Foto foto = fotoService.actualizar(idFoto, file);
+        cliente.setFoto(foto);
+        clienteRepository.save(cliente);
     }
+    
+//    //agregar/eliminar(0) producto a lista de cliente y setealo en el mismo
+//    @Transactional
+//    public void agregarProducto(String documento, String sku, Integer cantidad) throws WebException{
+//        //taigo la lista asociada a ese documento
+//        Lista l = ls.obtenerLista(documento);
+//        //agrego el producto enviando la lista
+//        ls.agregarProducto(l, sku, cantidad);
+//    }
+//    
 }

@@ -38,13 +38,13 @@ public class Security extends WebSecurityConfigurerAdapter {
                 .loginPage("/login")
                 .usernameParameter("username")
                 .passwordParameter("password")
-                .defaultSuccessUrl("/")
+                .defaultSuccessUrl("/cliente/panel")
                 .loginProcessingUrl("/logincheck")
                 .failureUrl("/login?error=error")
                 .permitAll()
                 .and().logout()
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/login?logout")
+                .logoutSuccessUrl("/")
                 .and().csrf().disable();
 
     }

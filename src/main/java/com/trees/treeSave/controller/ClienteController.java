@@ -2,6 +2,7 @@ package com.trees.treeSave.controller;
 
 import com.trees.treeSave.Entity.Ciudad;
 import com.trees.treeSave.Entity.Cliente;
+<<<<<<< HEAD
 import com.trees.treeSave.Entity.Foto;
 import com.trees.treeSave.excepciones.WebException;
 import com.trees.treeSave.services.CiudadService;
@@ -11,6 +12,21 @@ import java.util.Date;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+=======
+import com.trees.treeSave.Entity.Lista;
+import com.trees.treeSave.Entity.Producto;
+import com.trees.treeSave.excepciones.WebException;
+import com.trees.treeSave.services.CiudadService;
+import com.trees.treeSave.services.ClienteService;
+import com.trees.treeSave.services.ListaService;
+import com.trees.treeSave.services.PLService;
+import com.trees.treeSave.services.ProductoServicio;
+import java.util.ArrayList;
+import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+//import org.springframework.security.access.prepost.PreAuthorize;
+>>>>>>> Develop-Alexis
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
@@ -28,7 +44,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class ClienteController {
 
     @Autowired
-    private ClienteService clienteService;
+    private ClienteService cs;
 
     @Autowired
     private CiudadService ciudadService;
@@ -38,8 +54,10 @@ public class ClienteController {
 //       return "panel-Usuario";
 //        return "crear-usuario";
 //    }
+        
+    @PreAuthorize("hasAnyRole('ROLE_USER')")
     @GetMapping("/panel")
-    public String panelUsuario() {
+    public String panelUsuario(){
         return "panel-Usuario";
     }
 
@@ -47,9 +65,9 @@ public class ClienteController {
     @GetMapping("/list")
     public String listarClientes(Model model, @RequestParam(required = false) String q) {
         if (q != null) {
-            model.addAttribute("clientes", clienteService.listAllByQ(q));
+            model.addAttribute("clientes", cs.listAllByQ(q));
         } else {
-            model.addAttribute("clientes", clienteService.listAll());
+            model.addAttribute("clientes", cs.listAll());
         }
         return "cliente-list";
     }
@@ -57,7 +75,7 @@ public class ClienteController {
     @GetMapping("/form")
     public String crearCliente(Model model, @RequestParam(required = false) String documento, @RequestParam(required = false) String action) {
         if (documento != null) {
-            Optional<Cliente> optional = clienteService.findById(documento);
+            Optional<Cliente> optional = cs.findById(documento);
             if (optional.isPresent()) {
                 model.addAttribute("cliente", optional.get());
                 model.addAttribute("action", action);
@@ -74,7 +92,7 @@ public class ClienteController {
 
     @GetMapping("/delete")
     public String eliminarCliente(@RequestParam(required = true) String id) {
-        clienteService.deleteById(id);
+        cs.deleteById(id);
         return "redirect:/cliente/list";
     }
 
@@ -85,13 +103,17 @@ public class ClienteController {
             @RequestParam(required = true) String documento, @RequestParam(required = false) String idCiudad) {
         try {
             if (action.equals("edit")) {
+<<<<<<< HEAD
                 
+=======
+                cs.modificarCliente(archivo, cliente);
+>>>>>>> Develop-Alexis
                 redirectAttributes.addFlashAttribute("success", "Cliente modificado con éxito.");
                 clienteService.modificarCliente(archivo, nombres, apellido, contactoCel, contactoMail, fechaNacimiento, documento, idCiudad);
                  
                 return "redirect:/";
             } else {
-                clienteService.validarCliente(cliente, archivo); //valida y guarda cliente en la bd
+                cs.validarCliente(cliente, archivo); //valida y guarda cliente en la bd
                 redirectAttributes.addFlashAttribute("success", "Cliente guardado con éxito.");
             }
             redirectAttributes.addFlashAttribute("documento", cliente.getDocumento());
@@ -105,14 +127,130 @@ public class ClienteController {
         return "redirect:/registro";
     }
 
-    //ESTE METODO HACE LEGIBLE EL DATE RECIBIDO EN LA VISTA CLIENTEFORM
-    @InitBinder
-    private void dateBinder(WebDataBinder binder) {
-        //The date format to parse or output your dates
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        //Create a new CustomDateEditor
-        CustomDateEditor editor = new CustomDateEditor(dateFormat, true);
-        //Register it as custom editor for the Date type
-        binder.registerCustomEditor(Date.class, editor);
+    
+     /*
+    Update 10/10/2021
+    */
+    
+    
+    @Autowired
+    private ListaService ls;
+    @Autowired
+    private ProductoServicio ps;
+    
+    
+    @PostMapping("/createList")
+    public String crearLista(Model model, 
+                            @RequestParam String documento, 
+                            @RequestParam String nombre, 
+                            RedirectAttributes redat) throws WebException{
+        try{
+            //busco cliente
+            Cliente c = cs.findByDocumento(documento);
+            //creo una lista
+            Lista l = new Lista();
+            //le seteo el nombre que se elije
+            l.setNombreList(nombre);
+            //la genero con id en bs
+            ls.create(l);
+            
+            ls.cambiarNombre(l, nombre);
+            //seteo en el cliente
+ //           c.setLista(l);
+            //guardo cliente
+            cs.save(c);
+            redat.addFlashAttribute("sucess", "creado con exito");
+        } catch (WebException ex) {
+            model.addAttribute("error", ex.getMessage());
+            return "redirect:/cliente/panel";
+        }
+        return "redirect:/cliente/listado"; //url de la muestra de lista
+    }
+    
+//    @GetMapping ("/listado")
+//    public String listadoProductos(Model model, 
+//                                @RequestParam String documento) throws WebException{
+//        try{
+//            if(cs.findByDocumento(documento) != null){
+//                //modelo lista creada para vista
+//                if( cs.findByDocumento(documento).getLista() !=null){
+////                    model.addAttribute("lista", ls.conversion(cs.findByDocumento(documento).getLista().getListado()));
+//                } else {
+//                    model.addAttribute("lista", new Lista());
+//                }
+//                
+//                //modelo listado de productos
+//                model.addAttribute("productos", ps.listAll());
+//            }
+//        } catch (WebException e){
+//            model.addAttribute("error", e.getMessage());
+//        }
+//        return "usuario-lista";//url de la muestra de lista
+//    }
+//    
+//    @PostMapping("/agregarProducto")
+////    @GetMapping("/agregarProducto")
+//    public String agregarProducto(Model model,
+//                                @RequestParam String documento, 
+//                                @ModelAttribute Producto producto, 
+//                                @RequestParam Integer cantidad) throws WebException{
+//       
+// 
+//       return "redirect:/cliente/listado";
+//    }
+    
+    @Autowired
+    private PLService pls;
+    
+    /* update 11/10/2021 */
+    @GetMapping("/listado")
+    public String listadoYproductos(Model model, @RequestParam String documento) throws WebException{
+//        //llevo la lista en forma de list al front
+//        try{
+//            if(ls.conversion(ls.findById(cs.findByDocumento(documento).getLista()).get().getListado()) == null || 
+//                    ls.conversion(ls.findById(cs.findByDocumento(documento).getLista()).get().getListado()).isEmpty()){
+//                model.addAttribute("error", "No hay productos para mostrar");
+//            } else{
+//                try{
+//                    model.addAttribute("lista", ls.conversion(ls.findById(cs.findByDocumento(documento).getLista()).get().getListado()));
+//                } catch (WebException ex) {
+//                     model.addAttribute("lista", new ArrayList());
+//        }
+//                 
+//            }
+//           
+//        } catch(WebException e){
+//            model.addAttribute("error", e.getMessage());
+//        }
+
+
+            
+        // listo mi lista
+        model.addAttribute("miLista", pls.listAll(documento));
+        //listo productos
+        model.addAttribute("productos",ps.listAll());
+        
+        return "usuario-lista";
+    }
+    
+//    @PostMapping("/agregarProducto")
+//    public String agregarProductos(Model model,
+//                                @RequestParam String documento, 
+//                                @ModelAttribute Producto producto, 
+//                                @RequestParam Integer cantidad) throws WebException{
+//        
+//       ls.agregarProductos(ls.findById(cs.findByDocumento(documento).getLista()).get(), producto.getCodigoBarra());
+//        
+//        
+//        
+//        return "redirect:/cliente/listado";
+//    }
+    
+    @GetMapping("/agregarProducto")
+    public String agregarProductos(@RequestParam String documento, @RequestParam String sku, RedirectAttributes redat)  throws WebException{
+        pls.agregar(documento, sku);
+        redat.addFlashAttribute("documento", documento);
+        
+        return "redirect:/cliente/listado?documento="+documento;
     }
 }

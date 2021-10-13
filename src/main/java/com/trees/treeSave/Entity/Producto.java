@@ -6,11 +6,14 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Producto {
 
     @Id

@@ -2,6 +2,7 @@ package com.trees.treeSave.Entity;
 
 import com.trees.treeSave.enumeraciones.Nivel;
 import com.trees.treeSave.enumeraciones.TipoDoc;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
@@ -11,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -41,11 +41,27 @@ public class Cliente {
     private Integer puntajeCanjeado;        // Histórico de Puntos
     @Enumerated(EnumType.STRING)
     private Nivel nivel;                    // enum del tipo de cliente, de acuerdo a su historial de compras
-    private String listaCompra;             // Lista de compra asociada a la persona
     private String contactoMail;
     private String contactoCel;
-    @OneToMany()                            // se eimina el mapped by para usar la Herencia de la linea 25 lo hace automatico
-    private List<Lista> listas;
+//    @OneToMany()                            // se eimina el mapped by para usar la Herencia de la linea 25 lo hace automatico
+//    private Lista lista;
+    
+    /*
+       Update 11/10/2021
+    
+    
+    lista: se colocaran los productos o se eliminaran a traves de un treemap
+    String solo hace referencia al id de lista en la bd
+    */
+    
+//    private String lista;
+    
+    
+    private ArrayList<String> lista;
+    
+    
+    
+    
     
     @OneToOne
     private Foto foto;
@@ -125,14 +141,6 @@ public class Cliente {
         this.nivel = nivel;
     }
 
-    public String getListaCompra() {
-        return listaCompra;
-    }
-
-    public void setListaCompra(String listaCompra) {
-        this.listaCompra = listaCompra;
-    }
-
     public String getContactoMail() {
         return contactoMail;
     }
@@ -147,14 +155,6 @@ public class Cliente {
 
     public void setContactoCel(String contactoCel) {
         this.contactoCel = contactoCel;
-    }
-
-    public List<Lista> getListas() {
-        return listas;
-    }
-
-    public void setListas(List<Lista> listas) {
-        this.listas = listas;
     }
 
     public Date getBaja() {
@@ -180,4 +180,24 @@ public class Cliente {
     public void setCiudad(Ciudad ciudad) {
         this.ciudad = ciudad;
     }
+
+//    public String getLista() {
+//        return lista;
+//    }
+//
+//    public void setLista(String lista) {
+//        this.lista = lista;
+//    }
+//   
+
+    public ArrayList<String> getLista() {
+        return lista;
+    }
+
+    public void setLista(ArrayList<String> lista) {
+        this.lista = lista;
+    }
+    
+    
+    
 }

@@ -1,6 +1,7 @@
 package com.trees.treeSave.repositories;
 
 import com.trees.treeSave.Entity.Producto;
+import com.trees.treeSave.Entity.ProductoLista;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -15,5 +16,5 @@ public interface ProductoRepository extends JpaRepository<Producto,String> {
             + "p.origen LIKE :query or "
             + "p.tipo LIKE :query or "
             + "p.categoria LIKE :query")
-    List<Producto> searchId(@Param("query") String query);
+    List<Producto> searchId(@Param("query") String query);    
 }

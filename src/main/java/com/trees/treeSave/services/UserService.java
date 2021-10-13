@@ -2,9 +2,8 @@ package com.trees.treeSave.services;
 
 import com.trees.treeSave.Entity.Cliente;
 import com.trees.treeSave.Entity.Foto;
-import com.trees.treeSave.Entity.UserCliente;
-import com.trees.treeSave.Entity.UserVendedor;
-import com.trees.treeSave.Entity.Vendedor;
+import com.trees.treeSave.Entity.Lista;
+import com.trees.treeSave.Entity.Users;
 import com.trees.treeSave.enumeraciones.Nivel;
 import com.trees.treeSave.enumeraciones.Role;
 import com.trees.treeSave.excepciones.WebException;
@@ -40,13 +39,10 @@ public class UserService implements UserDetailsService {
 
     @Autowired
     private FotoService fotoService;
-
+    
     @Autowired
-    private UserVRepository usuarioVRepository;
-
-    @Autowired
-    private VendedorServicio vendedorServicio;
-
+    private ListaService ls;
+    
     @Transactional
     public UserCliente saveCliente(String username, String password, String password2, String documento) throws WebException {
         UserCliente usuario = new UserCliente();
@@ -87,7 +83,8 @@ public class UserService implements UserDetailsService {
         usuario.setPassword(encoder.encode(password));
         usuario.setAlta(c.getAlta());
         usuario.setFoto(c.getFoto());
-        usuario.setRol(Role.CLIENTE);
+        usuario.setLista(c.getLista());
+        usuario.setRol(Role.USER);
         clienteService.delete(c);
         return usuarioRepository.save(usuario);
     }
