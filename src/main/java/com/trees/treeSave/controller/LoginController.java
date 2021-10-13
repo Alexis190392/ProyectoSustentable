@@ -1,5 +1,6 @@
 package com.trees.treeSave.controller;
 
+import com.trees.treeSave.Entity.Cliente;
 import com.trees.treeSave.Entity.Vendedor;
 import com.trees.treeSave.excepciones.WebException;
 import com.trees.treeSave.services.ClienteService;
@@ -38,8 +39,19 @@ public class LoginController {
         if (username != null) {
             model.addAttribute("username", username);
             try {
-                redat.addFlashAttribute("vendedor", vendedorServicio.findByCuit(us.findVendedorByUsername(username).getCuit()));
-                redat.addFlashAttribute("cliente", cs.findByDocumento(us.findClienteByUsername(username).getDocumento()));
+                Vendedor vendedor = vendedorServicio.findByCuit(us.findVendedorByUsername(username).getCuit());
+                Cliente cliente = cs.findByDocumento(us.findClienteByUsername(username).getDocumento());
+                
+                if(cliente != null) {
+                    redat.addFlashAttribute("cliente", cs.findByDocumento(us.findClienteByUsername(username).getDocumento()));
+                    return "panel-Usuario";
+                }
+                  if(vendedor != null) {
+                   redat.addFlashAttribute("vendedor", vendedorServicio.findByCuit(us.findVendedorByUsername(username).getCuit()));
+                    return "panel-Vendedor";
+                }
+                
+                
             } catch (WebException ex) {
                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
             }

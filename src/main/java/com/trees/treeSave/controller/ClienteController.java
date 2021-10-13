@@ -80,14 +80,12 @@ public class ClienteController {
 
     @PostMapping("/save")
     public String guardarCliente(Model model, @RequestParam(required = false) MultipartFile archivo, RedirectAttributes redirectAttributes,
-            @ModelAttribute Cliente cliente, /*@ModelAttribute Ciudad ciudad,*/ @ModelAttribute Foto foto, @RequestParam String action, @RequestParam String nombres, @RequestParam String apellido,
-            @RequestParam String contactoCel, @RequestParam String contactoMail, @RequestParam(required = false) Date fechaNacimiento,
-            @RequestParam(required = true) String documento, @RequestParam(required = false) String idCiudad) {
+            @ModelAttribute Cliente cliente, @RequestParam String action) {
         try {
             if (action.equals("edit")) {
                 
                 redirectAttributes.addFlashAttribute("success", "Cliente modificado con éxito.");
-                clienteService.modificarCliente(archivo, nombres, apellido, contactoCel, contactoMail, fechaNacimiento, documento, idCiudad);
+                clienteService.modificarCliente(archivo, cliente);
                  
                 return "redirect:/";
             } else {

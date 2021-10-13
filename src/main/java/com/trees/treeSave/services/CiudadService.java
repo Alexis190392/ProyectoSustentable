@@ -66,9 +66,11 @@ public class CiudadService {
         Optional<Ciudad> optional = ciudadRepository.findById(id);
         if (optional.isPresent()) {
             Ciudad ciudad = optional.get();
-            //clienteServicio.deleteFieldCiudad(ciudad);
+            clienteServicio.deleteFieldCiudad(ciudad);
             ciudadRepository.delete(ciudad);
 
         }
     }
+    
+    
 }

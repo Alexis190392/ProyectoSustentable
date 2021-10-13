@@ -120,12 +120,7 @@ public class ClienteService {
         return clienteRepository.findAll();
     }
 
-    /*@Transactional
-    public void eliminarPorDocumento(String documento) {
-        if (clienteRepository.buscarPorDocumento(documento) != null) {
-            clienteRepository.eliminarPorDocumento(documento);
-        }
-    }*/
+
     public Optional<Cliente> findById(String id) {
         return clienteRepository.findById(id);
     }
@@ -152,119 +147,67 @@ public class ClienteService {
         clienteRepository.delete(cliente);
     }
 
-//    @Transactional
-//    public void modificarCliente(MultipartFile archivo, Cliente cliente) throws WebException {
-//        Cliente clienteAlta = new Cliente();
-//        if (cliente.getDocumento() == null | cliente.getDocumento().isEmpty()) {
-//            throw new WebException("El documento no puede ser nulo.");
-//        }
-//        if (cliente.getNombres() == null | cliente.getNombres().isEmpty()) {
-//            throw new WebException("El nombre no puede ser nulo.");
-//        }
-//        if (cliente.getApellido() == null | cliente.getApellido().isEmpty()) {
-//            throw new WebException("El apellido no puede ser nulo.");
-//        }
-////        if (cliente.getCiudad() == null) {
-////            throw new WebException("Debes indicar la ciudad.");
-////        }
-//        if (cliente.getFechaNacimiento() == null) {
-//            throw new WebException("Debes indicar un telefono.");
-//        }
-//        if (cliente.getContactoMail() == null | cliente.getContactoMail().isEmpty()) {
-//            throw new WebException("Debes indicar un mail.");
-//        }
-//        if (cliente.getFechaNacimiento() == null) {
-//            throw new WebException("Debes indicar tu fecha de nacimiento.");
-//        }
-//        if (cliente.getCiudad() == null) {
-//            throw new WebException("Debes indicar tu ciudad.");
-//        } else {
-//            clienteAlta.setCiudad(ciudadService.findById(cliente.getCiudad()));
-//        }
-//
-//        clienteAlta.setNombres(cliente.getNombres());
-//        clienteAlta.setApellido(cliente.getApellido());
-//        clienteAlta.setCiudad(cliente.getCiudad());
-//        clienteAlta.setContactoCel(cliente.getContactoCel());
-////        clienteAlta.setDocumento(cliente.getDocumento());
-//        clienteAlta.setFechaNacimiento(cliente.getFechaNacimiento());
-//        clienteAlta.setContactoMail(cliente.getContactoMail());
-//        
-//        clienteAlta.setAlta(cliente.getAlta());
-//        clienteAlta.setBaja(null);
-//        clienteAlta.setNivel(cliente.getNivel());
-//        clienteAlta.setPuntajeAcumulado(cliente.getPuntajeAcumulado());
-//        clienteAlta.setPuntajeCanjeado(cliente.getPuntajeCanjeado());
-//
-//        String idFoto = null;
-//        if (cliente.getFoto() != null) {
-//            idFoto = cliente.getFoto().getId();
-//        }
-//        Foto foto = fotoService.actualizar(idFoto, archivo);
-//        clienteAlta.setFoto(foto);
-//
-////        String idCiudad = null;
-////        if(cliente.getCiudad() != null) {
-////            idCiudad = cliente.getCiudad().getId();
-////        }
-////        Ciudad ciudad = ciudadService.actualizar(idCiudad);
-////        cliente.setCiudad(ciudad);
-//        clienteRepository.save(cliente);
-//
-//    }
     @Transactional
-    public void modificarCliente(MultipartFile archivo, String nombres, String apellido,
-            String contactoCel, String contactoMail, Date fechaNacimiento, String documento, String idCiudad) throws WebException {
-
-       Ciudad ciudad = ciudadService.buscarPorId(idCiudad);
-        
-        Optional<Cliente> optional = clienteRepository.findById(documento);
-        if (optional.isPresent()) {
-            Cliente cliente = optional.get();
-            if (nombres.isEmpty()) {
-                throw new WebException("Debes indicar tu/s nombre/s.");
-            } else {
-                cliente.setNombres(nombres);
-            }
-            if (apellido.isEmpty()) {
-                throw new WebException("Debes indicar tu apellido.");
-            } else {
-                cliente.setApellido(apellido);
-            }
-            if (nombres.isEmpty()) {
-                throw new WebException("Debes indicar tu celular.");
-            } else {
-                cliente.setContactoCel(contactoCel);
-            }
-            if (nombres.isEmpty()) {
-                throw new WebException("Debes indicar tu E-mail.");
-            } else {
-                cliente.setContactoMail(contactoMail);
-            }
-            if (nombres.isEmpty()) {
-                throw new WebException("Debes indicar tu/s nombre/s.");
-            } else {
-                cliente.setFechaNacimiento(fechaNacimiento);
-            }
-            if (ciudad == null) {
-                throw new WebException("Debes indicar tu ciudad.");
-            } else {
-                cliente.setCiudad(ciudad);
-            }
-
-            String idFoto = null;
-            if (cliente.getFoto() != null) {
-                idFoto = cliente.getFoto().getId();
-            }
-            Foto foto = fotoService.actualizar(idFoto, archivo);
-
-            cliente.setFoto(foto);
-
-
-            clienteRepository.save(cliente);
+    public void modificarCliente(MultipartFile archivo, Cliente cliente) throws WebException {
+        Cliente clienteBuscado = findById(cliente.getDocumento()).get();
+        if (cliente.getDocumento() == null | cliente.getDocumento().isEmpty()) {
+            throw new WebException("El documento no puede ser nulo.");
+        }
+        if (cliente.getNombres() == null | cliente.getNombres().isEmpty()) {
+            throw new WebException("El nombre no puede ser nulo.");
+        }
+        if (cliente.getApellido() == null | cliente.getApellido().isEmpty()) {
+            throw new WebException("El apellido no puede ser nulo.");
+        }
+        if (cliente.getFechaNacimiento() == null) {
+            throw new WebException("Debes indicar un telefono.");
+        }
+        if (cliente.getContactoMail() == null | cliente.getContactoMail().isEmpty()) {
+            throw new WebException("Debes indicar un mail.");
+        }
+        if (cliente.getFechaNacimiento() == null) {
+            throw new WebException("Debes indicar tu fecha de nacimiento.");
+        }
+        if (cliente.getCiudad() == null) {
+            throw new WebException("Debes indicar tu ciudad.");
         } else {
-            throw new WebException("No se encontro el cliente.");
+            clienteBuscado.setCiudad(ciudadService.findById(cliente.getCiudad()));
         }
 
+        clienteBuscado.setNombres(cliente.getNombres());
+        clienteBuscado.setApellido(cliente.getApellido());
+        clienteBuscado.setContactoCel(cliente.getContactoCel());
+        clienteBuscado.setDocumento(cliente.getDocumento());
+        clienteBuscado.setFechaNacimiento(cliente.getFechaNacimiento());
+        clienteBuscado.setContactoMail(cliente.getContactoMail());
+
+        clienteBuscado.setAlta(clienteBuscado.getAlta());
+        clienteBuscado.setBaja(null);
+        clienteBuscado.setNivel(clienteBuscado.getNivel());
+        clienteBuscado.setPuntajeAcumulado(clienteBuscado.getPuntajeAcumulado());
+        clienteBuscado.setPuntajeCanjeado(clienteBuscado.getPuntajeCanjeado());
+
+        String idFoto = null;
+        if (cliente.getFoto() != null) {
+            idFoto = cliente.getFoto().getId();
+        }
+        Foto foto = fotoService.actualizar(idFoto, archivo);
+        clienteBuscado.setFoto(foto);
+
+        clienteRepository.save(clienteBuscado);
+
+    }
+
+    public List<Cliente> listAllByCiudad(String nombre) {
+        return clienteRepository.findAllByCiudad(nombre);
+    }
+
+    @Transactional
+    public void deleteFieldCiudad(Ciudad ciudad) {
+        List<Cliente> clientes = listAllByCiudad(ciudad.getNombre());
+        for (Cliente cliente : clientes) {
+            cliente.setCiudad(null);
+        }
+        clienteRepository.saveAll(clientes);
     }
 }
