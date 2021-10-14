@@ -239,3 +239,47 @@ main {
 
 
 /*fin en forma de hoja*/
+
+
+/*pre loader*/
+
+.loader-page {
+    position: fixed;
+    z-index: 25000;
+    background: rgb(255, 255, 255);
+    left: 0px;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .3s ease;
+}
+
+.loader-page>div {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 3rem .5rem;
+    border-radius: 50%;
+    background-color: #8fbc8f;
+    animation: loaderr .6s infinite alternate;
+}
+
+@keyframes loaderr {
+    to {
+        opacity: .1;
+        transform: translate3d(0, -1rem, 0);
+    }
+}
+
+.loader-page>div:nth-child(2) {
+    animation-delay: .2s;
+}
+
+.loader-page>div:nth-child(3) {
+    animation-delay: .2s;
+}
+
+
+/*pre loader*/
