@@ -3,6 +3,11 @@
 
 <head th:replace="/fragments/head :: head">
 
+                    <div th:if="${param.logout}" class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+                        <span>Has finalizado la sesión con éxito.</span>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    <div class="text-end">
 
 
 </head>

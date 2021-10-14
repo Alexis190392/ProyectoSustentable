@@ -71,7 +71,7 @@
                 </form>
                 <div class="scroll">
                     <div th:each=" p : ${productos}" id="list">
-                        <div class="card mb-3 m-1" th:if="${p.urlImg !='no'} " style="max-width: 40vw;">
+                        <div class="card mb-3 m-1 shadow" th:if="${p.urlImg !='no'} " style="max-width: 49vw;">
                             <div class="row g-0">
                                 <div class="col-md-4 p-2">
                                     <img th:if="${p.foto != null}" class="img-fluid"
@@ -80,12 +80,23 @@
                                 <div class="col-md-8">
                                     <div class="card-body">
                                         <h5 th:text="${p.nombre}" id="nombre" class="card-title"></h5>
-                                        <p class="card-text">This is a wider card with supporting text below as a
-                                            natural lead-in to additional content. This content is a little bit longer.
-                                        </p>
-                                        <a type="button" class="btn btn-outline-success"
-                                            th:href="@{/cliente/agregarProducto(documento=__${session.usuariosession.documento}__ , sku=${p.codigoBarra})}">Agregar
-                                            a lista</a>
+                                        <p class="card-text" th:text="'Origen: ' + ${p.origen}"></p>
+                                        <p class="card-text" th:text="'Tipo: '+ ${p.tipo}"></p>
+                                        <p class="card-text" th:text="'Categoria: '+ ${p.categoria.nombreCat}"></p>
+                                        
+
+                                            <div class="row">
+                                                <div class="col">
+                                                    <a type="button" class="btn btn-outline-success h-100"
+                                                    th:href="@{/cliente/agregarProducto(documento=__${session.usuariosession.documento}__ , sku=${p.codigoBarra})}" >Agregar
+                                                    a lista</a>
+                                                </div>
+                                                <div class="col">
+                                                    <img src="/sprites/hojas.png" style="height: 1.5rem;" alt="sdfsdf" class="">
+                                                <h6 th:text="${p.puntos}" class="d-flex"></h6>
+                                                </div>
+                                                <div class="col"></div>
+                                            </div>
                                     </div>
 
                                 </div>

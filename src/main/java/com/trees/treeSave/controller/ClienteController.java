@@ -4,6 +4,7 @@ import com.trees.treeSave.Entity.Ciudad;
 import com.trees.treeSave.Entity.Cliente;
 import com.trees.treeSave.Entity.Foto;
 import com.trees.treeSave.Entity.Lista;
+import com.trees.treeSave.Entity.Producto;
 import com.trees.treeSave.excepciones.WebException;
 import com.trees.treeSave.services.CiudadService;
 import com.trees.treeSave.services.ClienteService;
@@ -177,14 +178,16 @@ public class ClienteController {
     @GetMapping("/agregarProducto")
     public String agregarProductos(@RequestParam String documento, @RequestParam String sku, RedirectAttributes redat)  throws WebException{
         pls.agregar(documento, sku);
+        Producto producto = ps.searchCod(sku);
         redat.addFlashAttribute("documento", documento);
-        
+        redat.addFlashAttribute("success", "Producto agregado! Has sumado "+producto.getPuntos() +" puntos!");
         return "redirect:/cliente/listado?documento="+documento;
     }
     
     @GetMapping("/deleteProducto")
-    public String eliminarProducto(@RequestParam String documento, @RequestParam(required = true) String sku) {
+    public String eliminarProducto(@RequestParam String documento, @RequestParam(required = true) String sku, RedirectAttributes redat) {
         ps.deleteByCod(sku); //desde producto servicio permite la eliminacion
+        redat.addFlashAttribute("error", "Producto eliminado de la lista");
          return "redirect:/cliente/listado?documento="+documento;
     }
     
