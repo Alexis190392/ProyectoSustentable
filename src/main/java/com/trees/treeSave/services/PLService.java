@@ -37,7 +37,8 @@ public class PLService {
         pl.setNombre(p.getNombre());
         pl.setOrigen(p.getOrigen());
         pl.setPrecio(p.getPrecio());
-        
+        pl.setFoto(p.getFoto());
+        pl.setUrlImg("no");
         pl.setTipo(p.getTipo());
         pl.setPuntos(p.getPuntos());
         

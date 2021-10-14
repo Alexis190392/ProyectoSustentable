@@ -71,7 +71,7 @@
                 </form>
                 <div class="scroll">
                     <div th:each=" p : ${productos}" id="list">
-                        <div class="card mb-3 m-1" style="max-width: 40vw;">
+                        <div class="card mb-3 m-1" th:if="${p.urlImg !='no'} " style="max-width: 40vw;">
                             <div class="row g-0">
                                 <div class="col-md-4 p-2">
                                     <img th:if="${p.foto != null}" class="img-fluid"
