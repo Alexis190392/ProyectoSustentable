@@ -45,35 +45,42 @@
             <!---------------------------------------------------------------------------------------------------------------------------->
             <div class="row">
                 <div class="col-md-6">
+                    <label class="form-label ">Nombre/s</label>
                     <input type="text" th:field="*{nombres}" class="formi form-control" placeholder="Nombre/s">
                 </div>
                 <div class="col-md-6">
+                    <label class="form-label ">Apellido</label>
                     <input type="text" th:field="*{apellido}" class="formi form-control" placeholder="Apellido">
                 </div>
             </div>
             <div class="col-md-12">
+                <label class="form-label ">Documento</label>
                 <input type="number" th:field="*{documento}" class="formi form-control" placeholder="Documento">
             </div>
             <div class="col-md-12">
+                <label class="form-label ">E-mail</label>
                 <input type="email" th:field="*{contactoMail}" class="formi form-control" placeholder="Email">
             </div>
 
             <!----------------------------------------------------------------------------------------------------------------------------->
                 <!-- Ciudad -->
                 <div class="col-md-4">
+                    <label class="form-label ">Ciudad</label>
                     <select class="form-select" th:field="${cliente.ciudad.id}" name="idCiudad">
                             <option th:each="c : ${ciudades}" th:text="${c.nombre}" th:value="${c.id}" th:selected="${cliente.ciudad != null && c.id == cliente.ciudad.id}"></option>
                         </select>
                 </div>
                 <!-- telefono -->
                 <div class="col-md-2">
+                    <label class="form-label ">Celular</label>
                     <input type="text" th:field="*{contactoCel}" class="form-control" placeholder="Telefono" aria-label="Teléfono">
                 </div>
-            </div>
+            
 
 
             <!--nacimiento-->
             <div class="col-md-5">
+                <label class="form-label ">Fecha de nacimiento</label>
                 <input type="date" th:field="*{fechaNacimiento}" class="formi form-control">
             </div>
             <!--nacimiento-->

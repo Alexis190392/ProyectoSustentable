@@ -44,16 +44,19 @@
             <div class="row">
                 <!--cuit-->
                 <div class="col-md-6">
+                    <label class="form-label ">Cuit</label>
                     <input type="text" class="formi form-control" placeholder="Cuit" aria-label="Cuit" th:value="*{cuit}">
                 </div>
                 <!--nombre-->
                 <div class="col-md-6">
+                    <label class="form-label ">Nombre/s</label>
                     <input type="text" class="formi form-control" placeholder="Nombre" aria-label="Nombre" th:field="*{nombre}">
                 </div>
             </div>
 
             <!-- Email input -->
             <div class="col-md-12">
+                <label class="form-label ">E-mail</label>
                 <input type="text" class="formi form-control" placeholder="Email" aria-label="Email" th:field="*{contactoMail}">
             </div>
 
@@ -61,20 +64,23 @@
             <!-- domicilio -->
             <div class="row">
                 <div class="col-md-5">
+                    <label class="form-label ">Domicilio</label>
                     <input type="text" class="formi form-control" placeholder="Domicilio" aria-label="Domicilio" th:field="*{domicilio}">
                 </div>
 
                 <!-- Ciudad -->
                 <div class="col-md-5">
+                    <label for="ciudad" class="form-label">Ciudad</label>
                     <div>
                         <select class="form-select" th:field="${vendedor.ciudad.id}" name="idCiudad">
                         <option th:each="c : ${ciudades}" th:text="${c.nombre}" th:value="${c.id}" th:selected="${vendedor.ciudad != null && c.id == vendedor.ciudad.id}"></option>
                     </select>
                     </div>
-                    <label for="ciudad" class="form-label">Ciudad</label>
+                    
                 </div>
                 <!-- telefono -->
                 <div class="col-md-2">
+                    <label for="ciudad" class="form-label">Celular</label>
                     <input type="text" class="form-control" placeholder="Telefono" aria-label="Teléfono" th:field="*{contactoCel}">
                 </div>
             </div>
