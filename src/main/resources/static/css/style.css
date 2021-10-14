@@ -20,7 +20,10 @@ main{
     margin-top: 1rem;
     height: 50vh !important;
 }
-
+.img{
+    max-width: 100%;
+    height: auto;
+}
 .scroll{
    
     height: 85vh;
