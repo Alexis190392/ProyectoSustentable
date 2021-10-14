@@ -158,13 +158,19 @@ public class ClienteController {
     
     
      @GetMapping("/listado")
-    public String listadoYproductos(Model model, @RequestParam String documento) throws WebException{
+    public String listadoYproductos(Model model, @RequestParam String documento, @RequestParam(required = false) String query) throws WebException{
            
+        
+        
         // listo mi lista
         model.addAttribute("miLista", pls.listAll(documento));
-        //listo productos
-        model.addAttribute("productos",ps.listAll());
         
+        //listo productos
+        if(query!=null){
+            model.addAttribute("productos",ps.listByQuery(query));
+        } else {
+            model.addAttribute("productos",ps.listAll());
+        }
         return "usuario-lista";
     }
     
@@ -174,6 +180,12 @@ public class ClienteController {
         redat.addFlashAttribute("documento", documento);
         
         return "redirect:/cliente/listado?documento="+documento;
+    }
+    
+    @GetMapping("/deleteProducto")
+    public String eliminarProducto(@RequestParam String documento, @RequestParam(required = true) String sku) {
+        ps.deleteByCod(sku); //desde producto servicio permite la eliminacion
+         return "redirect:/cliente/listado?documento="+documento;
     }
     
 }

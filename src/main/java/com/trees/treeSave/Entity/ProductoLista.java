@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 public class ProductoLista extends Producto{
     
     private String documento;
-
+    
     public String getDocumento() {
         return documento;
     }
