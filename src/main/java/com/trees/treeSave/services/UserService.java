@@ -46,6 +46,9 @@ public class UserService implements UserDetailsService {
 
     @Autowired
     private VendedorServicio vendedorServicio;
+        
+    @Autowired
+    private ListaService ls;
 
     @Transactional
     public UserCliente saveCliente(String username, String password, String password2, String documento) throws WebException {
@@ -63,9 +66,9 @@ public class UserService implements UserDetailsService {
         if (username == null || username.isEmpty()) {
             throw new WebException("El username no puede estar vacio");
         }
-//        if (findByUsername(username) != null) {
-//            throw new WebException("El username que queres usar ya existe.");
-//        }
+        if (findClienteByUsername(username) != null) {
+            throw new WebException("El username que queres usar ya existe.");
+        }
         if (password == null || password2 == null || password.isEmpty() || password2.isEmpty()) {
             throw new WebException("La contraseña no puede estar vacía");
         }
@@ -89,6 +92,7 @@ public class UserService implements UserDetailsService {
         usuario.setBaja(c.getBaja());
         usuario.setFoto(c.getFoto());
         usuario.setRol(Role.CLIENTE);
+        usuario.setLista(c.getLista());
         clienteService.delete(c);
         return usuarioRepository.save(usuario);
     }
@@ -202,33 +206,5 @@ public class UserService implements UserDetailsService {
         return usuarioVRepository.findById(id);
     }
 
-//    @Transactional
-//    public void modificarUsuarioCliente(MultipartFile file, UserCliente usuario) throws WebException {
-//        if (usuario.getDocumento() == null) {
-//            throw new WebException("El documento no puede ser nulo.");
-//        }
-//        if (usuario.getNombres() == null | usuario.getNombres().isEmpty()) {
-//            throw new WebException("El nombre no puede ser nulo.");
-//        }
-//        if (usuario.getApellido() == null | usuario.getApellido().isEmpty()) {
-//            throw new WebException("El apellido no puede ser nulo.");
-//        }
-//        if (usuario.getContactoCel() == null | usuario.getContactoCel().isEmpty()) {
-//            throw new WebException("El telefono no puede ser nulo.");
-//        }
-//        usuario.setNombres(usuario.getNombres());
-//        usuario.setApellido(usuario.getApellido());
-//        usuario.setContactoCel(usuario.getContactoCel());
-//        usuario.setDocumento(usuario.getDocumento());
-//
-//        String idFoto = null;
-//
-//        if (usuario.getFoto() != null) {
-//            idFoto = usuario.getFoto().getId();
-//        }
-//        Foto foto = fotoService.actualizar(idFoto, file);
-//        usuario.setFoto(foto);
-//        usuarioRepository.save(usuario);
-//
-//    }
+
 }

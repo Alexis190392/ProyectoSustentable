@@ -42,7 +42,9 @@ public class ProductoServicio {
         p.setPuntos(puntos);
         
         return pr.save(p);
+        
     }
+    
     
     @Transactional
     public Producto save(MultipartFile file, Producto p) throws WebException{

@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="es-AR" xmlns:th="http://www.thymeleaf.org">
-
     <head th:replace="/fragments/head :: head">
 
 
 
     </head>
 
-    <body>
+    <body class="scroll">
 
         <header class="">
             <nav class="p-3   text-white" style="background-color: #20c997;" > <!-- aca se puede cambiar el color de la navbar -->
@@ -16,26 +15,20 @@
 
                         <h1 
                             class="display-3 fw-bold lh-1 mb-1">
-                            SavesTrees </style>
+                            SavesTrees 
                         </h1>
-                        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-
-
+                        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">                          
                             <a class="nav-link px-7 text-white" th:href="@{/super}">Super Usuario</a>
-                            <div th:object="${session.usuariosession}">
-                                <!--th:if="*{documento != null}"-->
-                                <a class="nav-link px-7 text-white" sec:authorize="isAuthenticated()" th:href="@{/usuario}">Usuario</a>
-                            </div>
-                            <div th:object="${session.usuariosession}">
-                                <a class="nav-link px-7 text-white" sec:authorize="isAuthenticated()" th:href="@{/vendedor}">Vendedor</a>
-                            </div>
-                            
+                            <a class="nav-link px-7 text-white" sec:authorize="isAuthenticated()" th:href="@{/usuario}">Usuario</a>
+                            <a class="nav-link px-7 text-white" th:href="@{/vendedor}">Vendedor</a>
                             <a class="navbar-brand" sec:authorize="isAuthenticated()" th:href="@{/logout}">Log out</a>
                         </ul>
+
                         <div th:if="${error}" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
                             <span th:text="${error}"></span>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            <button type="button" tittle="desloegarse" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
+
                         <div th:if="${param.logout}" class="alert alert-success alert-dismissible fade show mt-3" role="alert">
                             <span>Has finalizado la sesión con éxito.</span>
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -59,7 +52,7 @@
 
 
 
-                            </button>
+
 
                         </div>
                     </div>
@@ -117,10 +110,10 @@
                 <div class="row align-items-center g-lg-5 py-5">
                     <div class="col-lg-7 text-center text-lg-start">
                         <h1 class="display-4 fw-bold lh-1 mb-3">Mercado verde</h1>
-                        <p class="col-lg-10 fs-4">Empieza a ayudar al planeta!        </p>                  
-                        Nuestra vision de un mundo mas limpio se empiza a hacer realidad con nuestas acciones.
+                                       
+                        <p class="col-lg-7  fs-4"> Nuestra vision de un mundo mas limpio se empiza a hacer realidad con nuestas acciones.</p>
 
-                        <img src = "https://us.123rf.com/450wm/lumut/lumut1804/lumut180400338/99333989-dise%C3%B1o-de-ilustraci%C3%B3n-de-vector-de-plantilla-de-icono-de-%C3%A1rbol.jpg?ver=6">
+                        <img src = "https://i.pinimg.com/originals/95/1e/18/951e184b3f00274b1daa20d4c1a91871.jpg">
 
                         </p>
 
@@ -128,14 +121,16 @@
                     </div>
                     <div class="col-md-10 mx-auto col-lg-5">
                         <form th:action="@{/logincheck}" method="POST" class="p-4 p-md-5 border rounded-3 bg-light">
-                            <div class="form-floating mb-3">
+                            <div class="form-floating mb-2">
+
+
 
 
 
                                 <input type="text" class="form-control" id="floatingInput" name="username">
                                 <label for="username">Email o username</label>
                             </div>
-                            <div class="form-floating mb-3">
+                            <div class="form-floating mb-2">
                                 <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
                                 <label for="password">Password</label>
 
@@ -175,7 +170,11 @@
 
                         <h2>Ivy coins</h2>
                         <p>Comprar con conciencia tiene sus premios.</p>
-                        <p><a class="btn btn-secondary" href="#">Ver mas... &raquo;</a></p>
+
+                        
+
+
+
                     </div><!-- /.col-lg-4 -->
                     <div class="col-lg-4">
                         <svg class="circulo" width="1" height="1"                         
@@ -216,94 +215,20 @@
 
             <div class="b-example-divider"></div>
 
-            <div class="container px-4 py-5" id="icon-grid">
-                <h2 class="pb-2 border-bottom">Icon grid</h2>
 
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
-                    <div class="col d-flex align-items-start">
-                        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em">
-                        <use xlink:href="#bootstrap" />
-                        </svg>
-                        <div>
-                            <h4 class="fw-bold mb-0">Featured title</h4>
-                            <p>Paragraph of text beneath the heading to explain the heading.</p>
-                        </div>
-                    </div>
-                    <div class="col d-flex align-items-start">
-                        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em">
-                        <use xlink:href="#cpu-fill" />
-                        </svg>
-                        <div>
-                            <h4 class="fw-bold mb-0">Featured title</h4>
-                            <p>Paragraph of text beneath the heading to explain the heading.</p>
-                        </div>
-                    </div>
-                    <div class="col d-flex align-items-start">
-                        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em">
-                        <use xlink:href="#calendar3" />
-                        </svg>
-                        <div>
-                            <h4 class="fw-bold mb-0">Featured title</h4>
-                            <p>Paragraph of text beneath the heading to explain the heading.</p>
-                        </div>
-                    </div>
-                    <div class="col d-flex align-items-start">
-                        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em">
-                        <use xlink:href="#home" />
-                        </svg>
-                        <div>
-                            <h4 class="fw-bold mb-0">Featured title</h4>
-                            <p>Paragraph of text beneath the heading to explain the heading.</p>
-                        </div>
-                    </div>
-                    <div class="col d-flex align-items-start">
-                        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em">
-                        <use xlink:href="#speedometer2" />
-                        </svg>
-                        <div>
-                            <h4 class="fw-bold mb-0">Featured title</h4>
-                            <p>Paragraph of text beneath the heading to explain the heading.</p>
-                        </div>
-                    </div>
-                    <div class="col d-flex align-items-start">
-                        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em">
-                        <use xlink:href="#toggles2" />
-                        </svg>
-                        <div>
-                            <h4 class="fw-bold mb-0">Featured title</h4>
-                            <p>Paragraph of text beneath the heading to explain the heading.</p>
-                        </div>
-                    </div>
-                    <div class="col d-flex align-items-start">
-                        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em">
-                        <use xlink:href="#geo-fill" />
-                        </svg>
-                        <div>
-                            <h4 class="fw-bold mb-0">Featured title</h4>
-                            <p>Paragraph of text beneath the heading to explain the heading.</p>
-                        </div>
-                    </div>
-                    <div class="col d-flex align-items-start">
-                        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em">
-                        <use xlink:href="#tools" />
-                        </svg>
-                        <div>
-                            <h4 class="fw-bold mb-0">Featured title</h4>
-                            <p>Paragraph of text beneath the heading to explain the heading.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <div class="b-example-divider"></div>
 
-            <div class="container-fluid  bg-dark  col-xl-10 col-xxl-8 px-4 py-5 m-0 vw-100">
-                <div class="row align-items-center g-lg-5 py-5">
-                    <div class="col-lg-7 text-center text-white text-lg-start">
-                        <h1 class="display-4 fw-bold lh-1 mb-3">Formulario de registro</h1>
-                        <p class="col-lg-10 fs-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime, eum
-                            reprehenderit dicta consequatur ipsa eligendi cupiditate. Odit iusto nemo laboriosam cumque
-                            magnam qui eligendi, eveniet cupiditate fugit asperiores. Ipsam, in!</p>
+            <div class="container-fluid  bg-dark  col-xl-10 col-xxl-8 px-10 py-10 m-0 vw-100">
+               <div class="row align-items-center g-lg-5 py-5">
+                    <div class="col-lg-10 text-center text-white text-lg-start">
+                        <h1 class="display-4 fw-bold lh-1 mb-3">Develop Team</h1>
+                        <p>lexis</p>
+                        <p>ivan</p>
+                        <p>fede</p>
+                        <p>horacio</p>
+                        <p>andres</p>
+                        <p>lucas</p>
                     </div>
                     <div class="col-md-10 mx-auto col-lg-5">
 
@@ -311,7 +236,7 @@
                 </div>
             </div>
 
-            <div class="b-example-divider"></div>
+            
         </main>
 
 

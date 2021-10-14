@@ -3,14 +3,19 @@ package com.trees.treeSave.controller;
 import com.trees.treeSave.Entity.Ciudad;
 import com.trees.treeSave.Entity.Cliente;
 import com.trees.treeSave.Entity.Foto;
+import com.trees.treeSave.Entity.Lista;
 import com.trees.treeSave.excepciones.WebException;
 import com.trees.treeSave.services.CiudadService;
 import com.trees.treeSave.services.ClienteService;
+import com.trees.treeSave.services.ListaService;
+import com.trees.treeSave.services.PLService;
+import com.trees.treeSave.services.ProductoServicio;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
@@ -32,14 +37,23 @@ public class ClienteController {
 
     @Autowired
     private CiudadService ciudadService;
+    
+    @Autowired
+    private ListaService ls;
+    @Autowired
+    private ProductoServicio ps;
+    
+    @Autowired
+    private PLService pls;
 
 //    @GetMapping("/usuario")
 //    public String usuario(Model model){
 //       return "panel-Usuario";
 //        return "crear-usuario";
 //    }
+    @PreAuthorize("hasAnyRole('ROLE_USER')")
     @GetMapping("/panel")
-    public String panelUsuario() {
+    public String panelUsuario(){
         return "panel-Usuario";
     }
 
@@ -113,4 +127,53 @@ public class ClienteController {
         //Register it as custom editor for the Date type
         binder.registerCustomEditor(Date.class, editor);
     }
+    
+    @PostMapping("/createList")
+    public String crearLista(Model model, 
+                            @RequestParam String documento, 
+                            @RequestParam String nombre, 
+                            RedirectAttributes redat) throws WebException{
+        try{
+            //busco cliente
+            Cliente c = clienteService.findByDocumento(documento);
+            //creo una lista
+            Lista l = new Lista();
+            //le seteo el nombre que se elije
+            l.setNombreList(nombre);
+            //la genero con id en bs
+            ls.create(l);
+            
+            ls.cambiarNombre(l, nombre);
+            //seteo en el cliente
+ //           c.setLista(l);
+            //guardo cliente
+            clienteService.save(c);
+            redat.addFlashAttribute("sucess", "creado con exito");
+        } catch (WebException ex) {
+            model.addAttribute("error", ex.getMessage());
+            return "redirect:/cliente/panel";
+        }
+        return "redirect:/cliente/listado"; //url de la muestra de lista
+    }
+    
+    
+     @GetMapping("/listado")
+    public String listadoYproductos(Model model, @RequestParam String documento) throws WebException{
+           
+        // listo mi lista
+        model.addAttribute("miLista", pls.listAll(documento));
+        //listo productos
+        model.addAttribute("productos",ps.listAll());
+        
+        return "usuario-lista";
+    }
+    
+    @GetMapping("/agregarProducto")
+    public String agregarProductos(@RequestParam String documento, @RequestParam String sku, RedirectAttributes redat)  throws WebException{
+        pls.agregar(documento, sku);
+        redat.addFlashAttribute("documento", documento);
+        
+        return "redirect:/cliente/listado?documento="+documento;
+    }
+    
 }
