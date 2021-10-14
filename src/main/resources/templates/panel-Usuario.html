@@ -74,52 +74,60 @@
                         </div>
                     </div>
                 </div>-->
-        <div class="container1">
-
-            <div class="item rounded-3" style="width: height: 400px;
-            width: 450px;">
-
-
-                <div th:object="${session.usuariosession}" class="card">
-                    <img th:if="*{foto != null}" class="img-fluid rounded-start"
-                        th:src="@{/foto/cliente}+'?id='+*{documento}">
-                    <div class="card-body">
-                        <h5 th:text="*{nombres}+' '+*{apellido}" class="card-title"></h5>
-                        <p th:text="*{contactoMail}" class="card-text"></p>
-                        <p th:text="*{nivel}" class="card-text"></p>
-
-                        <button class="buttonCosa"  style=" width: 100%;position:50% ,50% ;">
-                            <a class="text-black text-decoration-none"
-                                th:href="@{/cliente/form}+'?documento='+*{documento}+'&action=edit'"> Editar mi
-                                perfil. </a>
+                <br>
+        <div class="container ">
+            <div class="row">
+                <div class="col">
+                    <div class="item rounded-3 d-flex" style="width: height: 400px;
+                    width: 450px;">
+        
+        
+                        <div th:object="${session.usuariosession}" class="card">
+                            <img th:if="*{foto != null}" class="img-fluid rounded-start"
+                                th:src="@{/foto/cliente}+'?id='+*{documento}">
+                            <div class="card-body">
+                                <h5 th:text="*{nombres}+' '+*{apellido}" class="card-title"></h5>
+                                <p th:text="*{contactoMail}" class="card-text"></p>
+                                <p th:text="*{nivel}" class="card-text"></p>
+        
+                                <button class="buttonCosa"  style=" width: 100%;position:50% ,50% ;">
+                                    <a class="text-black text-decoration-none"
+                                        th:href="@{/cliente/form}+'?documento='+*{documento}+'&action=edit'"> Editar mi
+                                        perfil. </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-        </div>
-        <div class="item  rounded-3" style="width: height: 400px;
-            width: 450px;">
-
-            <div class="card">
-                <div class="card-body">
-                    <img class="img-fluid rounded-start" src="https://cdn-icons-png.flaticon.com/512/762/762677.png">
-                    <p> </p>
-                    <p> </p>
-                    <p> </p>
-
-                    <button class="buttonCosa"  style=" width: 100%;position:50% ,50% ;" >
-
-
-                        <a class="text-black text-decoration-none" style=" width: 100%;"
-                            th:href="@{/cliente/listado(documento=__${session.usuariosession.documento}__)}"> Mi lista.
-                        </a></botton>
-
+                <div class="col">
+                    <div class="item  rounded-3" style="width: height: 400px;
+                    width: 450px;">
+        
+                    <div class="card">
+                        <div class="card-body">
+                            <img class="img-fluid rounded-start" src="https://cdn-icons-png.flaticon.com/512/762/762677.png">
+                            <p> </p>
+                            <p> </p>
+                            <p> </p>
+        
+                            <button class="buttonCosa"  style=" width: 100%;position:50% ,50% ;" >
+        
+        
+                                <a class="text-black text-decoration-none" style=" width: 100%;"
+                                    th:href="@{/cliente/listado(documento=__${session.usuariosession.documento}__)}"> Mi lista.
+                                </a></botton>
+        
+                        </div>
+                    </div>
+                </div>
                 </div>
             </div>
+
+            
+
         </div>
+        
 
 
-        </div>
 
 
     </main>
