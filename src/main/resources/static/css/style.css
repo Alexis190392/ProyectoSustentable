@@ -431,6 +431,9 @@ main {
 .loader-page>div:nth-child(3) {
     animation-delay: .2s;
 }
-
+.body {
+    
+    background-image: url("https://i.ibb.co/Fbw0pgB/Sin-t-tulo-2.png");
+  }
 
 /*pre loader*/

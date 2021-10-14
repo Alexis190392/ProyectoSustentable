@@ -3,7 +3,8 @@
 
 <head th:replace="/fragments/head :: head"></head>
 
-<body>
+<body class="body">
+  
     <header class="">
         <nav class="p-3   text-white" style="background-color: #20c997;">
             <!-- aca se puede cambiar el color de la navbar -->
@@ -34,6 +35,7 @@
             <h2 th:text=" '⭐Bienvenido ' + ${session.usuariosession.nombres} + ' ' + ${session.usuariosession.apellido}+'⭐'"
                 style="position: 50% , 50%;"></h2>
         </center>
+       
         <center>
             <p class="h2">que deseas hacer?</p>
         </center>
@@ -75,13 +77,14 @@
                     </div>
                 </div>-->
         <div class="container1">
+            
 
             <div class="item rounded-3" style="width: height: 400px;
             width: 450px;">
 
 
-                <div th:object="${session.usuariosession}" class="card">
-                    <img th:if="*{foto != null}" class="img-fluid rounded-start"
+                <div th:object="${session.usuariosession}" class="card"">
+                    <img  th:if="*{foto != null}" class="img-fluid rounded-start"
                         th:src="@{/foto/cliente}+'?id='+*{documento}">
                     <div class="card-body">
                         <h5 th:text="*{nombres}+' '+*{apellido}" class="card-title"></h5>
@@ -100,7 +103,7 @@
         <div class="item  rounded-3" style="width: height: 400px;
             width: 450px;">
 
-            <div class="card">
+            <div class="card"  style="background-color: rgba(255, 125, 0, 0.5);>
                 <div class="card-body">
                     <img class="img-fluid rounded-start" src="https://cdn-icons-png.flaticon.com/512/762/762677.png">
                     <p> </p>
