@@ -6,8 +6,11 @@ font-family: 'Pacifico', cursive;
 font-family: 'Sacramento', cursive;
 font-family: 'Satisfy', cursive;
 font-family: 'Secular One', sans-serif;*/
+.h2 { 
+    font-family: 'Courgette', cursive;
+    font-size: 30px;
+    }
 h1 { 
-
 font-family: 'Courgette', cursive;
 font-size: 800px;
 }
@@ -111,9 +114,38 @@ main{
       z-index: 1;
   }
   .rounded-3{
-      border-radius: 0.7rem!important;
+      border-radius: 0.7rem!important;  
       -webkit-box-shadow: 1px 2.5px 20px 0.5px #828282;
      
   }
+.container1{
+    padding: 50px , 50px ;
+    background-image: "https://image.freepik.com/vector-gratis/dibujado-mano-arbol-vida-ingenio-flores_23-2148679928.jpg" ;
+     
+}
+.item{
+    
+    margin: 0px  10px 0px 320px ;
+    padding: 1px;
+    float: left;
+
+}
+.buttonCosa {
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
+    border-radius: 10px;
+    font-family: 'Satisfy', cursive;
+    font-size: 25px;
+    color: rgb(128, 22, 22);
+    width: auto;
+    padding:  5 xp;
+}
+
+.buttonCosa:hover {
+    background-color: #8ED4D4; /* Green */
+    color: black;
+    
+    width: auto;
+}
 
 /*fin en forma de hoja*/
