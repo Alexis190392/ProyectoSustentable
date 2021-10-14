@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="es-AR" xmlns:th="http://www.thymeleaf.org">
+
     <head th:replace="/fragments/head :: head">
-
-
-
     </head>
 
     <body class="scroll">
@@ -18,9 +16,8 @@
                             SavesTrees 
                         </h1>
                         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">                          
-                            <a class="nav-link px-7 text-white" th:href="@{/super}">Super Usuario</a>
                             <a class="nav-link px-7 text-white" sec:authorize="isAuthenticated()" th:href="@{/usuario}">Usuario</a>
-                            <a class="nav-link px-7 text-white" th:href="@{/vendedor}">Vendedor</a>
+                            <a class="nav-link px-7 text-white" sec:authorize="isAuthenticated()" th:href="@{/vendedor}">Vendedor</a>
                             <a class="navbar-brand" sec:authorize="isAuthenticated()" th:href="@{/logout}">Log out</a>
                         </ul>
 
@@ -40,19 +37,12 @@
                             <a type="button" sec:authorize="!isAuthenticated()" th:href="@{/cliente/form}" class="btn btn-warning" >
                                 Registrarse como cliente
                             </a>
-                              <a type="button" sec:authorize="!isAuthenticated()" th:href="@{/vendedor/form}" class="btn btn-warning" >
+                            <a type="button" sec:authorize="!isAuthenticated()" th:href="@{/vendedor/form}" class="btn btn-warning" >
                                 Registrarse como vendedor
                             </a>
                             <!--button login-->
-
-
-
                             <button type="button" sec:authorize="!isAuthenticated()" class="fas fa-sign-in-alt" data-bs-toggle="modal"
                                     style=" width: 1.8em; height: auto; margin-left: 4rem" data-bs-target="#exampleModal1">
-
-
-
-
 
                         </div>
                     </div>
@@ -72,8 +62,9 @@
 
                         <form th:action="@{/logincheck}" method="POST" class="p-4 p-md-5 border rounded-3 bg-light">
                             <div class="form-floating mb-3">
-                                <label for="username">Username</label>
-                                <input type="text" class="form-control" id="floatingInput" name="username">
+                                <input type="text" class="form-control" id="floatingInput" placeholder="Username"
+                                       name="username">
+                                <label for="password">Username</label>
                             </div>
                             <div class="form-floating mb-3">
                                 <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
@@ -110,7 +101,7 @@
                 <div class="row align-items-center g-lg-5 py-5">
                     <div class="col-lg-7 text-center text-lg-start">
                         <h1 class="display-4 fw-bold lh-1 mb-3">Mercado verde</h1>
-                                       
+
                         <p class="col-lg-7  fs-4"> Nuestra vision de un mundo mas limpio se empiza a hacer realidad con nuestas acciones.</p>
 
                         <img src = "https://i.pinimg.com/originals/95/1e/18/951e184b3f00274b1daa20d4c1a91871.jpg">
@@ -171,7 +162,7 @@
                         <h2>Ivy coins</h2>
                         <p>Comprar con conciencia tiene sus premios.</p>
 
-                        
+
 
 
 
@@ -220,7 +211,7 @@
             <div class="b-example-divider"></div>
 
             <div class="container-fluid  bg-dark  col-xl-10 col-xxl-8 px-10 py-10 m-0 vw-100">
-               <div class="row align-items-center g-lg-5 py-5">
+                <div class="row align-items-center g-lg-5 py-5">
                     <div class="col-lg-10 text-center text-white text-lg-start">
                         <h1 class="display-4 fw-bold lh-1 mb-3">Develop Team</h1>
                         <p>lexis</p>
@@ -236,7 +227,7 @@
                 </div>
             </div>
 
-            
+
         </main>
 
 

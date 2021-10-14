@@ -6,15 +6,13 @@
 
     <body>
         <header th:replace="/fragments/header :: header"></header>
-        <nav class="navbar navbar-light" style="background-color: #20c997;">
-            <div class="container">
-                <a th:href="@{/}" class="d-flex navbar-brand align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                    <h2>Saves Trees</h2>
-                </a>
-            </div>
-        </nav>
+
 
         <div class="card container">
+            <h1 
+                class="display-3 fw-bold lh-1 mb-1 d-flex justify-content-center">
+                Registro Cliente 
+            </h1>
             <form th:action="@{/cliente/save}" method="POST" th:object="${cliente}" enctype="multipart/form-data" class="cart">
                 <div th:object="${cliente}">
                     <input type="hidden" th:value="*{documento}">    
@@ -58,8 +56,8 @@
                         <input type="text" th:field="*{contactoCel}" class="form-control" placeholder="Telefono" aria-label="Teléfono">
                     </div>
                 </div>
-             
-                
+
+
                 <div class="row">
                     <div class="col-md-6">
                         <input type="date" th:field="*{fechaNacimiento}" class="formi form-control">
