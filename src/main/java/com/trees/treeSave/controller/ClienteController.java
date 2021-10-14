@@ -178,13 +178,14 @@ public class ClienteController {
     public String agregarProductos(@RequestParam String documento, @RequestParam String sku, RedirectAttributes redat)  throws WebException{
         pls.agregar(documento, sku);
         redat.addFlashAttribute("documento", documento);
-        
+        redat.addFlashAttribute("success", "Producto verde agregado! Sumas 20 puntos");
         return "redirect:/cliente/listado?documento="+documento;
     }
     
     @GetMapping("/deleteProducto")
-    public String eliminarProducto(@RequestParam String documento, @RequestParam(required = true) String sku) {
+    public String eliminarProducto(@RequestParam String documento, @RequestParam(required = true) String sku, RedirectAttributes redat) {
         ps.deleteByCod(sku); //desde producto servicio permite la eliminacion
+        redat.addFlashAttribute("error", "Producto eliminado de la lista");
          return "redirect:/cliente/listado?documento="+documento;
     }
     

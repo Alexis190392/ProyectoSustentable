@@ -9,16 +9,6 @@
 </header> -->
 
 <header th:fragment="header"  class="text-white">
-    <div th:if="${error}" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-        <span th:text="${error}"></span>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    <div th:if="${success}" class="alert alert-success alert-dismissible fade show mt-3" role="alert">
-        <span th:text="${success}"></span>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-
-
 
     <nav class="navbar navbar-light" style="background-color: #20c997;">
         <div class="container">
@@ -41,6 +31,14 @@
         </div>
     </nav>
 
+    <div th:if="${error}" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+        <span th:text="${error}"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div th:if="${success}" class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+        <span th:text="${success}"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
 
 
 </header>
