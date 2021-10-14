@@ -1,34 +1,47 @@
 <!DOCTYPE html>
 <html lang="es-AR" xmlns:th="http://www.thymeleaf.org">
 
-    <head th:replace="/fragments/head :: head"></head>
+<head th:replace="/fragments/head :: head"></head>
 
-    <body class="scroll">
-        <header th:replace="/fragments/header :: header"></header>
+<body>
+    <header class="">
+        <nav class="p-3   text-white" style="background-color: #20c997;">
+            <!-- aca se puede cambiar el color de la navbar -->
+            <div class="container-fluid">
+                <nav class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 
-        <main class="container-fluid vh-100">
-            <div class="row ">
-                <div class="col col-md-2 ">
-                    <!--<div class="card">-->
-                        <!--<div class="card-header">-->
-                            <!-- Button trigger modal -->
-<!--                            <button type="button" class="btn btn-primary col-12" data-bs-toggle="modal"
-                                    data-bs-target="#staticBackdrop">
-                                + Nueva lista
-                            </button>-->
+                    <h1 class="display-3 fw-bold lh-1 mb-1">
+                        SavesTrees
+                    </h1>
+                    <a class="nav-link px-7 text-white buttonCosa " style="padding: 5px ; margin: 10px;"
+                        th:href="@{/}">volver al incio inicio</a>
+                        <a class="nav-link px-7 text-white buttonCosa " style=" padding: 5px ;margin: 10px; "
+                        th:href="@{/login?logout}">Log out</a>
 
-                            <!-- Modal -->
-                            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
-                                 tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="staticBackdropLabel">Ingrese nombre:</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <!--  <form th:action="@{/lista/save}" method="POST" th:object="${lista}" class="row">
+                    <a type="button" style="position: 50% , 50%;" sec:authorize="!isAuthenticated()"
+                        th:href="@{/cliente/form}" class="btn btn-warning">
+                        Registrarse como cliente
+                    </a>
+            </div>
+    </header>
+
+
+
+
+
+    <main class="container-fluid vh-100">
+        <center>
+            <h2 th:text=" '⭐Bienvenido ' + ${session.usuariosession.nombres} + ' ' + ${session.usuariosession.apellido}+'⭐'"
+                style="position: 50% , 50%;"></h2>
+        </center>
+        <center>
+            <p class="h2">que deseas hacer?</p>
+        </center>
+        <!-- Modal -->
+
+
+
+        <!--  <form th:action="@{/lista/save}" method="POST" th:object="${lista}" class="row">
                                                   <input hidden th:field="*{nombreList}">
                                                   <div class="form-label col">
                                                       <input type="text" class="form-control" th:field="*{nombreCat}">
@@ -39,88 +52,94 @@
                                                       <button type="button" class="btn btn-primary">Crear</button>
                                                   </div>
                                               </form>-->
-                                        </div>    
-                                    </div>
-                                </div>
-                            </div>
-                        <!--</div>-->
+        </div>
+        </div>
+        </div>
+        </div>
 
-                    <!--</div>-->
-                </div>
-            </div>
-            <!--                th:object="${cliente}"
-                            <div class="col col-md-6 d-flex justify-content-center">
-                                <div th:object="${session.usuariosession}" class="card" style="width: 18rem;">
-                                    <img th:if="*{foto != null}" class="img-fluid rounded-start"
-                                         th:src="@{/foto/cliente}+'?id='+*{documento}">
-                                    <div class="card-body">
-                                        <h5 th:text="*{nombres}+' '+*{apellido}" class="card-title"></h5>
-                                        <p th:text="*{contactoMail}" class="card-text"></p>
-                                        <p th:text="*{nivel}" class="card-text"></p>
-                                        <div >
-                                            <button class="btn btn-primary rounded-pill btn-xl"><a class="text-decoration-none link-light" th:href="@{/cliente/form}+'?documento='+*{documento}+'&action=edit'">Editar</a></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>-->
-            <div class="col col-md-6 d-flex justify-content-center">
-                <div th:object="${session.usuariosession}" class="card" style="width: 18rem;">
+
+
+        <!--                th:object="${cliente}"
+                <div class="col col-md-6 d-flex justify-content-center">
+                    <div th:object="${session.usuariosession}" class="card" style="width: 18rem;">
+                        <img th:if="*{foto != null}" class="img-fluid rounded-start"
+                             th:src="@{/foto/cliente}+'?id='+*{documento}">
+                        <div class="card-body">
+                            <h5 th:text="*{nombres}+' '+*{apellido}" class="card-title"></h5>
+                            <p th:text="*{contactoMail}" class="card-text"></p>
+                            <p th:text="*{nivel}" class="card-text"></p>
+                            <div >
+                                <button class="btn btn-primary rounded-pill btn-xl"><a class="text-decoration-none link-light" th:href="@{/cliente/form}+'?documento='+*{documento}+'&action=edit'">Editar</a></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+        <div class="container1">
+
+            <div class="item rounded-3" style="width: height: 400px;
+            width: 450px;">
+
+
+                <div th:object="${session.usuariosession}" class="card">
                     <img th:if="*{foto != null}" class="img-fluid rounded-start"
-                         th:src="@{/foto/cliente}+'?id='+*{documento}">
+                        th:src="@{/foto/cliente}+'?id='+*{documento}">
                     <div class="card-body">
                         <h5 th:text="*{nombres}+' '+*{apellido}" class="card-title"></h5>
                         <p th:text="*{contactoMail}" class="card-text"></p>
                         <p th:text="*{nivel}" class="card-text"></p>
-                        <div >
-                            <button class="btn btn-primary rounded-pill btn-xl"><a class="text-decoration-none link-light" th:href="@{/cliente/form}+'?documento='+*{documento}+'&action=edit'">Editar</a></button>
-                        </div>
+
+                        <button class="buttonCosa"  style=" width: 100%;position:50% ,50% ;">
+                            <a class="text-black text-decoration-none"
+                                th:href="@{/cliente/form}+'?documento='+*{documento}+'&action=edit'"> Editar mi
+                                perfil. </a>
                     </div>
                 </div>
             </div>
 
+        </div>
+        <div class="item  rounded-3" style="width: height: 400px;
+            width: 450px;">
+
+            <div class="card">
+                <div class="card-body">
+                    <img class="img-fluid rounded-start" src="https://cdn-icons-png.flaticon.com/512/762/762677.png">
+                    <p> </p>
+                    <p> </p>
+                    <p> </p>
+
+                    <button class="buttonCosa"  style=" width: 100%;position:50% ,50% ;" >
 
 
+                        <a class="text-black text-decoration-none" style=" width: 100%;"
+                            th:href="@{/cliente/listado(documento=__${session.usuariosession.documento}__)}"> Mi lista.
+                        </a></botton>
 
-            <p>----------------------------------------------------------------------------</p>
-
-
-            <p th:text=" 'Hola ' + ${session.usuariosession.nombres} + ' ' + ${session.usuariosession.apellido}"></p>
-
-            <p class="display-3">Listas</p>
-
-            <div class="d-flex justify-content-center m-3">
-                <div class="col d-flex justify-content-center mt-5">
-                    <a th:href="@{/cliente/listado(documento=__${session.usuariosession.documento}__)}" type="button" class="btn btn-primary">Lista</a>
                 </div>
             </div>
-            <div class="d-flex justify-content-center m-3">
-                <div class="col d-flex justify-content-center mt-5">
-                    <a th:href="@{/cliente/panel}" type="button" class="btn btn-primary">Perfil</a>
-                </div>
-            </div>
-            <div class="d-flex justify-content-center m-3">
-                <div class="col d-flex justify-content-center mt-5">
-                    <a th:href="@{/cliente/panel}" type="button" class="btn btn-primary">Productos</a>
-                </div>
-            </div>
+        </div>
+
+
+        </div>
+
+
+    </main>
 
 
 
 
 
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <!-- scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+    <script src="/js/scripts.js"></script>
 
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-            <!-- scripts -->
-            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-                    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-            crossorigin="anonymous"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-                    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-            crossorigin="anonymous"></script>
-            <script src="/js/scripts.js"></script>
-
-    </body>
+</body>
 
 </html>
