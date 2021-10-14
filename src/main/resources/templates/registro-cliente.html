@@ -6,80 +6,96 @@
 
     <body>
         <header th:replace="/fragments/header :: header"></header>
-        <div th:if="${error}" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-            <span th:text="${error}"></span>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        <div th:if="${success}" class="alert alert-success alert-dismissible fade show mt-3" role="alert">
-            <span th:text="${success}"></span>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
+        <nav class="navbar navbar-light" style="background-color: #20c997;">
+            <div class="container">
+                <a th:href="@{/}" class="d-flex navbar-brand align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                    <h2>Saves Trees</h2>
+                </a>
+            </div>
+        </nav>
 
-        <form th:action="@{/cliente/save}" method="POST" th:object="${cliente}" enctype="multipart/form-data">
-            <div th:object="${cliente}">
-                <input type="hidden" th:value="*{documento}">    
-            </div>
-            <br>
-            <div>
-                <input type="hidden" th:value="${action}" name="action">
-            </div>
-            <br>
-            <div class="d-flex justify-content-center m-3">
+        <div class="card container">
+            <form th:action="@{/cliente/save}" method="POST" th:object="${cliente}" enctype="multipart/form-data" class="cart">
+                <div th:object="${cliente}">
+                    <input type="hidden" th:value="*{documento}">    
+                </div>
+                <br>
                 <div>
-                    <label class="form-label ">Nombres</label>
-                    <input type="text" th:field="*{nombres}" class="form-control ">
+                    <input type="hidden" th:value="${action}" name="action">
                 </div>
-            </div>
-            <div class="d-flex justify-content-center m-3">
-                <div>
-                    <label class="form-label ">Apellido</label>
-                    <input type="text" th:field="*{apellido}" class="form-control ">
+                <br>
+
+
+                <!---------------------------------------------------------------------------------------------------------------------------->
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" th:field="*{nombres}" class="formi form-control" placeholder="Nombre/s">
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" th:field="*{apellido}" class="formi form-control" placeholder="Apellido">
+                    </div>
                 </div>
-            </div>
-            <div class="d-flex justify-content-center m-3">
-                <div>
-                    <label class="form-label">Documento</label>
-                    <input type="number" th:field="*{documento}" class="form-control">
+                <div class="col-md-12">
+                    <input type="number" th:field="*{documento}" class="formi form-control" placeholder="Documento">
                 </div>
-            </div>
-            <div class="d-flex justify-content-center m-3">
-                <div>
-                    <label class="form-label ">Telefono</label>
-                    <input type="number" th:field="*{contactoCel}" class="form-control ">
+                <div class="col-md-12">
+                    <input type="email" th:field="*{contactoMail}" class="formi form-control" placeholder="Email">
                 </div>
-            </div>
-            <div class=" d-flex justify-content-center m-3">
-                <label for="ciudad" class="form-label">Ciudad</label>
-                <div>
-                    <select class="form-select ms-2" th:field="${cliente.ciudad.id}" name="idCiudad">
-                        <option th:each="c : ${ciudades}" th:text="${c.nombre}" th:value="${c.id}" th:selected="${cliente.ciudad != null && c.id == cliente.ciudad.id}"></option>
-                    </select>
+
+                <!----------------------------------------------------------------------------------------------------------------------------->
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" class="formi form-control" placeholder="Domicilio" aria-label="Domicilio">
+                    </div>
+                    <!-- Ciudad -->
+                    <div class="col-md-4">
+                        <select class="form-select" th:field="${cliente.ciudad.id}" name="idCiudad">
+                            <option th:each="c : ${ciudades}" th:text="${c.nombre}" th:value="${c.id}" th:selected="${cliente.ciudad != null && c.id == cliente.ciudad.id}"></option>
+                        </select>
+                    </div>
+                    <!-- telefono -->
+                    <div class="col-md-2">
+                        <input type="text" th:field="*{contactoCel}" class="form-control" placeholder="Telefono" aria-label="Teléfono">
+                    </div>
                 </div>
-            </div>
-            <div class="d-flex justify-content-center m-3">
-                <div>
-                    <label class="form-label ">Fecha de nacimiento</label>
-                    <input type="date" th:field="*{fechaNacimiento}" class="form-control" th:selected="${cliente.fechaNacimiento != null}">
+             
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="date" th:field="*{fechaNacimiento}" class="formi form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label ">Agregar foto/imagen</label>
+                        <input type="file" name="archivo" class="form-control" placeholder="Foto de perfil">
+                    </div>
                 </div>
-            </div>
-            <div class="d-flex justify-content-center m-3">
-                <div>
-                    <label class="form-label ">E-mail</label>
-                    <input type="email" th:field="*{contactoMail}" class="form-control" >
+                <a href="">Leer términos y condiciones</a>
+                <br>
+                <br>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                    <label class="form-check-label" for="invalidCheck">
+                        Acepto los terminos y condiciones
+                    </label>
+                    <div class="invalid-feedback">
+                        You must agree before submitting.
+                    </div>
                 </div>
-            </div>
-            <div class="d-flex justify-content-center m-3">
-                <div>
-                    <label class="form-label ">Agregar foto/imagen</label>
-                    <input type="file" name="archivo" class="form-control ">
+                <br>
+                <div class="d-flex justify-content-center m-3">
+                    <div class="col d-flex justify-content-center mt-5">
+                        <button type="submit" class="btn btn-secondary">Siguiente</button>
+                    </div>
                 </div>
-            </div>
-            <div class="d-flex justify-content-center m-3">
-                <div class="col d-flex justify-content-center mt-5">
-                    <button type="submit" class="btn-primary">Siguiente</button>
-                </div>
-            </div>
-        </form>
+
+
+
+
+
+
+
+            </form>
+        </div>
 
 
 
