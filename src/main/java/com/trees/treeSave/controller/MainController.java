@@ -16,7 +16,8 @@ public class MainController {
     private ClienteService cs;
     
     @GetMapping("")
-    public String index(){
+    public String index(Model model){
+        model.addAttribute("error", "error");
         return "index.html";
     }
     
