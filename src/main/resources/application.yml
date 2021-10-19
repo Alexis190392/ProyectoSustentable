@@ -2,9 +2,13 @@
 spring:
  #Configuraci\u00f3n MySQL
   datasource: 
-    url: jdbc:mysql://localhost:3306/tree?allowPublicKeyRetrieval=true&useSSL=false&useTimezone=true&serverTimezone=GMT&characterEncoding=UTF-8
-    username: root
-    password: root
+#    url: jdbc:mysql://localhost:3306/tree?allowPublicKeyRetrieval=true&useSSL=false&useTimezone=true&serverTimezone=GMT&characterEncoding=UTF-8
+#    username: root
+#    password: root
+
+    url: jdbc:mysql://us-cdbr-east-04.cleardb.com/heroku_cd9a6e0131c7c73?reconnect=true
+    username: bc7e316470e7f1
+    password: 0cbb8454
     driver-class-name: com.mysql.cj.jdbc.Driver 
 #Configuraci\u00f3n Creaci\u00f3n de tablas (Hibernate)
   jpa:
