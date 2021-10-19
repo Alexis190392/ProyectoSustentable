@@ -22,14 +22,16 @@
             <div class="container-fluid">
                 <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 
-                    <h1 class="display-3 fw-bold lh-1 mb-1">
+                    <h1 class="display-3 col-md-6 fw-bold lh-1 mb-1">
                         SavesTrees
                     </h1>
-                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                        <a class="nav-link px-7 text-white" sec:authorize="isAuthenticated()" th:href="@{/usuario}">Usuario</a>
-                        <a class="nav-link px-7 text-white" sec:authorize="isAuthenticated()" th:href="@{/vendedor}">Vendedor</a>
-                        <a class="navbar-brand" sec:authorize="isAuthenticated()" th:href="@{/logout}">Log out</a>
-                    </ul>
+                    <div class="nav col-md-6 col-lg-auto me-lg-auto mb-2 justify-content-end mb-md-0">
+                        <a class="nav-link px-7 text-white btn btn-outline-success m-2" sec:authorize="isAuthenticated()" th:href="@{/usuario}">Mi PANEL</a>
+                        <a hidden class="nav-link px-7 text-white" sec:authorize="isAuthenticated()" th:href="@{/vendedor}">Vendedor</a>
+                        
+                        <a class="navbar-brand btn btn-warning m-2" sec:authorize="isAuthenticated()" th:href="@{/logout}">Log out</a>
+                    <div>
+                    
 
                     <div th:if="${error}" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
                         <span th:text="${error}"></span>
@@ -44,14 +46,14 @@
 
                         <!-- Button trigger modal registrarse -->
 
-                        <a type="button" sec:authorize="!isAuthenticated()" th:href="@{/cliente/form}" class="btn btn-warning">
+                        <a type="button" sec:authorize="!isAuthenticated()" th:href="@{/cliente/form}" class="btn btn-warning m-2">
                                 Registrarse como cliente
                             </a>
-                        <a type="button" sec:authorize="!isAuthenticated()" th:href="@{/vendedor/form}" class="btn btn-warning">
+                        <a type="button" sec:authorize="!isAuthenticated()" th:href="@{/vendedor/form}" class="btn btn-warning m-2">
                                 Registrarse como vendedor
                             </a>
                         <!--button login-->
-                        <button type="button" sec:authorize="!isAuthenticated()" class="fas fa-sign-in-alt" data-bs-toggle="modal" style=" width: 1.8em; height: auto; margin-left: 4rem" data-bs-target="#exampleModal1">
+                        <button hidden type="button" sec:authorize="!isAuthenticated()" class="fas fa-sign-in-alt" data-bs-toggle="modal" style=" width: 1.8em; height: auto; margin-left: 4rem" data-bs-target="#exampleModal1">
 
                         </div>
                     </div>
