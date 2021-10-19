@@ -6,9 +6,9 @@ spring:
 #    username: root
 #    password: root
 
-    url: jdbc:mysql://us-cdbr-east-04.cleardb.com/heroku_cd9a6e0131c7c73?reconnect=true
-    username: bc7e316470e7f1
-    password: 0cbb8454
+    url: jdbc:mysql://x8autxobia7sgh74.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/c1raobgzeok63187
+    username: zje7rrnceqazeh06
+    password: mju5xhvt1ycr0w1j
     driver-class-name: com.mysql.cj.jdbc.Driver 
 #Configuraci\u00f3n Creaci\u00f3n de tablas (Hibernate)
   jpa:
