@@ -160,7 +160,7 @@ font-family: 'Secular One', sans-serif;*/
  .bg_animate {
      width: 100%;
      height: 100vh;
-     background: linear-gradient(to right, #005C98, #505BDA);
+     background: linear-gradient(to right, #389800, #6cda50);
      position: relative;
      overflow: hidden;
  }
