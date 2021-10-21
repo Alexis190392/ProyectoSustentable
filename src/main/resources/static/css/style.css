@@ -37,7 +37,7 @@ font-family: 'Secular One', sans-serif;*/
  }
  
  .scroll::-webkit-scrollbar-thumb {
-     background: #64dd17;
+     background: #17ddcd;
      border-radius: 25px;
  }
  
@@ -62,7 +62,7 @@ font-family: 'Secular One', sans-serif;*/
      cursor: pointer;
      transition: all .4s;
      text-decoration: none;
-     color: #64dd17;
+     color: #17dddd;
  }
  
  .btn-hoja:hover {
@@ -84,7 +84,7 @@ font-family: 'Secular One', sans-serif;*/
  }
  
  .btn-hoja::after {
-     background: #64dd17;
+     background: #17dddd;
      transform-origin: right bottom;
      transform: translate(10%, 10%) scale(0.3);
      border-radius: 50px 0 50px 0;
@@ -130,7 +130,7 @@ font-family: 'Secular One', sans-serif;*/
      height: 1.5rem;
      margin: 3rem .5rem;
      border-radius: 50%;
-     background-color: #8fbc8f;
+     background-color: rgb(31, 204, 195);
      animation: loaderr .6s infinite alternate;
  }
  
@@ -160,7 +160,7 @@ font-family: 'Secular One', sans-serif;*/
  .bg_animate {
      width: 100%;
      height: 100vh;
-     background: linear-gradient(to right, rgb(31, 204, 195), #ffffff);
+     background: linear-gradient(to right, rgb(6, 160, 152), #66d6f1);
      position: relative;
      overflow: hidden;
  }
@@ -225,7 +225,7 @@ font-family: 'Secular One', sans-serif;*/
  
  .burbuja {
      border-radius: 50%;
-     background: #fff;
+     background: rgba(255, 255, 255, 0);
      opacity: .3;
      position: absolute;
      bottom: -150;
@@ -341,3 +341,85 @@ font-family: 'Secular One', sans-serif;*/
      }
  }
  /*fin */
+ /*footer*/
+ 
+ .foo {
+     background: #ffffff;
+ }
+ 
+ .formi {
+     padding-bottom: 1rem;
+ }
+ 
+ .btnfoo {
+     background-color: #17dddd;
+ }
+ /*popup*/
+ 
+ .center {
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+ }
+ 
+ .popup-overlay {
+     position: fixed;
+     top: 0px;
+     left: 0px;
+     width: 100%;
+     height: 100vh;
+     z-index: 1;
+     background: rgba(0, 0, 0, 0.5);
+     display: none;
+ }
+ 
+ .popup {
+     padding: 2rem;
+     position: absolute;
+     top: -150%;
+     left: 50%;
+     transform: translate(-50%, -50%) scale(1.15);
+     width: 600px;
+     height: 750px;
+     background: #f5f5f5;
+     z-index: 2;
+     opacity: 0;
+     box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2);
+     transition: transform 300ms ease-in-out, opacity 300ms ease-in-out;
+ }
+ 
+ body.showLoginForm .popup-overlay {
+     display: block;
+ }
+ 
+ body.showLoginForm .popup {
+     top: 50%;
+     opacity: 1;
+     transform: translate(-50%, -50%) scale(1);
+ }
+ 
+ .popup .popup-close {
+     position: absolute;
+     top: -10px;
+     right: -10px;
+     width: 40px;
+     height: 40px;
+     background: #555;
+     color: #f5f5f5;
+     font-size: 25px;
+     font-weight: 600;
+     text-align: center;
+     border-radius: 50%;
+     cursor: pointer;
+ }
+ 
+ .popup .form .avatar {
+     margin: 30px 0px 20px;
+     text-align: center;
+ }
+ 
+ .popup .form .avatar img {
+     width: 120px;
+     border-radius: 50%;
+ }

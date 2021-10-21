@@ -4511,3 +4511,12 @@ $(window).on('load', function() {
     }, 1000);
 
 });
+
+//modal logiin
+function openLoginForm() {
+    document.body.classList.add("showLoginForm");
+}
+
+function closeLoginForm() {
+    document.body.classList.remove("showLoginForm");
+}
